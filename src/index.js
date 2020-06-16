@@ -1,7 +1,6 @@
-import React from "react";
 import ReactDOM from "react-dom";
-import App from "@/components/app/app";
-import {PromoSetting, FilmsTitles} from "@/consts";
+import App from "@root/components/app/app";
+import {PromoSetting, FilmsTitles} from "@root/consts/main";
 
 ReactDOM.render(
     <App

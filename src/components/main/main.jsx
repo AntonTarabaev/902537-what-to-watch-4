@@ -1,8 +1,5 @@
-import React from "react";
-import PropTypes from "prop-types";
-
 const Main = (props) => {
-  const {promoTitle, promoGenre, promoReleaseDate, filmsTitles} = props;
+  const {promoTitle, promoGenre, promoReleaseDate, filmsTitles, onHeaderClick} = props;
 
   return (
     <React.Fragment>
@@ -107,7 +104,7 @@ const Main = (props) => {
                     alt={it} width="280" height="175"/>
                 </div>
                 <h3 className="small-movie-card__title">
-                  <a className="small-movie-card__link" href="movie-page.html">{it}</a>
+                  <a onClick={onHeaderClick} className="small-movie-card__link" href="movie-page.html">{it}</a>
                 </h3>
               </article>
             ))}
@@ -141,6 +138,7 @@ Main.propTypes = {
   promoGenre: PropTypes.string.isRequired,
   promoReleaseDate: PropTypes.number.isRequired,
   filmsTitles: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  onHeaderClick: PropTypes.func.isRequired,
 };
 
 export default Main;

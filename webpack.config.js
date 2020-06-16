@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = (env) => {
   return {
@@ -26,10 +27,16 @@ module.exports = (env) => {
         }
       ],
     },
+    plugins: [
+      new webpack.ProvidePlugin({
+        React: 'react',
+        PropTypes: 'prop-types',
+      }),
+    ],
     devtool: env.devtool,
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, './src'),
+        '@root': path.resolve(__dirname, './src'),
       },
       extensions: ['*', '.js', '.jsx']
     }
