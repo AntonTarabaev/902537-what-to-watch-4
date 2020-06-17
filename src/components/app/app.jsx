@@ -1,6 +1,6 @@
-import React from "react";
-import Main from "@/components/main/main";
-import PropTypes from "prop-types";
+import Main from "@root/components/main/main";
+
+const headerClickHandler = () => {};
 
 const App = (props) => {
   const {promoTitle, promoGenre, promoReleaseDate, filmsTitles} = props;
@@ -11,6 +11,7 @@ const App = (props) => {
       promoGenre={promoGenre}
       promoReleaseDate={promoReleaseDate}
       filmsTitles={filmsTitles}
+      onHeaderClick={headerClickHandler}
     />
   );
 };
