@@ -1,5 +1,3 @@
-import Enzyme, {shallow} from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
 import Main from "@root/components/main/main";
 
 const filmsTitles = [
@@ -19,10 +17,6 @@ const filmsTitles = [
   `Orlando`,
   `Lock, Stock and Two Smoking Barrels`,
 ];
-
-Enzyme.configure({
-  adapter: new Adapter(),
-});
 
 it(`Should header be clicked`, () => {
   const onHeaderClick = jest.fn();
