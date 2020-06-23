@@ -1,30 +1,31 @@
 import App from "@root/components/app/app";
 
-const filmsTitles = [
-  `Bohemian Rhapsody`,
-  `Aviator`,
-  `We need to talk about Kevin`,
-  `What We Do in the Shadows`,
-  `Johnny English`,
-  `Shutter Island`,
-  `Pulp Fiction`,
-  `No Country for Old Men`,
-  `Snatch`,
-  `Moonrise Kingdom`,
-  `Seven Years in Tibet`,
-  `Midnight Special`,
-  `War of the Worlds`,
-  `Orlando`,
-  `Lock, Stock and Two Smoking Barrels`,
+const promo = {
+  TITLE: `The Grand Budapest Hotel`,
+  GENRE: `Drama`,
+  RELEASE_DATE: 2014,
+};
+
+const films = [
+  {
+    title: `Fantastic Beasts: The Crimes of Grindelwald`,
+    poster: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+  },
+  {
+    title: `Bohemian Rhapsody`,
+    poster: `bohemian-rhapsody.jpg`,
+  },
+  {
+    title: `Aviator`,
+    poster: `aviator.jpg`,
+  },
 ];
 
 it(`Render App`, () => {
   const tree = renderer
     .create(<App
-      promoTitle={`Aviator`}
-      promoGenre={`Drama`}
-      promoReleaseDate={2004}
-      filmsTitles={filmsTitles}
+      promo={promo}
+      films={films}
     />)
     .toJSON();
 
