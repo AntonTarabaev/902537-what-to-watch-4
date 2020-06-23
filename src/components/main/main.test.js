@@ -4,6 +4,8 @@ const promo = {
   TITLE: `The Grand Budapest Hotel`,
   GENRE: `Drama`,
   RELEASE_DATE: 2014,
+  BG: `bg-the-grand-budapest-hotel.jpg`,
+  POSTER: `the-grand-budapest-hotel-poster.jpg`,
 };
 
 const films = [
@@ -26,7 +28,7 @@ it(`Should Main render correctly`, () => {
     .create(<Main
       promo={promo}
       films={films}
-      onHeaderClick={() => {}}
+      onFilmCardElementClick={() => {}}
     />)
     .toJSON();
 
