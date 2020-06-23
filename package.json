@@ -10,14 +10,6 @@
     "build": "webpack --env.type=production",
     "start": "webpack-dev-server --env.type=development --env.devtool=source-map"
   },
-  "jest": {
-    "moduleNameMapper": {
-      "^@root(.*)$": "<rootDir>/src$1"
-    },
-    "setupFiles": [
-      "<rootDir>/jest.setup.js"
-    ]
-  },
   "devDependencies": {
     "@babel/core": "7.10.2",
     "@babel/preset-env": "7.10.2",

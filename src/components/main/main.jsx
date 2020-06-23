@@ -1,5 +1,12 @@
+import FilmsList from "@root/components/films-list/films-list";
+
 const Main = (props) => {
-  const {promoTitle, promoGenre, promoReleaseDate, filmsTitles, onHeaderClick} = props;
+  const {promo, films, onHeaderClick} = props;
+  const {
+    TITLE: promoTitle,
+    GENRE: promoGenre,
+    RELEASE_DATE: promoReleaseDate,
+  } = promo;
 
   return (
     <>
@@ -96,19 +103,10 @@ const Main = (props) => {
             </li>
           </ul>
 
-          <div className="catalog__movies-list">
-            {filmsTitles.map((it, i) => (
-              <article key={it + i} className="small-movie-card catalog__movies-card">
-                <div className="small-movie-card__image">
-                  <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-                    alt={it} width="280" height="175"/>
-                </div>
-                <h3 className="small-movie-card__title">
-                  <a onClick={onHeaderClick} className="small-movie-card__link" href="movie-page.html">{it}</a>
-                </h3>
-              </article>
-            ))}
-          </div>
+          <FilmsList
+            onHeaderClick={onHeaderClick}
+            films={films}
+          />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
@@ -134,10 +132,15 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  promoTitle: PropTypes.string.isRequired,
-  promoGenre: PropTypes.string.isRequired,
-  promoReleaseDate: PropTypes.number.isRequired,
-  filmsTitles: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  promo: PropTypes.shape({
+    TITLE: PropTypes.string.isRequired,
+    GENRE: PropTypes.string.isRequired,
+    RELEASE_DATE: PropTypes.number.isRequired,
+  }).isRequired,
+  films: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
+  })).isRequired,
   onHeaderClick: PropTypes.func.isRequired,
 };
 

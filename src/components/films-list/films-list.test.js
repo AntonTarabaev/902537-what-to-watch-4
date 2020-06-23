@@ -1,10 +1,4 @@
-import App from "@root/components/app/app";
-
-const promo = {
-  TITLE: `The Grand Budapest Hotel`,
-  GENRE: `Drama`,
-  RELEASE_DATE: 2014,
-};
+import FilmsList from "@root/components/films-list/films-list";
 
 const films = [
   {
@@ -21,13 +15,13 @@ const films = [
   },
 ];
 
-it(`Render App`, () => {
-  const tree = renderer
-    .create(<App
-      promo={promo}
-      films={films}
-    />)
-    .toJSON();
+it(`Should FilmsList render correctly`, () => {
+  const tree = renderer.create(
+      <FilmsList
+        onHeaderClick={() => {}}
+        films={films}
+      />
+  ).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

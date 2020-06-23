@@ -3,24 +3,27 @@ import Main from "@root/components/main/main";
 const headerClickHandler = () => {};
 
 const App = (props) => {
-  const {promoTitle, promoGenre, promoReleaseDate, filmsTitles} = props;
+  const {promo, films} = props;
 
   return (
     <Main
-      promoTitle={promoTitle}
-      promoGenre={promoGenre}
-      promoReleaseDate={promoReleaseDate}
-      filmsTitles={filmsTitles}
+      promo={promo}
+      films={films}
       onHeaderClick={headerClickHandler}
     />
   );
 };
 
 App.propTypes = {
-  promoTitle: PropTypes.string.isRequired,
-  promoGenre: PropTypes.string.isRequired,
-  promoReleaseDate: PropTypes.number.isRequired,
-  filmsTitles: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  promo: PropTypes.shape({
+    TITLE: PropTypes.string.isRequired,
+    GENRE: PropTypes.string.isRequired,
+    RELEASE_DATE: PropTypes.number.isRequired,
+  }).isRequired,
+  films: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
+  })).isRequired,
 };
 
 export default App;
