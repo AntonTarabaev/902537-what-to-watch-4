@@ -12,7 +12,7 @@ class FilmsList extends React.PureComponent {
   }
 
   render() {
-    const {films, onHeaderClick} = this.props;
+    const {films, onFilmCardElementClick} = this.props;
 
     return (
       <div className="catalog__movies-list">
@@ -20,7 +20,7 @@ class FilmsList extends React.PureComponent {
           <FilmCard
             key={`${i}-${film.poster}`}
             onFilmCardHover={this._filmCardHoverHandler}
-            onHeaderClick={onHeaderClick}
+            onFilmCardElementClick={onFilmCardElementClick}
             film={film}
           />
         ))}
@@ -36,11 +36,8 @@ class FilmsList extends React.PureComponent {
 }
 
 FilmsList.propTypes = {
-  onHeaderClick: PropTypes.func.isRequired,
-  films: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-  })).isRequired,
+  onFilmCardElementClick: PropTypes.func.isRequired,
+  films: PropTypes.array.isRequired,
 };
 
 export default FilmsList;

@@ -9,7 +9,7 @@ it(`When user hover film card listener gets film info`, () => {
   const onFilmCardHover = jest.fn();
   const filmCard = shallow(<FilmCard
     onFilmCardHover={onFilmCardHover}
-    onHeaderClick={() => {}}
+    onFilmCardElementClick={() => {}}
     film={film}
   />);
 
@@ -20,17 +20,38 @@ it(`When user hover film card listener gets film info`, () => {
   expect(onFilmCardHover.mock.calls[0][0]).toMatchObject(film);
 });
 
-it(`Should film card header be clicked`, () => {
-  const onHeaderClick = jest.fn();
+it(`Should film card elements be clicked`, () => {
+  const onFilmCardElementClick = jest.fn();
 
   const filmCard = shallow(<FilmCard
     onFilmCardHover={() => {}}
-    onHeaderClick={onHeaderClick}
+    onFilmCardElementClick={onFilmCardElementClick}
     film={film}
   />);
 
   const header = filmCard.find(`a.small-movie-card__link`);
-  header.simulate(`click`);
+  const image = filmCard.find(`div.small-movie-card__image`);
+  header.simulate(`click`, {preventDefault() {}});
+  image.simulate(`click`);
 
-  expect(onHeaderClick).toHaveBeenCalledTimes(1);
+  expect(onFilmCardElementClick).toHaveBeenCalledTimes(2);
+});
+
+it(`When user click film card header prevent link default behavior`, () => {
+  const onFilmCardElementClick = jest.fn();
+
+  const filmCard = shallow(<FilmCard
+    onFilmCardHover={() => {}}
+    onFilmCardElementClick={onFilmCardElementClick}
+    film={film}
+  />);
+
+  const header = filmCard.find(`a.small-movie-card__link`);
+  const linkDefaultBehaviorPrevention = jest.fn();
+  header.simulate(`click`, {
+    preventDefault: linkDefaultBehaviorPrevention,
+  });
+
+  expect(onFilmCardElementClick).toHaveBeenCalledTimes(1);
+  expect(linkDefaultBehaviorPrevention).toHaveBeenCalledTimes(1);
 });

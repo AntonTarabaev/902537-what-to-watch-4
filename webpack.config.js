@@ -4,7 +4,7 @@ const webpack = require('webpack');
 module.exports = (env) => {
   return {
     mode: env.type,
-    entry: './src/index.js',
+    entry: './src/index.jsx',
     output: {
       filename: 'bundle.js',
       path: path.join(__dirname, 'public')
@@ -15,6 +15,7 @@ module.exports = (env) => {
       inline: true,
       hot: true,
       port: 1337,
+      historyApiFallback: true,
     },
     module: {
       rules: [

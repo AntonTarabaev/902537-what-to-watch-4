@@ -9,7 +9,7 @@ it(`Should FilmCard render correctly`, () => {
   const tree = renderer.create(
       <FilmCard
         onFilmCardHover={() => {}}
-        onHeaderClick={() => {}}
+        onFilmCardElementClick={() => {}}
         film={film}
       />
   ).toJSON();

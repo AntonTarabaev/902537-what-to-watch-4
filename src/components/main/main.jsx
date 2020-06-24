@@ -1,18 +1,20 @@
 import FilmsList from "@root/components/films-list/films-list";
 
 const Main = (props) => {
-  const {promo, films, onHeaderClick} = props;
+  const {promo, films, onFilmCardElementClick} = props;
   const {
     TITLE: promoTitle,
     GENRE: promoGenre,
     RELEASE_DATE: promoReleaseDate,
+    BG: promoBG,
+    POSTER: promoPoster,
   } = promo;
 
   return (
     <>
       <section className="movie-card">
         <div className="movie-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel"/>
+          <img src={`img/${promoBG}`} alt={promoTitle}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -36,7 +38,7 @@ const Main = (props) => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218"
+              <img src={`img/${promoPoster}`} alt={`${promoTitle} poster`} width="218"
                 height="327"/>
             </div>
 
@@ -104,7 +106,7 @@ const Main = (props) => {
           </ul>
 
           <FilmsList
-            onHeaderClick={onHeaderClick}
+            onFilmCardElementClick={onFilmCardElementClick}
             films={films}
           />
 
@@ -136,12 +138,11 @@ Main.propTypes = {
     TITLE: PropTypes.string.isRequired,
     GENRE: PropTypes.string.isRequired,
     RELEASE_DATE: PropTypes.number.isRequired,
+    BG: PropTypes.string.isRequired,
+    POSTER: PropTypes.string.isRequired,
   }).isRequired,
-  films: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-  })).isRequired,
-  onHeaderClick: PropTypes.func.isRequired,
+  films: PropTypes.array.isRequired,
+  onFilmCardElementClick: PropTypes.func.isRequired,
 };
 
 export default Main;
