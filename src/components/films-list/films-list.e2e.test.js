@@ -71,13 +71,24 @@ const films = [
   },
 ];
 
-it(`Should FilmsList render correctly`, () => {
-  const tree = renderer.create(
+it(`When user hover film card it become active after delay`, () => {
+  const filmsList = mount(
       <FilmsList
         onFilmCardElementClick={() => {}}
         films={films}
       />
-  ).toJSON();
+  );
 
-  expect(tree).toMatchSnapshot();
+  const filmCard = filmsList.find(`article.small-movie-card`).at(1);
+
+  filmCard.simulate(`mouseenter`);
+  expect(filmsList.state(`activeFilmCardId`)).toBe(null);
+  setTimeout(() => {
+    expect(filmsList.state(`activeFilmCardId`)).toEqual(films[1].id);
+    expect(filmsList.state(`filmCardActivationTimeout`)).not.toBe(null);
+  }, 1100);
+
+  filmCard.simulate(`mouseleave`);
+  expect(filmsList.state(`activeFilmCardId`)).toBe(null);
+  expect(filmsList.state(`filmCardActivationTimeout`)).toBe(null);
 });

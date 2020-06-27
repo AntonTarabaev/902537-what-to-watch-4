@@ -1,5 +1,7 @@
 export const MOCK_FILMS_COUNT = 8;
 
+export const FILM_CARD_ACTIVATION_DELAY = 1000;
+
 export const PromoSetting = {
   TITLE: `The Grand Budapest Hotel`,
   GENRE: `Drama`,

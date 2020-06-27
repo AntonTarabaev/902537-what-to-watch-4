@@ -75,6 +75,11 @@ const PeopleItems = [
   `Tom Hanks`,
 ];
 
+const PreviewItems = [
+  `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+  `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+];
+
 const getRandomFloatNumber = (min, max) => Math.random() * (max - min) + min;
 
 const getRandomIntNumber = (min, max) => Math.floor(getRandomFloatNumber(min, max + 1));
@@ -83,13 +88,15 @@ const getRandomArrayItem = (array) => array[getRandomIntNumber(0, array.length -
 
 const generateFilm = () => {
   return {
+    id: String(new Date() + Math.random()),
     title: getRandomArrayItem(FilmTitleItems),
     poster: getRandomArrayItem(PosterItems),
     releaseYear: getRandomIntNumber(1990, 2020),
     genre: getRandomArrayItem(GenreItems),
-    rating: getRandomFloatNumber(0, 10).toFixed(1),
+    rating: Number(getRandomFloatNumber(0, 10).toFixed(1)),
     ratingVotes: getRandomIntNumber(1, 10000),
     director: getRandomArrayItem(PeopleItems),
+    preview: getRandomArrayItem(PreviewItems),
     description: DescriptionItems
       .sort(() => Math.random() - 0.5)
       .slice(0, getRandomIntNumber(2, 4)),
