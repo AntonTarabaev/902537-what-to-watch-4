@@ -1,4 +1,5 @@
 import FilmsList from "@root/components/films-list/films-list";
+import {FILM_CARD_ACTIVATION_DELAY} from "@root/consts/main";
 
 const films = [
   {
@@ -86,7 +87,7 @@ it(`When user hover film card it become active after delay`, () => {
   setTimeout(() => {
     expect(filmsList.state(`activeFilmCardId`)).toEqual(films[1].id);
     expect(filmsList.state(`filmCardActivationTimeout`)).not.toBe(null);
-  }, 1100);
+  }, FILM_CARD_ACTIVATION_DELAY);
 
   filmCard.simulate(`mouseleave`);
   expect(filmsList.state(`activeFilmCardId`)).toBe(null);
