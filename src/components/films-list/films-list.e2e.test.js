@@ -1,4 +1,5 @@
 import FilmsList from "@root/components/films-list/films-list";
+import {FILM_CARD_ACTIVATION_DELAY} from "@root/consts/main";
 
 const films = [
   {
@@ -71,13 +72,24 @@ const films = [
   },
 ];
 
-it(`Should FilmsList render correctly`, () => {
-  const tree = renderer.create(
+it(`When user hover film card it become active after delay`, () => {
+  const filmsList = mount(
       <FilmsList
         onFilmCardElementClick={() => {}}
         films={films}
       />
-  ).toJSON();
+  );
 
-  expect(tree).toMatchSnapshot();
+  const filmCard = filmsList.find(`article.small-movie-card`).at(1);
+
+  filmCard.simulate(`mouseenter`);
+  expect(filmsList.state(`activeFilmCardId`)).toBe(null);
+  setTimeout(() => {
+    expect(filmsList.state(`activeFilmCardId`)).toEqual(films[1].id);
+    expect(filmsList.state(`filmCardActivationTimeout`)).not.toBe(null);
+  }, FILM_CARD_ACTIVATION_DELAY);
+
+  filmCard.simulate(`mouseleave`);
+  expect(filmsList.state(`activeFilmCardId`)).toBe(null);
+  expect(filmsList.state(`filmCardActivationTimeout`)).toBe(null);
 });

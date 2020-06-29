@@ -1,31 +1,55 @@
 import FilmCard from "@root/components/film-card/film-card";
 
 const film = {
+  id: `13457894`,
   title: `Bohemian Rhapsody`,
   poster: `bohemian-rhapsody.jpg`,
+  preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
 };
 
-it(`When user hover film card listener gets film info`, () => {
-  const onFilmCardHover = jest.fn();
+it(`When user hover film card listener gets film id`, () => {
+  const onFilmCardMouseEnter = jest.fn();
   const filmCard = shallow(<FilmCard
-    onFilmCardHover={onFilmCardHover}
+    onFilmCardMouseEnter={onFilmCardMouseEnter}
+    onFilmCardMouseLeave={() => {}}
     onFilmCardElementClick={() => {}}
+    isActive={false}
     film={film}
   />);
 
   filmCard.simulate(`mouseenter`);
 
-  expect(onFilmCardHover).toHaveBeenCalledTimes(1);
+  expect(onFilmCardMouseEnter).toHaveBeenCalledTimes(1);
 
-  expect(onFilmCardHover.mock.calls[0][0]).toMatchObject(film);
+  expect(onFilmCardMouseEnter.mock.calls[0][0]).toEqual(film.id);
+});
+
+it(`Should film card hover work properly`, () => {
+  const onFilmCardMouseEnter = jest.fn();
+  const onFilmCardMouseLeave = jest.fn();
+  const filmCard = shallow(<FilmCard
+    onFilmCardMouseEnter={onFilmCardMouseEnter}
+    onFilmCardMouseLeave={onFilmCardMouseLeave}
+    onFilmCardElementClick={() => {}}
+    isActive={false}
+    film={film}
+  />);
+
+  filmCard.simulate(`mouseenter`);
+  filmCard.simulate(`mouseleave`);
+
+  expect(onFilmCardMouseEnter).toHaveBeenCalledTimes(1);
+  expect(onFilmCardMouseLeave).toHaveBeenCalledTimes(1);
 });
 
 it(`Should film card elements be clicked`, () => {
   const onFilmCardElementClick = jest.fn();
 
   const filmCard = shallow(<FilmCard
-    onFilmCardHover={() => {}}
+    onFilmCardMouseEnter={() => {}}
+    onFilmCardMouseLeave={() => {}}
     onFilmCardElementClick={onFilmCardElementClick}
+    isActive={false}
     film={film}
   />);
 
@@ -41,8 +65,10 @@ it(`When user click film card header prevent link default behavior`, () => {
   const onFilmCardElementClick = jest.fn();
 
   const filmCard = shallow(<FilmCard
-    onFilmCardHover={() => {}}
+    onFilmCardMouseEnter={() => {}}
+    onFilmCardMouseLeave={() => {}}
     onFilmCardElementClick={onFilmCardElementClick}
+    isActive={false}
     film={film}
   />);
 

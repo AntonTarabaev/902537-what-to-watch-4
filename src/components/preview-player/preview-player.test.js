@@ -1,20 +1,15 @@
-import FilmCard from "@root/components/film-card/film-card";
+import PreviewPlayer from "@root/components/preview-player/preview-player";
 
 const film = {
-  id: `13457894`,
-  title: `Bohemian Rhapsody`,
   poster: `bohemian-rhapsody.jpg`,
   preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
 };
 
 it(`Should FilmCard render correctly`, () => {
   const tree = renderer.create(
-      <FilmCard
-        onFilmCardMouseEnter={() => {}}
-        onFilmCardMouseLeave={() => {}}
-        onFilmCardElementClick={() => {}}
-        isActive={false}
-        film={film}
+      <PreviewPlayer
+        src={film.poster}
+        poster={film.preview}
       />, {
         createNodeMock() {
           return {};

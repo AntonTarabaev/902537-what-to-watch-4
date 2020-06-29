@@ -10,6 +10,7 @@ const promo = {
 
 const films = [
   {
+    id: `573489`,
     title: `Fantastic Beasts: The Crimes of Grindelwald`,
     poster: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     releaseYear: 1999,
@@ -28,8 +29,10 @@ const films = [
       `Robert De Niro`,
       `Tom Hanks`,
     ],
+    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
+    id: `5593482`,
     title: `Bohemian Rhapsody`,
     poster: `bohemian-rhapsody.jpg`,
     releaseYear: 2001,
@@ -51,8 +54,10 @@ const films = [
       `Takeshi Kitano`,
       `Michael Caine`,
     ],
+    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
+    id: `123094`,
     title: `Aviator`,
     poster: `aviator.jpg`,
     releaseYear: 2015,
@@ -70,6 +75,7 @@ const films = [
       `Robert De Niro`,
       `Tom Hanks`,
     ],
+    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
 ];
 
