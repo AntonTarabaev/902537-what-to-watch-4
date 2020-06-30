@@ -1,4 +1,4 @@
-import FilmDetailsTabs from "@root/components/film-details-tabs/film-details-tabs";
+import FilmPageTabs from "@root/components/film-details-tabs/film-page-tabs";
 import FilmsList from "@root/components/films-list/films-list";
 
 const FilmPage = (props) => {
@@ -81,7 +81,7 @@ const FilmPage = (props) => {
             </div>
 
             <div className="movie-card__desc">
-              <FilmDetailsTabs film={film}/>
+              <FilmPageTabs film={film}/>
             </div>
           </div>
         </div>

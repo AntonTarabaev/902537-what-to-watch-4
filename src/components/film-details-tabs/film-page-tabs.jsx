@@ -55,13 +55,21 @@ const Tab = (props) => {
   );
 };
 
-class FilmDetailsTabs extends React.PureComponent {
+class FilmPageTabs extends React.PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
       activeTab: DetailsTabs.OVERVIEW,
     };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.film.id !== this.props.film.id) {
+      this.setState({
+        activeTab: DetailsTabs.OVERVIEW,
+      });
+    }
   }
 
   render() {
@@ -185,7 +193,7 @@ Tab.propTypes = {
   ]).isRequired,
 };
 
-FilmDetailsTabs.propTypes = {
+FilmPageTabs.propTypes = {
   film: PropTypes.shape({
     id: PropTypes.string.isRequired,
     releaseYear: PropTypes.number.isRequired,
@@ -205,4 +213,4 @@ FilmDetailsTabs.propTypes = {
   }).isRequired,
 };
 
-export default FilmDetailsTabs;
+export default FilmPageTabs;

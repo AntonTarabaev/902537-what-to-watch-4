@@ -1,4 +1,4 @@
-import FilmDetailsTabs from "@root/components/film-details-tabs/film-details-tabs";
+import FilmPageTabs from "@root/components/film-details-tabs/film-page-tabs";
 
 const DetailsTabs = {
   OVERVIEW: `Overview`,
@@ -52,24 +52,24 @@ const film = {
 };
 
 it(`When user click on tab it become active`, () => {
-  const filmDetailsTabs = mount(
-      <FilmDetailsTabs
+  const filmPageTabs = mount(
+      <FilmPageTabs
         film={film}
       />
   );
 
-  const overviewTab = filmDetailsTabs.find(`a.movie-nav__link`).at(0);
-  const detailsTab = filmDetailsTabs.find(`a.movie-nav__link`).at(1);
-  const reviewsTab = filmDetailsTabs.find(`a.movie-nav__link`).at(2);
+  const overviewTab = filmPageTabs.find(`a.movie-nav__link`).at(0);
+  const detailsTab = filmPageTabs.find(`a.movie-nav__link`).at(1);
+  const reviewsTab = filmPageTabs.find(`a.movie-nav__link`).at(2);
 
-  expect(filmDetailsTabs.state(`activeTab`)).toBe(DetailsTabs.OVERVIEW);
+  expect(filmPageTabs.state(`activeTab`)).toBe(DetailsTabs.OVERVIEW);
 
   detailsTab.simulate(`click`);
-  expect(filmDetailsTabs.state(`activeTab`)).toBe(DetailsTabs.DETAILS);
+  expect(filmPageTabs.state(`activeTab`)).toBe(DetailsTabs.DETAILS);
 
   reviewsTab.simulate(`click`);
-  expect(filmDetailsTabs.state(`activeTab`)).toBe(DetailsTabs.REVIEWS);
+  expect(filmPageTabs.state(`activeTab`)).toBe(DetailsTabs.REVIEWS);
 
   overviewTab.simulate(`click`);
-  expect(filmDetailsTabs.state(`activeTab`)).toBe(DetailsTabs.OVERVIEW);
+  expect(filmPageTabs.state(`activeTab`)).toBe(DetailsTabs.OVERVIEW);
 });
