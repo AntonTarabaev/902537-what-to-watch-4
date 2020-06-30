@@ -1,13 +1,24 @@
 import FilmDetailsTabs from "@root/components/film-details-tabs/film-details-tabs";
+import FilmsList from "@root/components/films-list/films-list";
 
 const FilmPage = (props) => {
-  const {film} = props;
+  const {film, films, onFilmCardElementClick} = props;
   const {
     title,
     poster,
     releaseYear,
     genre,
   } = film;
+
+  const extraFilms = [];
+  for (const currentFilm of films) {
+    if (extraFilms.length === 4) {
+      break;
+    }
+    if (currentFilm !== film && currentFilm.genre === film.genre) {
+      extraFilms.push(currentFilm);
+    }
+  }
 
   return (
     <>
@@ -77,49 +88,16 @@ const FilmPage = (props) => {
       </section>
 
       <div className="page-content">
-        <section className="catalog catalog--like-this">
-          <h2 className="catalog__title">More like this</h2>
+        {extraFilms.length > 0 &&
+          <section className="catalog catalog--like-this">
+            <h2 className="catalog__title">More like this</h2>
 
-          <div className="catalog__movies-list">
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-                  alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175"/>
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Fantastic Beasts: The Crimes of
-                  Grindelwald</a>
-              </h3>
-            </article>
-
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src="img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width="280" height="175"/>
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Bohemian Rhapsody</a>
-              </h3>
-            </article>
-
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src="img/macbeth.jpg" alt="Macbeth" width="280" height="175"/>
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Macbeth</a>
-              </h3>
-            </article>
-
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src="img/aviator.jpg" alt="Aviator" width="280" height="175"/>
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Aviator</a>
-              </h3>
-            </article>
-          </div>
-        </section>
+            <FilmsList
+              onFilmCardElementClick={onFilmCardElementClick}
+              films={extraFilms}
+            />
+          </section>
+        }
 
         <footer className="page-footer">
           <div className="logo">
@@ -140,7 +118,8 @@ const FilmPage = (props) => {
 };
 
 FilmPage.propTypes = {
-  film: PropTypes.shape({
+  films: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     poster: PropTypes.string.isRequired,
     releaseYear: PropTypes.number.isRequired,
@@ -150,6 +129,27 @@ FilmPage.propTypes = {
     director: PropTypes.string.isRequired,
     description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     actors: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    preview: PropTypes.string.isRequired,
+    duration: PropTypes.number.isRequired,
+    comments: PropTypes.arrayOf(PropTypes.shape({
+      author: PropTypes.string.isRequired,
+      comment: PropTypes.string.isRequired,
+      date: PropTypes.instanceOf(Date).isRequired,
+      rating: PropTypes.number.isRequired,
+    }).isRequired).isRequired,
+  }).isRequired).isRequired,
+  film: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
+    releaseYear: PropTypes.number.isRequired,
+    genre: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    ratingVotes: PropTypes.number.isRequired,
+    director: PropTypes.string.isRequired,
+    description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    actors: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    preview: PropTypes.string.isRequired,
     duration: PropTypes.number.isRequired,
     comments: PropTypes.arrayOf(PropTypes.shape({
       author: PropTypes.string.isRequired,
@@ -158,6 +158,7 @@ FilmPage.propTypes = {
       rating: PropTypes.number.isRequired,
     }).isRequired).isRequired,
   }).isRequired,
+  onFilmCardElementClick: PropTypes.func.isRequired,
 };
 
 export default FilmPage;

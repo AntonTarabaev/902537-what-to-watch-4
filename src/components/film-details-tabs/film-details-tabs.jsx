@@ -187,6 +187,7 @@ Tab.propTypes = {
 
 FilmDetailsTabs.propTypes = {
   film: PropTypes.shape({
+    id: PropTypes.string.isRequired,
     releaseYear: PropTypes.number.isRequired,
     genre: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,

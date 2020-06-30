@@ -11,6 +11,8 @@ class App extends React.PureComponent {
       page: AppPages.MAIN,
       film: null,
     };
+
+    this._onFilmCardElementClick = this._onFilmCardElementClick.bind(this);
   }
 
   _renderApp() {
@@ -24,18 +26,15 @@ class App extends React.PureComponent {
             <Main
               promo={promo}
               films={films}
-              onFilmCardElementClick={(targetFilm) => {
-                this.setState({
-                  page: AppPages.DETAILS,
-                  film: targetFilm,
-                });
-              }}
+              onFilmCardElementClick={this._onFilmCardElementClick}
             />
           );
         case AppPages.DETAILS:
           return (
             <FilmPage
               film={film}
+              films={films}
+              onFilmCardElementClick={this._onFilmCardElementClick}
             />
           );
       }
@@ -56,11 +55,20 @@ class App extends React.PureComponent {
           <Route exact path="/dev-details">
             <FilmPage
               film={films[1]}
+              films={films}
+              onFilmCardElementClick={this._onFilmCardElementClick}
             />
           </Route>
         </Switch>
       </BrowserRouter>
     );
+  }
+
+  _onFilmCardElementClick(targetFilm) {
+    this.setState({
+      page: AppPages.DETAILS,
+      film: targetFilm,
+    });
   }
 }
 
@@ -73,6 +81,9 @@ App.propTypes = {
     POSTER: PropTypes.string.isRequired,
   }).isRequired,
   films: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
     releaseYear: PropTypes.number.isRequired,
     genre: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
@@ -80,6 +91,7 @@ App.propTypes = {
     director: PropTypes.string.isRequired,
     description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     actors: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    preview: PropTypes.string.isRequired,
     duration: PropTypes.number.isRequired,
     comments: PropTypes.arrayOf(PropTypes.shape({
       author: PropTypes.string.isRequired,
