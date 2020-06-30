@@ -53,7 +53,7 @@ const GenreItems = [
   `Film-Noir`,
 ];
 
-const DescriptionItems = [
+const TextItems = [
   `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet varius magna, non porta ligula feugiat eget. Sed sed nisi sed augue convallis suscipit in sed felis.`,
   `Fusce tristique felis at fermentum pharetra. Aliquam id orci ut lectus varius viverra. Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante.`,
   `Phasellus eros mauris, condimentum sed nibh vitae, sodales efficitur ipsum. Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui.`,
@@ -86,6 +86,33 @@ const getRandomIntNumber = (min, max) => Math.floor(getRandomFloatNumber(min, ma
 
 const getRandomArrayItem = (array) => array[getRandomIntNumber(0, array.length - 1)];
 
+const getRandomDate = () => {
+  const targetDate = new Date();
+  const diffValue = getRandomIntNumber(0, 3650);
+
+  targetDate.setDate(targetDate.getDate() - diffValue);
+
+  return targetDate;
+};
+
+const generateComment = () => {
+  return {
+    author: getRandomArrayItem(PeopleItems),
+    rating: Number(getRandomFloatNumber(0, 10).toFixed(1)),
+    date: getRandomDate(),
+    comment: TextItems
+      .sort(() => Math.random() - 0.5)
+      .slice(0, getRandomIntNumber(1, 2))
+      .join(`. `),
+  };
+};
+
+const generateComments = (count) => {
+  return new Array(count)
+    .fill(``)
+    .map(generateComment);
+};
+
 const generateFilm = () => {
   return {
     id: String(new Date() + Math.random()),
@@ -97,12 +124,14 @@ const generateFilm = () => {
     ratingVotes: getRandomIntNumber(1, 10000),
     director: getRandomArrayItem(PeopleItems),
     preview: getRandomArrayItem(PreviewItems),
-    description: DescriptionItems
+    duration: getRandomIntNumber(20, 180),
+    description: TextItems
       .sort(() => Math.random() - 0.5)
       .slice(0, getRandomIntNumber(2, 4)),
     actors: PeopleItems
       .sort(() => Math.random() - 0.5)
       .slice(0, getRandomIntNumber(3, 6)),
+    comments: generateComments(9),
   };
 };
 

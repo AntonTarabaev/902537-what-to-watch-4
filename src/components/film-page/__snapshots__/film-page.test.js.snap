@@ -12,8 +12,8 @@ Array [
         className="movie-card__bg"
       >
         <img
-          alt="Fantastic Beasts: The Crimes of Grindelwald"
-          src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+          alt="Bohemian Rhapsody"
+          src="img/bohemian-rhapsody.jpg"
         />
       </div>
       <h1
@@ -72,7 +72,7 @@ Array [
           <h2
             className="movie-card__title"
           >
-            Fantastic Beasts: The Crimes of Grindelwald
+            Bohemian Rhapsody
           </h2>
           <p
             className="movie-card__meta"
@@ -80,12 +80,12 @@ Array [
             <span
               className="movie-card__genre"
             >
-              Drama
+              Comedy
             </span>
             <span
               className="movie-card__year"
             >
-              1999
+              2001
             </span>
           </p>
           <div
@@ -145,9 +145,9 @@ Array [
           className="movie-card__poster movie-card__poster--big"
         >
           <img
-            alt="Fantastic Beasts: The Crimes of Grindelwald poster"
+            alt="Bohemian Rhapsody poster"
             height="327"
-            src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+            src="img/bohemian-rhapsody.jpg"
             width="218"
           />
         </div>
@@ -165,27 +165,30 @@ Array [
               >
                 <a
                   className="movie-nav__link"
-                  href="#"
+                  href={null}
+                  onClick={[Function]}
                 >
                   Overview
                 </a>
               </li>
               <li
-                className="movie-nav__item"
+                className="movie-nav__item "
               >
                 <a
                   className="movie-nav__link"
                   href="#"
+                  onClick={[Function]}
                 >
                   Details
                 </a>
               </li>
               <li
-                className="movie-nav__item"
+                className="movie-nav__item "
               >
                 <a
                   className="movie-nav__link"
                   href="#"
+                  onClick={[Function]}
                 >
                   Reviews
                 </a>
@@ -198,7 +201,7 @@ Array [
             <div
               className="movie-rating__score"
             >
-              8.2
+              10
             </div>
             <p
               className="movie-rating__meta"
@@ -206,12 +209,12 @@ Array [
               <span
                 className="movie-rating__level"
               >
-                Very good
+                Awesome
               </span>
               <span
                 className="movie-rating__count"
               >
-                197
+                19
                  ratings
               </span>
             </p>
@@ -225,12 +228,15 @@ Array [
             <p>
               Aliquam erat volutpat. Nunc fermentum tortor ac porta dapibus. In rutrum ac purus sit amet tempus.
             </p>
+            <p>
+              Aliquam erat volutpat. Nunc fermentum tortor ac porta dapibus. In rutrum ac purus sit amet tempus.
+            </p>
             <p
               className="movie-card__director"
             >
               <strong>
                 Director: 
-                Some One
+                Green One
               </strong>
             </p>
             <p
@@ -238,8 +244,7 @@ Array [
             >
               <strong>
                 Starring: 
-                Robert Rodrigues, Takeshi Kitano, Michael Caine, Robert De Niro, Tom Hanks
-                 and other
+                Robert Rodrigues, Takeshi Kitano, Michael Caine, Robert De Niro and others
               </strong>
             </p>
           </div>

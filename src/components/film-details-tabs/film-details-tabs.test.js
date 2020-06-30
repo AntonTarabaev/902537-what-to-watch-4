@@ -1,15 +1,12 @@
-import FilmPage from "@root/components/film-page/film-page";
+import FilmDetailsTabs from "@root/components/film-details-tabs/film-details-tabs";
 
 const film = {
   id: `5593482`,
-  title: `Bohemian Rhapsody`,
-  poster: `bohemian-rhapsody.jpg`,
   releaseYear: 2001,
   genre: `Comedy`,
   rating: 10,
   ratingVotes: 19,
   director: `Green One`,
-  duration: 123,
   description: [
     `Phasellus eros mauris, condimentum sed nibh vitae, sodales efficitur ipsum. Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui.`,
     `Aliquam erat volutpat. Nunc fermentum tortor ac porta dapibus. In rutrum ac purus sit amet tempus.`,
@@ -25,6 +22,7 @@ const film = {
     `Michael Caine`,
   ],
   preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+  duration: 123,
   comments: [
     {
       author: `Quentin Tarantino`,
@@ -47,12 +45,39 @@ const film = {
   ]
 };
 
-it(`Should FilmPage render correctly`, () => {
-  const tree = renderer.create(
-      <FilmPage
-        film={film}
-      />
-  ).toJSON();
+describe(`FilmDetailsTabs component render correctly`, () => {
+  it(`on Overview tab`, () => {
+    const tree = renderer.create(
+        <FilmDetailsTabs
+          film={film}
+        />
+    ).toJSON();
 
-  expect(tree).toMatchSnapshot();
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`on Details tab`, () => {
+    const component = renderer.create(
+        <FilmDetailsTabs
+          film={film}
+        />
+    );
+
+    component.root.findAllByProps({className: `movie-nav__link`})[1].props.onClick({preventDefault: () => {}});
+
+    const tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+  it(`on Reviews tab`, () => {
+    const component = renderer.create(
+        <FilmDetailsTabs
+          film={film}
+        />
+    );
+
+    component.root.findAllByProps({className: `movie-nav__link`})[2].props.onClick({preventDefault: () => {}});
+
+    const tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 });

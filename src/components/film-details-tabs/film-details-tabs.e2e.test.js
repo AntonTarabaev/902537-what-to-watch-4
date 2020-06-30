@@ -1,15 +1,18 @@
-import FilmPage from "@root/components/film-page/film-page";
+import FilmDetailsTabs from "@root/components/film-details-tabs/film-details-tabs";
+
+const DetailsTabs = {
+  OVERVIEW: `Overview`,
+  DETAILS: `Details`,
+  REVIEWS: `Reviews`,
+};
 
 const film = {
   id: `5593482`,
-  title: `Bohemian Rhapsody`,
-  poster: `bohemian-rhapsody.jpg`,
   releaseYear: 2001,
   genre: `Comedy`,
   rating: 10,
   ratingVotes: 19,
   director: `Green One`,
-  duration: 123,
   description: [
     `Phasellus eros mauris, condimentum sed nibh vitae, sodales efficitur ipsum. Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui.`,
     `Aliquam erat volutpat. Nunc fermentum tortor ac porta dapibus. In rutrum ac purus sit amet tempus.`,
@@ -25,6 +28,7 @@ const film = {
     `Michael Caine`,
   ],
   preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+  duration: 123,
   comments: [
     {
       author: `Quentin Tarantino`,
@@ -47,12 +51,25 @@ const film = {
   ]
 };
 
-it(`Should FilmPage render correctly`, () => {
-  const tree = renderer.create(
-      <FilmPage
+it(`When user click on tab it become active`, () => {
+  const filmDetailsTabs = mount(
+      <FilmDetailsTabs
         film={film}
       />
-  ).toJSON();
+  );
 
-  expect(tree).toMatchSnapshot();
+  const overviewTab = filmDetailsTabs.find(`a.movie-nav__link`).at(0);
+  const detailsTab = filmDetailsTabs.find(`a.movie-nav__link`).at(1);
+  const reviewsTab = filmDetailsTabs.find(`a.movie-nav__link`).at(2);
+
+  expect(filmDetailsTabs.state(`activeTab`)).toBe(DetailsTabs.OVERVIEW);
+
+  detailsTab.simulate(`click`);
+  expect(filmDetailsTabs.state(`activeTab`)).toBe(DetailsTabs.DETAILS);
+
+  reviewsTab.simulate(`click`);
+  expect(filmDetailsTabs.state(`activeTab`)).toBe(DetailsTabs.REVIEWS);
+
+  overviewTab.simulate(`click`);
+  expect(filmDetailsTabs.state(`activeTab`)).toBe(DetailsTabs.OVERVIEW);
 });
