@@ -1,5 +1,8 @@
 import Tabs from "@components/tabs/tabs";
 import FilmsList from "@components/films-list/films-list";
+import FilmPageTabOverview from "@components/film-page/film-page-tab-overview/film-page-tab-overview";
+import FilmPageTabDetails from "@components/film-page/film-page-tab-details/film-page-tab-details";
+import FilmPageTabReviews from "@components/film-page/film-page-tab-reviews/film-page-tab-reviews";
 
 const FilmPage = (props) => {
   const {film, extraFilms, onFilmCardElementClick} = props;
@@ -9,6 +12,21 @@ const FilmPage = (props) => {
     releaseYear,
     genre,
   } = film;
+
+  const PageTabs = [
+    {
+      id: `Overview`,
+      component: <FilmPageTabOverview film={film}/>,
+    },
+    {
+      id: `Details`,
+      component: <FilmPageTabDetails film={film}/>,
+    },
+    {
+      id: `Reviews`,
+      component: <FilmPageTabReviews film={film}/>,
+    },
+  ];
 
   return (
     <>
@@ -71,7 +89,7 @@ const FilmPage = (props) => {
             </div>
 
             <div className="movie-card__desc">
-              <Tabs film={film}/>
+              <Tabs tabs={PageTabs} film={film}/>
             </div>
           </div>
         </div>

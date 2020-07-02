@@ -1,4 +1,4 @@
-import Review from "@components/reviews-list/review/review";
+import Review from "@components/film-page/film-page-tab-reviews/review/review";
 
 const comment = {
   author: `John Doe`,

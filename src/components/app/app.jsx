@@ -1,6 +1,6 @@
 import Main from "@components/main/main";
 import FilmPage from "@components/film-page/film-page";
-import {AppPages} from "@constants/main";
+import {AppPages, EXTRA_FIMS_COUNT} from "@constants/main";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 
 class App extends React.PureComponent {
@@ -49,7 +49,7 @@ class App extends React.PureComponent {
 
     if (film) {
       for (const currentFilm of films) {
-        if (extraFilms.length === 4) {
+        if (extraFilms.length === EXTRA_FIMS_COUNT) {
           break;
         }
         if (currentFilm.id !== film.id && currentFilm.genre === film.genre) {
