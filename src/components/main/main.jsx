@@ -153,6 +153,13 @@ Main.propTypes = {
     description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     actors: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     preview: PropTypes.string.isRequired,
+    duration: PropTypes.number.isRequired,
+    comments: PropTypes.arrayOf(PropTypes.shape({
+      author: PropTypes.string.isRequired,
+      comment: PropTypes.string.isRequired,
+      date: PropTypes.instanceOf(Date).isRequired,
+      rating: PropTypes.number.isRequired,
+    }).isRequired).isRequired,
   }).isRequired).isRequired,
   onFilmCardElementClick: PropTypes.func.isRequired,
 };
