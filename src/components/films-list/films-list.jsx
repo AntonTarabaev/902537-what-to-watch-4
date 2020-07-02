@@ -1,5 +1,5 @@
-import FilmCard from "@root/components/film-card/film-card";
-import {FILM_CARD_ACTIVATION_DELAY} from "@root/consts/main";
+import FilmCard from "@components/film-card/film-card";
+import {FILM_CARD_ACTIVATION_DELAY} from "@constants/main";
 
 class FilmsList extends React.PureComponent {
   constructor(props) {

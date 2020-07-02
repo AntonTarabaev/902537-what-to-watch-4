@@ -1,4 +1,4 @@
-import FilmsList from "@root/components/films-list/films-list";
+import FilmsList from "@components/films-list/films-list";
 
 const films = [
   {

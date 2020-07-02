@@ -1,4 +1,4 @@
-import {MINUTES_IN_HOUR, MONTHS} from "@root/consts/main";
+import {MINUTES_IN_HOUR, MONTHS} from "@constants/main";
 
 export const formatTime = (durationInMinutes) => {
   return (

@@ -1,4 +1,4 @@
-import Main from "@root/components/main/main";
+import Main from "@components/main/main";
 
 const promo = {
   TITLE: `The Grand Budapest Hotel`,

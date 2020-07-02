@@ -1,4 +1,4 @@
-import App from "@root/components/app/app";
+import App from "@components/app/app";
 
 const promo = {
   TITLE: `The Grand Budapest Hotel`,

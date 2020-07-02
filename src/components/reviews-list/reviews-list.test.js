@@ -1,4 +1,4 @@
-import ReviewsList from "@root/components/reviews-list/reviews-list";
+import ReviewsList from "@components/reviews-list/reviews-list";
 
 const comments = [
   {

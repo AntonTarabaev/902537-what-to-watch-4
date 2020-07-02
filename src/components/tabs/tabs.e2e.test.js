@@ -1,4 +1,4 @@
-import FilmPageTabs from "@root/components/film-details-tabs/film-page-tabs";
+import Tabs from "@components/tabs/tabs";
 
 const DetailsTabs = {
   OVERVIEW: `Overview`,
@@ -53,7 +53,7 @@ const film = {
 
 it(`When user click on tab it become active`, () => {
   const filmPageTabs = mount(
-      <FilmPageTabs
+      <Tabs
         film={film}
       />
   );

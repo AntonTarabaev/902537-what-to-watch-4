@@ -1,5 +1,6 @@
-import {formatTime} from "@root/utils/common";
-import ReviewsList from "@root/components/reviews-list/reviews-list";
+import ReviewsList from "@components/reviews-list/reviews-list";
+import Tab from "@components/tabs/tab/tab";
+import {formatTime} from "@utils/common";
 
 const DetailsTabs = {
   OVERVIEW: `Overview`,
@@ -45,17 +46,7 @@ const getFilmRankText = (filmRating) => {
   return FilmRatings.AWESOME.RATING_TEXT;
 };
 
-const Tab = (props) => {
-  const {children, isActive} = props;
-
-  return (
-    <>
-      {isActive ? children : null}
-    </>
-  );
-};
-
-class FilmPageTabs extends React.PureComponent {
+class Tabs extends React.PureComponent {
   constructor(props) {
     super(props);
 
@@ -185,15 +176,7 @@ class FilmPageTabs extends React.PureComponent {
   }
 }
 
-Tab.propTypes = {
-  isActive: PropTypes.bool.isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]).isRequired,
-};
-
-FilmPageTabs.propTypes = {
+Tabs.propTypes = {
   film: PropTypes.shape({
     id: PropTypes.string.isRequired,
     releaseYear: PropTypes.number.isRequired,
@@ -213,4 +196,4 @@ FilmPageTabs.propTypes = {
   }).isRequired,
 };
 
-export default FilmPageTabs;
+export default Tabs;

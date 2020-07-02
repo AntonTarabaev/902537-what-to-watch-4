@@ -1,4 +1,4 @@
-import FilmPage from "@root/components/film-page/film-page";
+import FilmPage from "@components/film-page/film-page";
 
 const films = [
   {

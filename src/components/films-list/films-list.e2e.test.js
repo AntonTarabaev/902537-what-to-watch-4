@@ -1,5 +1,5 @@
-import FilmsList from "@root/components/films-list/films-list";
-import {FILM_CARD_ACTIVATION_DELAY} from "@root/consts/main";
+import FilmsList from "@components/films-list/films-list";
+import {FILM_CARD_ACTIVATION_DELAY} from "@constants/main";
 
 const films = [
   {

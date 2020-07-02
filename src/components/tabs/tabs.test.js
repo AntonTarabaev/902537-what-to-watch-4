@@ -1,4 +1,4 @@
-import FilmPageTabs from "@root/components/film-details-tabs/film-page-tabs";
+import Tabs from "@components/tabs/tabs";
 
 const film = {
   id: `5593482`,
@@ -48,7 +48,7 @@ const film = {
 describe(`FilmDetailsTabs component render correctly`, () => {
   it(`on Overview tab`, () => {
     const tree = renderer.create(
-        <FilmPageTabs
+        <Tabs
           film={film}
         />
     ).toJSON();
@@ -58,7 +58,7 @@ describe(`FilmDetailsTabs component render correctly`, () => {
 
   it(`on Details tab`, () => {
     const component = renderer.create(
-        <FilmPageTabs
+        <Tabs
           film={film}
         />
     );
@@ -70,7 +70,7 @@ describe(`FilmDetailsTabs component render correctly`, () => {
   });
   it(`on Reviews tab`, () => {
     const component = renderer.create(
-        <FilmPageTabs
+        <Tabs
           film={film}
         />
     );
