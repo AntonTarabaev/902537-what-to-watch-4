@@ -1,4 +1,9 @@
 import App from "@components/app/app";
+import configureStore from "redux-mock-store";
+import {Provider} from "react-redux";
+import {FILTER_ALL_GENRES} from "@constants/main";
+
+const mockStore = configureStore([]);
 
 const promo = {
   TITLE: `The Grand Budapest Hotel`,
@@ -7,6 +12,8 @@ const promo = {
   BG: `bg-the-grand-budapest-hotel.jpg`,
   POSTER: `the-grand-budapest-hotel-poster.jpg`,
 };
+
+const genres = [FILTER_ALL_GENRES, `Drama`, `Comedy`, `Thriller`];
 
 const films = [
   {
@@ -136,12 +143,23 @@ const films = [
   }
 ];
 
-it(`Render App`, () => {
+it(`Should render App correctly`, () => {
+  const store = mockStore({
+    filterGenre: genres[0],
+    filterGenres: genres,
+    films,
+  });
+
   const tree = renderer
-    .create(<App
-      promo={promo}
-      films={films}
-    />)
+    .create(
+        <Provider store={store}>
+          <App
+            promo={promo}
+            films={films}
+            onFilterClick={() => {}}
+          />
+        </Provider>
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();

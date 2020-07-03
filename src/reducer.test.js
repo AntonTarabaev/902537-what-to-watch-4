@@ -1,15 +1,6 @@
-import Main from "@components/main/main";
-import {FILTER_ALL_GENRES} from "@constants/main";
-
-const promo = {
-  TITLE: `The Grand Budapest Hotel`,
-  GENRE: `Drama`,
-  RELEASE_DATE: 2014,
-  BG: `bg-the-grand-budapest-hotel.jpg`,
-  POSTER: `the-grand-budapest-hotel-poster.jpg`,
-};
-
-const genres = [FILTER_ALL_GENRES, `Drama`, `Comedy`, `Thriller`];
+import {ActionCreator, ActionType, mockFilms, reducer} from "@root/reducer";
+import {FILTER_ALL_GENRES, GENRES_MAX_COUNT} from "@constants/main";
+import {getFilteredByGenreFilms, getUniqueGenres} from "@utils/common";
 
 const films = [
   {
@@ -100,7 +91,7 @@ const films = [
     title: `Aviator`,
     poster: `aviator.jpg`,
     releaseYear: 2015,
-    genre: `Thriller`,
+    genre: `Drama`,
     rating: 1.2,
     ratingVotes: 97,
     director: `Red One`,
@@ -139,17 +130,68 @@ const films = [
   }
 ];
 
-it(`Should Main render correctly`, () => {
-  const tree = renderer
-    .create(<Main
-      promo={promo}
-      films={films}
-      uniqueGenres={genres}
-      activeFilter={genres[0]}
-      onFilmCardElementClick={() => {}}
-      onFilterClick={() => {}}
-    />)
-    .toJSON();
+describe(`Reducer work correctly`, () => {
+  it(`Reducer without additional parameters should return initial state`, () => {
+    expect(reducer(void 0, {})).toEqual({
+      filterGenre: FILTER_ALL_GENRES,
+      filterGenres: [FILTER_ALL_GENRES, ...getUniqueGenres(mockFilms, GENRES_MAX_COUNT)],
+      films: mockFilms,
+    });
+  });
 
-  expect(tree).toMatchSnapshot();
+  it(`Reducer should change filterGenre by a given value`, () => {
+    expect(reducer({
+      filterGenre: FILTER_ALL_GENRES,
+    }, {
+      type: ActionType.CHANGE_GENRE_FILTER,
+      payload: `Thriller`,
+    })).toEqual({
+      filterGenre: `Thriller`,
+    });
+
+    expect(reducer({
+      filterGenre: `Comedy`,
+    }, {
+      type: ActionType.CHANGE_GENRE_FILTER,
+      payload: `Drama`,
+    })).toEqual({
+      filterGenre: `Drama`,
+    });
+  });
+
+  it(`Reducer should filter films by genre`, () => {
+    expect(reducer({
+      films,
+    }, {
+      type: ActionType.GET_FILTERED_FILMS,
+      payload: getFilteredByGenreFilms(films, `Drama`),
+    })).toEqual({
+      films: [films[0], films[2]],
+    });
+
+    expect(reducer({
+      films,
+    }, {
+      type: ActionType.GET_FILTERED_FILMS,
+      payload: getFilteredByGenreFilms(films, `Comedy`),
+    })).toEqual({
+      films: [films[1]],
+    });
+  });
+});
+
+describe(`Action creators work correctly`, () => {
+  it(`Action creator for getFilteredFilms returns correct action and payload`, () => {
+    expect(ActionCreator.getFilteredFilms(`Comedy`)).toEqual({
+      type: ActionType.GET_FILTERED_FILMS,
+      payload: getFilteredByGenreFilms(mockFilms, `Comedy`),
+    });
+  });
+
+  it(`Action creator for changeGenreFilter returns correct action and payload`, () => {
+    expect(ActionCreator.changeGenreFilter(`Comedy`)).toEqual({
+      type: ActionType.CHANGE_GENRE_FILTER,
+      payload: `Comedy`,
+    });
+  });
 });
