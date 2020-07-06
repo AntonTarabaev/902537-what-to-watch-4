@@ -1,5 +1,6 @@
-import FilmsList from "@components/films-list/films-list";
-import {FILM_CARD_ACTIVATION_DELAY} from "@constants/main";
+import {ActionCreator, ActionType, mockFilms, reducer} from "@root/reducer";
+import {FILTER_ALL_GENRES, GENRES_MAX_COUNT} from "@constants/main";
+import {getFilteredByGenreFilms, getUniqueGenres} from "@utils/common";
 
 const films = [
   {
@@ -90,7 +91,7 @@ const films = [
     title: `Aviator`,
     poster: `aviator.jpg`,
     releaseYear: 2015,
-    genre: `Thriller`,
+    genre: `Drama`,
     rating: 1.2,
     ratingVotes: 97,
     director: `Red One`,
@@ -129,24 +130,68 @@ const films = [
   }
 ];
 
-it(`When user hover film card it become active after delay`, () => {
-  const filmsList = mount(
-      <FilmsList
-        onFilmCardElementClick={() => {}}
-        films={films}
-      />
-  );
+describe(`Reducer work correctly`, () => {
+  it(`Reducer without additional parameters should return initial state`, () => {
+    expect(reducer(void 0, {})).toEqual({
+      filterGenre: FILTER_ALL_GENRES,
+      filterGenres: [FILTER_ALL_GENRES, ...getUniqueGenres(mockFilms, GENRES_MAX_COUNT)],
+      films: mockFilms,
+    });
+  });
 
-  const filmCard = filmsList.find(`article.small-movie-card`).at(1);
+  it(`Reducer should change filterGenre by a given value`, () => {
+    expect(reducer({
+      filterGenre: FILTER_ALL_GENRES,
+    }, {
+      type: ActionType.CHANGE_GENRE_FILTER,
+      payload: `Thriller`,
+    })).toEqual({
+      filterGenre: `Thriller`,
+    });
 
-  filmCard.simulate(`mouseenter`);
-  expect(filmsList.state(`activeFilmCardId`)).toBe(null);
-  setTimeout(() => {
-    expect(filmsList.state(`activeFilmCardId`)).toEqual(films[1].id);
-    expect(filmsList.state(`filmCardActivationTimeout`)).not.toBe(null);
-  }, FILM_CARD_ACTIVATION_DELAY);
+    expect(reducer({
+      filterGenre: `Comedy`,
+    }, {
+      type: ActionType.CHANGE_GENRE_FILTER,
+      payload: `Drama`,
+    })).toEqual({
+      filterGenre: `Drama`,
+    });
+  });
 
-  filmCard.simulate(`mouseleave`);
-  expect(filmsList.state(`activeFilmCardId`)).toBe(null);
-  expect(filmsList.state(`filmCardActivationTimeout`)).toBe(null);
+  it(`Reducer should filter films by genre`, () => {
+    expect(reducer({
+      films,
+    }, {
+      type: ActionType.GET_FILTERED_FILMS,
+      payload: getFilteredByGenreFilms(films, `Drama`),
+    })).toEqual({
+      films: [films[0], films[2]],
+    });
+
+    expect(reducer({
+      films,
+    }, {
+      type: ActionType.GET_FILTERED_FILMS,
+      payload: getFilteredByGenreFilms(films, `Comedy`),
+    })).toEqual({
+      films: [films[1]],
+    });
+  });
+});
+
+describe(`Action creators work correctly`, () => {
+  it(`Action creator for getFilteredFilms returns correct action and payload`, () => {
+    expect(ActionCreator.getFilteredFilms(`Comedy`)).toEqual({
+      type: ActionType.GET_FILTERED_FILMS,
+      payload: getFilteredByGenreFilms(mockFilms, `Comedy`),
+    });
+  });
+
+  it(`Action creator for changeGenreFilter returns correct action and payload`, () => {
+    expect(ActionCreator.changeGenreFilter(`Comedy`)).toEqual({
+      type: ActionType.CHANGE_GENRE_FILTER,
+      payload: `Comedy`,
+    });
+  });
 });

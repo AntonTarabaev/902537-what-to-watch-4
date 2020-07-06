@@ -1,4 +1,5 @@
-import Main from "@root/components/main/main";
+import Main from "@components/main/main";
+import {FILTER_ALL_GENRES} from "@constants/main";
 
 const promo = {
   TITLE: `The Grand Budapest Hotel`,
@@ -7,6 +8,8 @@ const promo = {
   BG: `bg-the-grand-budapest-hotel.jpg`,
   POSTER: `the-grand-budapest-hotel-poster.jpg`,
 };
+
+const genres = [FILTER_ALL_GENRES, `Drama`, `Comedy`, `Thriller`];
 
 const films = [
   {
@@ -141,7 +144,10 @@ it(`Should Main render correctly`, () => {
     .create(<Main
       promo={promo}
       films={films}
+      uniqueGenres={genres}
+      activeFilter={genres[0]}
       onFilmCardElementClick={() => {}}
+      onFilterClick={() => {}}
     />)
     .toJSON();
 

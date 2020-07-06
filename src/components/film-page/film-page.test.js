@@ -1,4 +1,4 @@
-import FilmPage from "@root/components/film-page/film-page";
+import FilmPage from "@components/film-page/film-page";
 
 const films = [
   {
@@ -132,7 +132,7 @@ it(`Should FilmPage render correctly`, () => {
   const tree = renderer.create(
       <FilmPage
         film={films[0]}
-        films={films}
+        extraFilms={films}
         onFilmCardElementClick={() => {}}
       />
   ).toJSON();

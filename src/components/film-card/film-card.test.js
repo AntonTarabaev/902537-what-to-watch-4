@@ -1,4 +1,4 @@
-import FilmCard from "@root/components/film-card/film-card";
+import FilmCard from "@components/film-card/film-card";
 
 const film = {
   id: `13457894`,

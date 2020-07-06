@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should FilmPageTabDetails render correctly 1`] = `
+Array [
+  <div
+    className="movie-rating"
+  >
+    <div
+      className="movie-rating__score"
+    >
+      8.2
+    </div>
+    <p
+      className="movie-rating__meta"
+    >
+      <span
+        className="movie-rating__level"
+      >
+        Very good
+      </span>
+      <span
+        className="movie-rating__count"
+      >
+        197
+         ratings
+      </span>
+    </p>
+  </div>,
+  <div
+    className="movie-card__text"
+  >
+    <p>
+      Phasellus eros mauris, condimentum sed nibh vitae, sodales efficitur ipsum. Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui.
+    </p>
+    <p>
+      Aliquam erat volutpat. Nunc fermentum tortor ac porta dapibus. In rutrum ac purus sit amet tempus.
+    </p>
+    <p
+      className="movie-card__director"
+    >
+      <strong>
+        Director: 
+        Some One
+      </strong>
+    </p>
+    <p
+      className="movie-card__starring"
+    >
+      <strong>
+        Starring: 
+        Robert Rodrigues, Takeshi Kitano, Michael Caine, Robert De Niro and others
+      </strong>
+    </p>
+  </div>,
+]
+`;

@@ -1,7 +1,9 @@
-import Main from "@root/components/main/main";
-import {AppPages} from "@root/consts/main";
+import Main from "@components/main/main";
+import FilmPage from "@components/film-page/film-page";
+import {AppPages, EXTRA_FILMS_COUNT} from "@constants/main";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
-import FilmPage from "@root/components/film-page/film-page";
+import {connect} from "react-redux";
+import {ActionCreator} from "@root/reducer";
 
 class App extends React.PureComponent {
   constructor(props) {
@@ -16,8 +18,15 @@ class App extends React.PureComponent {
   }
 
   _renderApp() {
-    const {promo, films} = this.props;
+    const {
+      promo,
+      films,
+      uniqueGenres,
+      activeFilter,
+      onFilterClick,
+    } = this.props;
     const {page, film} = this.state;
+    const extraFilms = this._getExtraFilms(film, films);
 
     if (films) {
       switch (page) {
@@ -26,6 +35,9 @@ class App extends React.PureComponent {
             <Main
               promo={promo}
               films={films}
+              uniqueGenres={uniqueGenres}
+              activeFilter={activeFilter}
+              onFilterClick={onFilterClick}
               onFilmCardElementClick={this._onFilmCardElementClick}
             />
           );
@@ -33,7 +45,7 @@ class App extends React.PureComponent {
           return (
             <FilmPage
               film={film}
-              films={films}
+              extraFilms={extraFilms}
               onFilmCardElementClick={this._onFilmCardElementClick}
             />
           );
@@ -41,6 +53,23 @@ class App extends React.PureComponent {
     }
 
     return null;
+  }
+
+  _getExtraFilms(film, films) {
+    const extraFilms = [];
+
+    if (film) {
+      for (const currentFilm of films) {
+        if (extraFilms.length === EXTRA_FILMS_COUNT) {
+          break;
+        }
+        if (currentFilm.id !== film.id && currentFilm.genre === film.genre) {
+          extraFilms.push(currentFilm);
+        }
+      }
+    }
+
+    return extraFilms;
   }
 
   render() {
@@ -55,7 +84,7 @@ class App extends React.PureComponent {
           <Route exact path="/dev-details">
             <FilmPage
               film={films[1]}
-              films={films}
+              extraFilms={this._getExtraFilms(films[1], films)}
               onFilmCardElementClick={this._onFilmCardElementClick}
             />
           </Route>
@@ -100,6 +129,23 @@ App.propTypes = {
       rating: PropTypes.number.isRequired,
     }).isRequired).isRequired,
   }).isRequired).isRequired,
+  uniqueGenres: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  activeFilter: PropTypes.string.isRequired,
+  onFilterClick: PropTypes.func.isRequired,
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  films: state.films,
+  uniqueGenres: state.filterGenres,
+  activeFilter: state.filterGenre,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onFilterClick(genre) {
+    dispatch(ActionCreator.changeGenreFilter(genre));
+    dispatch(ActionCreator.getFilteredFilms(genre));
+  },
+});
+
+export {App};
+export default connect(mapStateToProps, mapDispatchToProps)(App);

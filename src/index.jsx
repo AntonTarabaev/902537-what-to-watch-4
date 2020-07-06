@@ -1,14 +1,20 @@
 import ReactDOM from "react-dom";
-import App from "@root/components/app/app";
-import {MOCK_FILMS_COUNT, PromoSetting} from "@root/consts/main";
-import {generateFilms} from "@root/mocks/films";
+import App from "@components/app/app";
+import {PromoSetting} from "@constants/main";
+import {createStore} from "redux";
+import {reducer} from "@root/reducer";
+import {Provider} from "react-redux";
 
-console.log(generateFilms(MOCK_FILMS_COUNT));
+const store = createStore(
+    reducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
+);
 
 ReactDOM.render(
-    <App
-      promo={PromoSetting}
-      films={generateFilms(MOCK_FILMS_COUNT)}
-    />,
+    <Provider store={store}>
+      <App
+        promo={PromoSetting}
+      />
+    </Provider>,
     document.querySelector(`#root`)
 );

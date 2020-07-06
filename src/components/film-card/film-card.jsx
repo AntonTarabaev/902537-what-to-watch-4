@@ -1,4 +1,4 @@
-import PreviewPlayer from "@root/components/preview-player/preview-player";
+import PreviewPlayer from "@components/preview-player/preview-player";
 
 const FilmCard = (props) => {
   const {

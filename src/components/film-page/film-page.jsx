@@ -1,8 +1,11 @@
-import FilmPageTabs from "@root/components/film-details-tabs/film-page-tabs";
-import FilmsList from "@root/components/films-list/films-list";
+import Tabs from "@components/tabs/tabs";
+import FilmsList from "@components/films-list/films-list";
+import FilmPageTabOverview from "@components/film-page/film-page-tab-overview/film-page-tab-overview";
+import FilmPageTabDetails from "@components/film-page/film-page-tab-details/film-page-tab-details";
+import FilmPageTabReviews from "@components/film-page/film-page-tab-reviews/film-page-tab-reviews";
 
 const FilmPage = (props) => {
-  const {film, films, onFilmCardElementClick} = props;
+  const {film, extraFilms, onFilmCardElementClick} = props;
   const {
     title,
     poster,
@@ -10,15 +13,20 @@ const FilmPage = (props) => {
     genre,
   } = film;
 
-  const extraFilms = [];
-  for (const currentFilm of films) {
-    if (extraFilms.length === 4) {
-      break;
-    }
-    if (currentFilm !== film && currentFilm.genre === film.genre) {
-      extraFilms.push(currentFilm);
-    }
-  }
+  const PageTabs = [
+    {
+      id: `Overview`,
+      component: <FilmPageTabOverview film={film}/>,
+    },
+    {
+      id: `Details`,
+      component: <FilmPageTabDetails film={film}/>,
+    },
+    {
+      id: `Reviews`,
+      component: <FilmPageTabReviews film={film}/>,
+    },
+  ];
 
   return (
     <>
@@ -81,7 +89,7 @@ const FilmPage = (props) => {
             </div>
 
             <div className="movie-card__desc">
-              <FilmPageTabs film={film}/>
+              <Tabs tabs={PageTabs} film={film}/>
             </div>
           </div>
         </div>
@@ -118,7 +126,7 @@ const FilmPage = (props) => {
 };
 
 FilmPage.propTypes = {
-  films: PropTypes.arrayOf(PropTypes.shape({
+  extraFilms: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     poster: PropTypes.string.isRequired,
