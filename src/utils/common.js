@@ -1,4 +1,4 @@
-import {FILTER_ALL_GENRES, MINUTES_IN_HOUR, MONTHS} from "@constants/main";
+import {MINUTES_IN_HOUR, MONTHS} from "@constants/main";
 
 export const formatTime = (durationInMinutes) => {
   return (
@@ -14,10 +14,6 @@ export const formatDate = (date) => {
 
 export const extend = (a, b) => {
   return Object.assign({}, a, b);
-};
-
-export const getFilteredByGenreFilms = (films, genre) => {
-  return genre === FILTER_ALL_GENRES ? films : films.filter((film) => film.genre === genre);
 };
 
 export const getUniqueGenres = (films, maxGenresCount) => {

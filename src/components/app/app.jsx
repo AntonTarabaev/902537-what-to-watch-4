@@ -1,9 +1,8 @@
-import Main from "@components/main/main";
-import FilmPage from "@components/film-page/film-page";
-import {AppPages, EXTRA_FILMS_COUNT} from "@constants/main";
+import Main from "@components/main/main.connect";
+import FilmPage from "@components/film-page/film-page.connect";
+import {AppPages} from "@constants/main";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
-import {connect} from "react-redux";
-import {ActionCreator} from "@root/reducer";
+import {MOCK_FILMS} from "@root/mocks/films";
 
 class App extends React.PureComponent {
   constructor(props) {
@@ -11,70 +10,35 @@ class App extends React.PureComponent {
 
     this.state = {
       page: AppPages.MAIN,
-      film: null,
+      filmId: null,
     };
 
     this._onFilmCardElementClick = this._onFilmCardElementClick.bind(this);
   }
 
   _renderApp() {
-    const {
-      promo,
-      films,
-      uniqueGenres,
-      activeFilter,
-      onFilterClick,
-    } = this.props;
-    const {page, film} = this.state;
-    const extraFilms = this._getExtraFilms(film, films);
+    const {page, filmId} = this.state;
 
-    if (films) {
-      switch (page) {
-        case AppPages.MAIN:
-          return (
-            <Main
-              promo={promo}
-              films={films}
-              uniqueGenres={uniqueGenres}
-              activeFilter={activeFilter}
-              onFilterClick={onFilterClick}
-              onFilmCardElementClick={this._onFilmCardElementClick}
-            />
-          );
-        case AppPages.DETAILS:
-          return (
-            <FilmPage
-              film={film}
-              extraFilms={extraFilms}
-              onFilmCardElementClick={this._onFilmCardElementClick}
-            />
-          );
-      }
+    switch (page) {
+      case AppPages.MAIN:
+        return (
+          <Main
+            onFilmCardElementClick={this._onFilmCardElementClick}
+          />
+        );
+      case AppPages.DETAILS:
+        return (
+          <FilmPage
+            filmId={filmId}
+            onFilmCardElementClick={this._onFilmCardElementClick}
+          />
+        );
     }
 
     return null;
   }
 
-  _getExtraFilms(film, films) {
-    const extraFilms = [];
-
-    if (film) {
-      for (const currentFilm of films) {
-        if (extraFilms.length === EXTRA_FILMS_COUNT) {
-          break;
-        }
-        if (currentFilm.id !== film.id && currentFilm.genre === film.genre) {
-          extraFilms.push(currentFilm);
-        }
-      }
-    }
-
-    return extraFilms;
-  }
-
   render() {
-    const {films} = this.props;
-
     return (
       <BrowserRouter>
         <Switch>
@@ -83,8 +47,7 @@ class App extends React.PureComponent {
           </Route>
           <Route exact path="/dev-details">
             <FilmPage
-              film={films[1]}
-              extraFilms={this._getExtraFilms(films[1], films)}
+              filmId={MOCK_FILMS[1].id}
               onFilmCardElementClick={this._onFilmCardElementClick}
             />
           </Route>
@@ -93,59 +56,12 @@ class App extends React.PureComponent {
     );
   }
 
-  _onFilmCardElementClick(targetFilm) {
+  _onFilmCardElementClick(targetFilmId) {
     this.setState({
       page: AppPages.DETAILS,
-      film: targetFilm,
+      filmId: targetFilmId,
     });
   }
 }
 
-App.propTypes = {
-  promo: PropTypes.shape({
-    TITLE: PropTypes.string.isRequired,
-    GENRE: PropTypes.string.isRequired,
-    RELEASE_DATE: PropTypes.number.isRequired,
-    BG: PropTypes.string.isRequired,
-    POSTER: PropTypes.string.isRequired,
-  }).isRequired,
-  films: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    releaseYear: PropTypes.number.isRequired,
-    genre: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    ratingVotes: PropTypes.number.isRequired,
-    director: PropTypes.string.isRequired,
-    description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    actors: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    preview: PropTypes.string.isRequired,
-    duration: PropTypes.number.isRequired,
-    comments: PropTypes.arrayOf(PropTypes.shape({
-      author: PropTypes.string.isRequired,
-      comment: PropTypes.string.isRequired,
-      date: PropTypes.instanceOf(Date).isRequired,
-      rating: PropTypes.number.isRequired,
-    }).isRequired).isRequired,
-  }).isRequired).isRequired,
-  uniqueGenres: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  activeFilter: PropTypes.string.isRequired,
-  onFilterClick: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  films: state.films,
-  uniqueGenres: state.filterGenres,
-  activeFilter: state.filterGenre,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onFilterClick(genre) {
-    dispatch(ActionCreator.changeGenreFilter(genre));
-    dispatch(ActionCreator.getFilteredFilms(genre));
-  },
-});
-
-export {App};
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

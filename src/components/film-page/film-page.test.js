@@ -132,7 +132,7 @@ it(`Should FilmPage render correctly`, () => {
   const tree = renderer.create(
       <FilmPage
         film={films[0]}
-        extraFilms={films}
+        similarFilms={films}
         onFilmCardElementClick={() => {}}
       />
   ).toJSON();

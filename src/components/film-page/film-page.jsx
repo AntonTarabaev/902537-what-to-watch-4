@@ -5,7 +5,7 @@ import FilmPageTabDetails from "@components/film-page/film-page-tab-details/film
 import FilmPageTabReviews from "@components/film-page/film-page-tab-reviews/film-page-tab-reviews";
 
 const FilmPage = (props) => {
-  const {film, extraFilms, onFilmCardElementClick} = props;
+  const {film, similarFilms, onFilmCardElementClick} = props;
   const {
     title,
     poster,
@@ -96,13 +96,13 @@ const FilmPage = (props) => {
       </section>
 
       <div className="page-content">
-        {extraFilms.length > 0 &&
+        {similarFilms.length > 0 &&
           <section className="catalog catalog--like-this">
             <h2 className="catalog__title">More like this</h2>
 
             <FilmsList
               onFilmCardElementClick={onFilmCardElementClick}
-              films={extraFilms}
+              films={similarFilms}
             />
           </section>
         }
@@ -126,7 +126,7 @@ const FilmPage = (props) => {
 };
 
 FilmPage.propTypes = {
-  extraFilms: PropTypes.arrayOf(PropTypes.shape({
+  similarFilms: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     poster: PropTypes.string.isRequired,

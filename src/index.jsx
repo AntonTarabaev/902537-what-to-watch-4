@@ -2,11 +2,11 @@ import ReactDOM from "react-dom";
 import App from "@components/app/app";
 import {PromoSetting} from "@constants/main";
 import {createStore} from "redux";
-import {reducer} from "@root/reducer";
 import {Provider} from "react-redux";
+import rootReducer from "@root/reducers/rootReducer";
 
 const store = createStore(
-    reducer,
+    rootReducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
 );
 
