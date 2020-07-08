@@ -145,18 +145,22 @@ const films = [
 
 it(`Should render App correctly`, () => {
   const store = mockStore({
-    filterGenre: genres[0],
-    filterGenres: genres,
-    films,
+    data: {
+      films,
+      promo,
+    },
+    mainPage: {
+      filterGenre: genres[0],
+      showingFilmsCount: 8,
+    },
   });
 
   const tree = renderer
     .create(
         <Provider store={store}>
           <App
-            promo={promo}
-            films={films}
             onFilterClick={() => {}}
+            onShowMoreButtonClick={() => {}}
           />
         </Provider>
     )

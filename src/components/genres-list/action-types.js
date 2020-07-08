@@ -1,0 +1,4 @@
+export const GenresListActionTypes = {
+  CHANGE_GENRE_FILTER: `CHANGE_GENRE_FILTER`,
+  RESET_SHOWING_FILMS: `RESET_SHOWING_FILMS`,
+};

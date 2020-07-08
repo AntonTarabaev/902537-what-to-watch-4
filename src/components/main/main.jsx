@@ -1,8 +1,16 @@
 import FilmsList from "@components/films-list/films-list";
-import GenresList from "@components/genres-list/genres-list";
+import GenresList from "@components/genres-list/genres-list.connect";
+import ShowMoreButton from "@components/show-more-button/show-more-button";
 
 const Main = (props) => {
-  const {promo, films, uniqueGenres, activeFilter, onFilmCardElementClick, onFilterClick} = props;
+  const {
+    promo,
+    films,
+    showingFilmsCount,
+    onFilmCardElementClick,
+    onShowMoreButtonClick,
+  } = props;
+
   const {
     TITLE: promoTitle,
     GENRE: promoGenre,
@@ -73,20 +81,14 @@ const Main = (props) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <GenresList
-            genres={uniqueGenres}
-            activeFilter={activeFilter}
-            onFilterClick={onFilterClick}
-          />
+          <GenresList/>
 
           <FilmsList
             onFilmCardElementClick={onFilmCardElementClick}
-            films={films}
+            films={films.slice(0, showingFilmsCount)}
           />
 
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          {showingFilmsCount < films.length && <ShowMoreButton onShowMoreButtonClick={onShowMoreButtonClick}/>}
         </section>
 
         <footer className="page-footer">
@@ -135,11 +137,9 @@ Main.propTypes = {
       rating: PropTypes.number.isRequired,
     }).isRequired).isRequired,
   }).isRequired).isRequired,
-  uniqueGenres: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  activeFilter: PropTypes.string.isRequired,
-  onFilterClick: PropTypes.func.isRequired,
+  showingFilmsCount: PropTypes.number.isRequired,
   onFilmCardElementClick: PropTypes.func.isRequired,
+  onShowMoreButtonClick: PropTypes.func.isRequired,
 };
 
 export default Main;
-

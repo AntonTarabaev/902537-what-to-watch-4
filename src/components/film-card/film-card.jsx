@@ -25,7 +25,7 @@ const FilmCard = (props) => {
       <div
         className="small-movie-card__image"
         onClick={() => {
-          onFilmCardElementClick(film);
+          onFilmCardElementClick(id);
         }}
       >
         {isActive ?
@@ -45,7 +45,7 @@ const FilmCard = (props) => {
         <a
           onClick={(evt) => {
             evt.preventDefault();
-            onFilmCardElementClick(film);
+            onFilmCardElementClick(id);
           }}
           className="small-movie-card__link"
           href="movie-page.html"

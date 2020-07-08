@@ -1,3 +1,5 @@
+import {MOCK_FILMS_COUNT} from "@constants/main";
+
 const FilmTitleItems = [
   `Fantastic Beasts: The Crimes of Grindelwald`,
   `Bohemian Rhapsody`,
@@ -140,3 +142,5 @@ export const generateFilms = (count) => {
     .fill(``)
     .map(generateFilm);
 };
+
+export const MOCK_FILMS = generateFilms(MOCK_FILMS_COUNT);
