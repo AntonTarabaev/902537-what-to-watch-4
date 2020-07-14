@@ -8,7 +8,7 @@ export const MONTHS = [`January`, `February`, `March`, `April`, `May`, `June`, `
 
 export const FILTER_ALL_GENRES = `All genres`;
 
-export const GENRES_MAX_COUNT = 8;
+export const GENRES_MAX_COUNT = 9;
 
 export const SIMILAR_FILMS_COUNT = 4;
 

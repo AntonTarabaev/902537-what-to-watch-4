@@ -1,24 +1,17 @@
+import GenreItem from "@components/genres-list/genre-item/genre-item";
+
 const GenresList = (props) => {
   const {genres, activeFilter, onFilterClick} = props;
 
   return (
     <ul className="catalog__genres-list">
       {genres.map((it) => (
-        <li
+        <GenreItem
           key={`genre-${it}`}
-          className={`catalog__genres-item ${it === activeFilter ? `catalog__genres-item--active` : ``}`}
-        >
-          <a
-            href={it === activeFilter ? null : `#`}
-            className="catalog__genres-link"
-            onClick={(evt) => {
-              evt.preventDefault();
-              return it !== activeFilter && onFilterClick(it);
-            }}
-          >
-            {it}
-          </a>
-        </li>
+          genre={it}
+          activeFilter={activeFilter}
+          onFilterClick={onFilterClick}
+        />
       ))}
     </ul>
   );

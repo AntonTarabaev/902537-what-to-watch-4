@@ -19,17 +19,24 @@ const FilmCard = (props) => {
     preview,
   } = film;
 
+  const filmCardMouseEnterHandler = () => {
+    onFilmCardMouseEnter(id);
+  };
+
+  const filmCardElementsClickHandler = (evt) => {
+    evt.preventDefault();
+    onFilmCardElementClick(id);
+  };
+
   return (
     <article
       className="small-movie-card catalog__movies-card"
-      onMouseEnter={() => onFilmCardMouseEnter(id)}
+      onMouseEnter={filmCardMouseEnterHandler}
       onMouseLeave={onFilmCardMouseLeave}
     >
       <div
         className="small-movie-card__image"
-        onClick={() => {
-          onFilmCardElementClick(id);
-        }}
+        onClick={filmCardElementsClickHandler}
       >
         {isActive ?
           <PreviewPlayerWrapped
@@ -46,10 +53,7 @@ const FilmCard = (props) => {
       </div>
       <h3 className="small-movie-card__title">
         <a
-          onClick={(evt) => {
-            evt.preventDefault();
-            onFilmCardElementClick(id);
-          }}
+          onClick={filmCardElementsClickHandler}
           className="small-movie-card__link"
           href="movie-page.html"
         >
@@ -73,4 +77,4 @@ FilmCard.propTypes = {
   }).isRequired,
 };
 
-export default FilmCard;
+export default React.memo(FilmCard);

@@ -28,4 +28,4 @@ TabNav.propTypes = {
   tabTitleClickHandler: PropTypes.func.isRequired,
 };
 
-export default TabNav;
+export default React.memo(TabNav);

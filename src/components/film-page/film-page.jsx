@@ -5,6 +5,7 @@ import FilmPageTabDetails from "@components/film-page/film-page-tab-details/film
 import FilmPageTabReviews from "@components/film-page/film-page-tab-reviews/film-page-tab-reviews";
 import withActiveTab from "@root/hocs/with-active-tab/with-active-tab";
 import withActiveFilmCard from "@root/hocs/with-active-film-card/with-active-film-card";
+import Footer from "@components/footer/footer";
 
 const TabsWrapped = withActiveTab(Tabs);
 const FilmsListWrapped = withActiveFilmCard(FilmsList);
@@ -112,19 +113,7 @@ const FilmPage = (props) => {
           </section>
         }
 
-        <footer className="page-footer">
-          <div className="logo">
-            <a href="main.html" className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer/>
       </div>
     </>
   );
