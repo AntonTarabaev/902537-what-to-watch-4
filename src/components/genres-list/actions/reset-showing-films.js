@@ -1,5 +1,5 @@
 import {FilmSettings} from "@constants/main";
-import {GenresListActionTypes} from "@components/genres-list/action-types";
+import {GenresListActionTypes} from "@constants/action-types";
 
 export const resetShowingFilms = () => ({
   type: GenresListActionTypes.RESET_SHOWING_FILMS,

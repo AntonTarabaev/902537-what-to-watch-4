@@ -1,7 +1,7 @@
-import {mainPage} from "@root/reducers/main-page/main-page";
+import {mainPage} from "@components/main/reducer/main-page";
 import {FilmSettings, FILTER_ALL_GENRES} from "@constants/main";
-import {GenresListActionTypes} from "@components/genres-list/action-types";
-import {MainPageActionTypes} from "@components/main/action-types";
+import {GenresListActionTypes} from "@constants/action-types";
+import {MainPageActionTypes} from "@constants/action-types";
 
 describe(`MainPage reducer work correctly`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
