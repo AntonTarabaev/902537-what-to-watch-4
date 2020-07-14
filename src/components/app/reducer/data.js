@@ -6,7 +6,7 @@ import {extend} from "@utils/common";
 const initialState = {
   films: MOCK_FILMS,
   promo: PromoSetting,
-  activeFilmId: -1,
+  activeFilmId: `-1`,
 };
 
 export const data = (state = initialState, action) => {

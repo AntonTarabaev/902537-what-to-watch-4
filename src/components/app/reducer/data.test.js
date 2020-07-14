@@ -8,7 +8,7 @@ describe(`Data reducer work correctly`, () => {
     expect(data(void 0, {})).toEqual({
       films: MOCK_FILMS,
       promo: PromoSetting,
-      activeFilmId: -1,
+      activeFilmId: `-1`,
     });
   });
 
@@ -16,7 +16,7 @@ describe(`Data reducer work correctly`, () => {
     expect(data({
       films: MOCK_FILMS,
       promo: PromoSetting,
-      activeFilmId: -1,
+      activeFilmId: `-1`,
     }, {
       type: AppActionTypes.CHANGE_ACTIVE_FILM_ID,
       payload: `47328947`,

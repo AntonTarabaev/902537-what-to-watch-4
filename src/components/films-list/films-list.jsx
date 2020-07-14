@@ -1,70 +1,35 @@
 import FilmCard from "@components/film-card/film-card";
-import {FILM_CARD_ACTIVATION_DELAY} from "@constants/main";
 
-class FilmsList extends React.PureComponent {
-  constructor(props) {
-    super(props);
+const FilmsList = (props) => {
+  const {
+    films,
+    onFilmCardElementClick,
+    activeFilmCardId,
+    onFilmCardMouseEnter,
+    onFilmCardMouseLeave,
+  } = props;
 
-    this.state = {
-      activeFilmCardId: null,
-      filmCardActivationTimeout: null,
-    };
-
-    this._filmCardMouseEnterHandler = this._filmCardMouseEnterHandler.bind(this);
-    this._filmCardMouseLeaveHandler = this._filmCardMouseLeaveHandler.bind(this);
-  }
-
-  render() {
-    const {films, onFilmCardElementClick} = this.props;
-    const {activeFilmCardId} = this.state;
-
-    return (
-      <div className="catalog__movies-list">
-        {films.map((film, i) => (
-          <FilmCard
-            key={`${i}-${film.poster}`}
-            onFilmCardMouseEnter={this._filmCardMouseEnterHandler}
-            onFilmCardMouseLeave={this._filmCardMouseLeaveHandler}
-            onFilmCardElementClick={onFilmCardElementClick}
-            isActive={activeFilmCardId === film.id}
-            film={film}
-          />
-        ))}
-      </div>
-    );
-  }
-
-  componentWillUnmount() {
-    const {filmCardActivationTimeout} = this.state;
-
-    clearTimeout(filmCardActivationTimeout);
-  }
-
-  _filmCardMouseEnterHandler(filmId) {
-    const timeout = setTimeout(() => {
-      this.setState({
-        activeFilmCardId: filmId,
-      });
-    }, FILM_CARD_ACTIVATION_DELAY);
-
-    this.setState({
-      filmCardActivationTimeout: timeout,
-    });
-  }
-
-  _filmCardMouseLeaveHandler() {
-    const {filmCardActivationTimeout} = this.state;
-
-    clearTimeout(filmCardActivationTimeout);
-    this.setState({
-      activeFilmCardId: null,
-      filmCardActivationTimeout: null,
-    });
-  }
-}
+  return (
+    <div className="catalog__movies-list">
+      {films.map((film, i) => (
+        <FilmCard
+          key={`${i}-${film.poster}`}
+          onFilmCardMouseEnter={onFilmCardMouseEnter}
+          onFilmCardMouseLeave={onFilmCardMouseLeave}
+          onFilmCardElementClick={onFilmCardElementClick}
+          isActive={activeFilmCardId === film.id}
+          film={film}
+        />
+      ))}
+    </div>
+  );
+};
 
 FilmsList.propTypes = {
   onFilmCardElementClick: PropTypes.func.isRequired,
+  activeFilmCardId: PropTypes.string.isRequired,
+  onFilmCardMouseEnter: PropTypes.func.isRequired,
+  onFilmCardMouseLeave: PropTypes.func.isRequired,
   films: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,

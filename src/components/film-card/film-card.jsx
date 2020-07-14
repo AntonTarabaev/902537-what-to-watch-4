@@ -1,4 +1,7 @@
 import PreviewPlayer from "@components/preview-player/preview-player";
+import withPreview from "@root/hocs/with-preview/with-preview";
+
+const PreviewPlayerWrapped = withPreview(PreviewPlayer);
 
 const FilmCard = (props) => {
   const {
@@ -29,7 +32,7 @@ const FilmCard = (props) => {
         }}
       >
         {isActive ?
-          <PreviewPlayer
+          <PreviewPlayerWrapped
             src={preview}
             poster={`img/${poster}`}
           /> :

@@ -1,6 +1,9 @@
 import FilmsList from "@components/films-list/films-list";
 import GenresList from "@components/genres-list/genres-list.connect";
 import ShowMoreButton from "@components/show-more-button/show-more-button";
+import withActiveFilmCard from "@root/hocs/with-active-film-card/with-active-film-card";
+
+const FilmsListWrapped = withActiveFilmCard(FilmsList);
 
 const Main = (props) => {
   const {
@@ -83,7 +86,7 @@ const Main = (props) => {
 
           <GenresList/>
 
-          <FilmsList
+          <FilmsListWrapped
             onFilmCardElementClick={onFilmCardElementClick}
             films={films.slice(0, showingFilmsCount)}
           />

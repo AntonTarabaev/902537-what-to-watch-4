@@ -20,6 +20,8 @@ describe(`FilmDetailsTabs component render correctly`, () => {
     const tree = renderer.create(
         <Tabs
           tabs={PageTabs}
+          activeTabId={0}
+          tabTitleClickHandler={() => {}}
         />
     ).toJSON();
 
@@ -30,10 +32,10 @@ describe(`FilmDetailsTabs component render correctly`, () => {
     const component = renderer.create(
         <Tabs
           tabs={PageTabs}
+          activeTabId={1}
+          tabTitleClickHandler={() => {}}
         />
     );
-
-    component.root.findAllByProps({className: `movie-nav__link`})[1].props.onClick({preventDefault: () => {}});
 
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
@@ -43,10 +45,10 @@ describe(`FilmDetailsTabs component render correctly`, () => {
     const component = renderer.create(
         <Tabs
           tabs={PageTabs}
+          activeTabId={2}
+          tabTitleClickHandler={() => {}}
         />
     );
-
-    component.root.findAllByProps({className: `movie-nav__link`})[2].props.onClick({preventDefault: () => {}});
 
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();

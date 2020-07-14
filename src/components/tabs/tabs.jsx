@@ -1,65 +1,39 @@
-class Tabs extends React.PureComponent {
-  constructor(props) {
-    super(props);
+import TabNav from "@components/tabs/tabs-nav/tab-nav";
 
-    this.state = {
-      activeTabId: 0,
-    };
-  }
+const Tabs = (props) => {
+  const {tabs, activeTabId, tabTitleClickHandler} = props;
+  const ActiveTab = tabs[activeTabId].component;
 
-  componentDidUpdate(prevProps) {
-    if (prevProps !== this.props) {
-      this.setState({
-        activeTabId: 0,
-      });
-    }
-  }
+  return (
+    <>
+      <nav className="movie-nav movie-card__nav">
+        <ul className="movie-nav__list">
+          {tabs.map((it, i) => {
+            return (
+              <TabNav
+                key={`tab-${it.id}`}
+                title={it.id}
+                number={i}
+                activeTabId={activeTabId}
+                tabTitleClickHandler={tabTitleClickHandler}
+              />
+            );
+          })}
+        </ul>
+      </nav>
 
-  render() {
-    const {activeTabId} = this.state;
-    const {tabs} = this.props;
-
-    const ActiveTab = tabs[activeTabId].component;
-
-    return (
-      <>
-        <nav className="movie-nav movie-card__nav">
-          <ul className="movie-nav__list">
-            {tabs.map((it, i) => {
-              return (
-                <li
-                  key={`tab-${it.id}`}
-                  className={`movie-nav__item ${activeTabId === i ? `movie-nav__item--active` : ``}`}
-                >
-                  <a
-                    href={activeTabId === i ? null : `#`}
-                    className="movie-nav__link"
-                    onClick={(evt) => {
-                      evt.preventDefault();
-                      this.setState({
-                        activeTabId: i,
-                      });
-                    }}
-                  >
-                    {it.id}
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
-
-        {ActiveTab}
-      </>
-    );
-  }
-}
+      {ActiveTab}
+    </>
+  );
+};
 
 Tabs.propTypes = {
   tabs: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     component: PropTypes.node.isRequired,
   }).isRequired).isRequired,
+  activeTabId: PropTypes.number.isRequired,
+  tabTitleClickHandler: PropTypes.func.isRequired,
 };
 
 export default Tabs;

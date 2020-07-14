@@ -133,8 +133,15 @@ it(`Should FilmsList render correctly`, () => {
       <FilmsList
         onFilmCardElementClick={() => {}}
         films={films}
-      />
-  ).toJSON();
+        activeFilmCardId={films[0].id}
+        onFilmCardMouseLeave={() => {}}
+        onFilmCardMouseEnter={() => {}}
+      />, {
+        createNodeMock() {
+          return {};
+        }
+      })
+  .toJSON();
 
   expect(tree).toMatchSnapshot();
 });

@@ -3,14 +3,14 @@ import FilmPage from "@components/film-page/film-page.connect";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import {MOCK_FILMS} from "@root/mocks/films";
 
-class App extends React.PureComponent {
-  _renderApp() {
+const App = (props) => {
+  const renderApp = () => {
     const {
       activeFilmId,
       onFilmCardElementClick,
-    } = this.props;
+    } = props;
 
-    if (activeFilmId !== -1) {
+    if (activeFilmId !== `-1`) {
       return (
         <FilmPage
           filmId={activeFilmId}
@@ -24,32 +24,27 @@ class App extends React.PureComponent {
         onFilmCardElementClick={onFilmCardElementClick}
       />
     );
-  }
+  };
 
-  render() {
-    return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/">
-            {this._renderApp()}
-          </Route>
-          <Route exact path="/dev-details">
-            <FilmPage
-              filmId={MOCK_FILMS[1].id}
-              onFilmCardElementClick={() => {}}
-            />
-          </Route>
-        </Switch>
-      </BrowserRouter>
-    );
-  }
-}
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/">
+          {renderApp()}
+        </Route>
+        <Route exact path="/dev-details">
+          <FilmPage
+            filmId={MOCK_FILMS[1].id}
+            onFilmCardElementClick={() => {}}
+          />
+        </Route>
+      </Switch>
+    </BrowserRouter>
+  );
+};
 
 App.propTypes = {
-  activeFilmId: PropTypes.oneOfType([
-    PropTypes.number.isRequired,
-    PropTypes.string.isRequired,
-  ]).isRequired,
+  activeFilmId: PropTypes.string.isRequired,
   onFilmCardElementClick: PropTypes.func.isRequired,
 };
 
