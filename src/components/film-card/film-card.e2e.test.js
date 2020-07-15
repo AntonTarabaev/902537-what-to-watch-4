@@ -56,7 +56,7 @@ it(`Should film card elements be clicked`, () => {
   const header = filmCard.find(`a.small-movie-card__link`);
   const image = filmCard.find(`div.small-movie-card__image`);
   header.simulate(`click`, {preventDefault() {}});
-  image.simulate(`click`);
+  image.simulate(`click`, {preventDefault() {}});
 
   expect(onFilmCardElementClick).toHaveBeenCalledTimes(2);
 });

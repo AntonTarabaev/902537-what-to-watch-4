@@ -8,7 +8,7 @@ export const MONTHS = [`January`, `February`, `March`, `April`, `May`, `June`, `
 
 export const FILTER_ALL_GENRES = `All genres`;
 
-export const GENRES_MAX_COUNT = 8;
+export const GENRES_MAX_COUNT = 9;
 
 export const SIMILAR_FILMS_COUNT = 4;
 
@@ -24,9 +24,4 @@ export const PromoSetting = {
   RELEASE_DATE: 2014,
   BG: `bg-the-grand-budapest-hotel.jpg`,
   POSTER: `the-grand-budapest-hotel-poster.jpg`,
-};
-
-export const AppPages = {
-  MAIN: `main`,
-  DETAILS: `details`,
 };

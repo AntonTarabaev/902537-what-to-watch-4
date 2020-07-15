@@ -1,6 +1,10 @@
 import FilmsList from "@components/films-list/films-list";
 import GenresList from "@components/genres-list/genres-list.connect";
 import ShowMoreButton from "@components/show-more-button/show-more-button";
+import withActiveFilmCard from "@root/hocs/with-active-film-card/with-active-film-card";
+import Footer from "@components/footer/footer";
+
+const FilmsListWrapped = withActiveFilmCard(FilmsList);
 
 const Main = (props) => {
   const {
@@ -83,7 +87,7 @@ const Main = (props) => {
 
           <GenresList/>
 
-          <FilmsList
+          <FilmsListWrapped
             onFilmCardElementClick={onFilmCardElementClick}
             films={films.slice(0, showingFilmsCount)}
           />
@@ -91,19 +95,9 @@ const Main = (props) => {
           {showingFilmsCount < films.length && <ShowMoreButton onShowMoreButtonClick={onShowMoreButtonClick}/>}
         </section>
 
-        <footer className="page-footer">
-          <div className="logo">
-            <a className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer
+          isMainPage={true}
+        />
       </div>
     </>
   );

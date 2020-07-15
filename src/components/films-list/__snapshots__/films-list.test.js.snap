@@ -13,12 +13,7 @@ exports[`Should FilmsList render correctly 1`] = `
       className="small-movie-card__image"
       onClick={[Function]}
     >
-      <img
-        alt="Fantastic Beasts: The Crimes of Grindelwald"
-        height="175"
-        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-        width="280"
-      />
+      <video />
     </div>
     <h3
       className="small-movie-card__title"

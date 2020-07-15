@@ -3,6 +3,12 @@ import FilmsList from "@components/films-list/films-list";
 import FilmPageTabOverview from "@components/film-page/film-page-tab-overview/film-page-tab-overview";
 import FilmPageTabDetails from "@components/film-page/film-page-tab-details/film-page-tab-details";
 import FilmPageTabReviews from "@components/film-page/film-page-tab-reviews/film-page-tab-reviews";
+import withActiveTab from "@root/hocs/with-active-tab/with-active-tab";
+import withActiveFilmCard from "@root/hocs/with-active-film-card/with-active-film-card";
+import Footer from "@components/footer/footer";
+
+const TabsWrapped = withActiveTab(Tabs);
+const FilmsListWrapped = withActiveFilmCard(FilmsList);
 
 const FilmPage = (props) => {
   const {film, similarFilms, onFilmCardElementClick} = props;
@@ -89,7 +95,7 @@ const FilmPage = (props) => {
             </div>
 
             <div className="movie-card__desc">
-              <Tabs tabs={PageTabs} film={film}/>
+              <TabsWrapped tabs={PageTabs} film={film}/>
             </div>
           </div>
         </div>
@@ -100,26 +106,14 @@ const FilmPage = (props) => {
           <section className="catalog catalog--like-this">
             <h2 className="catalog__title">More like this</h2>
 
-            <FilmsList
+            <FilmsListWrapped
               onFilmCardElementClick={onFilmCardElementClick}
               films={similarFilms}
             />
           </section>
         }
 
-        <footer className="page-footer">
-          <div className="logo">
-            <a href="main.html" className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer/>
       </div>
     </>
   );

@@ -1,5 +1,5 @@
 import {FilmSettings} from "@constants/main";
-import {MainPageActionTypes} from "@components/main/action-types";
+import {MainPageActionTypes} from "@constants/action-types";
 
 export const incrementShowingFilms = () => ({
   type: MainPageActionTypes.INCREMENT_SHOWING_FILMS,

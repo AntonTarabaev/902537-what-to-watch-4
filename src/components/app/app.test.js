@@ -1,4 +1,4 @@
-import App from "@components/app/app";
+import App from "@components/app/app.connect";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {FILTER_ALL_GENRES} from "@constants/main";
@@ -148,6 +148,7 @@ it(`Should render App correctly`, () => {
     data: {
       films,
       promo,
+      activeFilmId: films[1].id,
     },
     mainPage: {
       filterGenre: genres[0],
@@ -158,10 +159,7 @@ it(`Should render App correctly`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
-          <App
-            onFilterClick={() => {}}
-            onShowMoreButtonClick={() => {}}
-          />
+          <App/>
         </Provider>
     )
     .toJSON();

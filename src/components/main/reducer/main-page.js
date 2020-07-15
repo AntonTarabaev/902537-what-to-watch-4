@@ -1,7 +1,7 @@
 import {FilmSettings, FILTER_ALL_GENRES} from "@constants/main";
-import {GenresListActionTypes} from "@components/genres-list/action-types";
+import {GenresListActionTypes} from "@constants/action-types";
 import {extend} from "@utils/common";
-import {MainPageActionTypes} from "@components/main/action-types";
+import {MainPageActionTypes} from "@constants/action-types";
 
 const initialState = {
   filterGenre: FILTER_ALL_GENRES,
