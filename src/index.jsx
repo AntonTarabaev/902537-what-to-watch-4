@@ -1,6 +1,5 @@
 import ReactDOM from "react-dom";
 import App from "@components/app/app.connect";
-import {PromoSetting} from "@constants/main";
 import {createStore} from "redux";
 import {Provider} from "react-redux";
 import rootReducer from "@root/rootReducer";
@@ -12,9 +11,7 @@ const store = createStore(
 
 ReactDOM.render(
     <Provider store={store}>
-      <App
-        promo={PromoSetting}
-      />
+      <App/>
     </Provider>,
     document.querySelector(`#root`)
 );
