@@ -133,6 +133,9 @@ it(`Should FilmPage render correctly`, () => {
       <FilmPage
         film={films[0]}
         similarFilms={films}
+        isPlayerActive={false}
+        renderPlayer={() => {}}
+        onPlayButtonClick={() => {}}
         onFilmCardElementClick={() => {}}
       />
   ).toJSON();

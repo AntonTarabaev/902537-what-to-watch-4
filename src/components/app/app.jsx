@@ -2,6 +2,10 @@ import Main from "@components/main/main.connect";
 import FilmPage from "@components/film-page/film-page.connect";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import {MOCK_FILMS} from "@root/mocks/films";
+import withVideoPlayer from "@root/hocs/with-video-player/with-video-player";
+
+const MainWithVideoPlayer = withVideoPlayer(Main);
+const FilmPageWithVideoPlayer = withVideoPlayer(FilmPage);
 
 const App = (props) => {
   const renderApp = () => {
@@ -12,7 +16,7 @@ const App = (props) => {
 
     if (activeFilmId !== `-1`) {
       return (
-        <FilmPage
+        <FilmPageWithVideoPlayer
           filmId={activeFilmId}
           onFilmCardElementClick={onFilmCardElementClick}
         />
@@ -20,7 +24,7 @@ const App = (props) => {
     }
 
     return (
-      <Main
+      <MainWithVideoPlayer
         onFilmCardElementClick={onFilmCardElementClick}
       />
     );
