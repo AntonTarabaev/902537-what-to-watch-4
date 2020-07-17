@@ -11,6 +11,9 @@ const Main = (props) => {
     promo,
     films,
     showingFilmsCount,
+    isPlayerActive,
+    renderPlayer,
+    onPlayButtonClick,
     onFilmCardElementClick,
     onShowMoreButtonClick,
   } = props;
@@ -21,7 +24,13 @@ const Main = (props) => {
     RELEASE_DATE: promoReleaseDate,
     BG: promoBG,
     POSTER: promoPoster,
+    DURATION: promoDuration,
+    SRC: promoSrc,
   } = promo;
+
+  if (isPlayerActive) {
+    return renderPlayer(promoTitle, promoSrc, promoDuration);
+  }
 
   return (
     <>
@@ -63,7 +72,7 @@ const Main = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
+                <button className="btn btn--play movie-card__button" type="button" onClick={onPlayButtonClick}>
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"/>
                   </svg>
@@ -110,6 +119,8 @@ Main.propTypes = {
     RELEASE_DATE: PropTypes.number.isRequired,
     BG: PropTypes.string.isRequired,
     POSTER: PropTypes.string.isRequired,
+    DURATION: PropTypes.number.isRequired,
+    SRC: PropTypes.string.isRequired,
   }).isRequired,
   films: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
@@ -132,6 +143,9 @@ Main.propTypes = {
     }).isRequired).isRequired,
   }).isRequired).isRequired,
   showingFilmsCount: PropTypes.number.isRequired,
+  isPlayerActive: PropTypes.bool.isRequired,
+  renderPlayer: PropTypes.func.isRequired,
+  onPlayButtonClick: PropTypes.func.isRequired,
   onFilmCardElementClick: PropTypes.func.isRequired,
   onShowMoreButtonClick: PropTypes.func.isRequired,
 };

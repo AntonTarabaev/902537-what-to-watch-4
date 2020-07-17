@@ -11,6 +11,8 @@ const promo = {
   RELEASE_DATE: 2014,
   BG: `bg-the-grand-budapest-hotel.jpg`,
   POSTER: `the-grand-budapest-hotel-poster.jpg`,
+  DURATION: 123,
+  SRC: `path`,
 };
 
 const genres = [FILTER_ALL_GENRES, `Drama`, `Comedy`, `Thriller`];
@@ -159,6 +161,9 @@ it(`Should Main render correctly`, () => {
     .create(
         <Provider store={store}>
           <Main
+            isPlayerActive={false}
+            renderPlayer={() => {}}
+            onPlayButtonClick={() => {}}
             onFilmCardElementClick={() => {}}
           />
         </Provider>

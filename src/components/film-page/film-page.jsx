@@ -11,12 +11,22 @@ const TabsWrapped = withActiveTab(Tabs);
 const FilmsListWrapped = withActiveFilmCard(FilmsList);
 
 const FilmPage = (props) => {
-  const {film, similarFilms, onFilmCardElementClick} = props;
+  const {
+    film,
+    similarFilms,
+    isPlayerActive,
+    renderPlayer,
+    onPlayButtonClick,
+    onFilmCardElementClick
+  } = props;
+
   const {
     title,
     poster,
     releaseYear,
     genre,
+    duration,
+    preview,
   } = film;
 
   const PageTabs = [
@@ -33,6 +43,10 @@ const FilmPage = (props) => {
       component: <FilmPageTabReviews film={film}/>,
     },
   ];
+
+  if (isPlayerActive) {
+    return renderPlayer(title, preview, duration);
+  }
 
   return (
     <>
@@ -69,7 +83,7 @@ const FilmPage = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
+                <button className="btn btn--play movie-card__button" type="button" onClick={onPlayButtonClick}>
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"/>
                   </svg>
@@ -160,6 +174,9 @@ FilmPage.propTypes = {
       rating: PropTypes.number.isRequired,
     }).isRequired).isRequired,
   }).isRequired,
+  isPlayerActive: PropTypes.bool.isRequired,
+  renderPlayer: PropTypes.func.isRequired,
+  onPlayButtonClick: PropTypes.func.isRequired,
   onFilmCardElementClick: PropTypes.func.isRequired,
 };
 

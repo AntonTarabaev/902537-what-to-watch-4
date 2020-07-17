@@ -12,6 +12,8 @@ export const GENRES_MAX_COUNT = 9;
 
 export const SIMILAR_FILMS_COUNT = 4;
 
+export const PLAYER_POSTER_PATH = `img/player-poster.jpg`;
+
 export const FilmSettings = {
   SHOWING_ON_START_COUNT: 8,
   SHOWING_BY_BUTTON: 8,
@@ -24,4 +26,6 @@ export const PromoSetting = {
   RELEASE_DATE: 2014,
   BG: `bg-the-grand-budapest-hotel.jpg`,
   POSTER: `the-grand-budapest-hotel-poster.jpg`,
+  DURATION: 33,
+  SRC: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
 };
