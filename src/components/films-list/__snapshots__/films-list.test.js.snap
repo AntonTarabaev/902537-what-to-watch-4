@@ -39,7 +39,7 @@ exports[`Should FilmsList render correctly 1`] = `
       <img
         alt="Bohemian Rhapsody"
         height="175"
-        src="img/bohemian-rhapsody.jpg"
+        src="bohemian-rhapsody.jpg"
         width="280"
       />
     </div>
@@ -67,7 +67,7 @@ exports[`Should FilmsList render correctly 1`] = `
       <img
         alt="Aviator"
         height="175"
-        src="img/aviator.jpg"
+        src="aviator.jpg"
         width="280"
       />
     </div>

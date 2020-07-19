@@ -1,8 +1,7 @@
 import Review from "@components/film-page/film-page-tab-reviews/review/review";
 
 const FilmPageTabReviews = (props) => {
-  const {film} = props;
-  const {comments} = film;
+  const {comments} = props;
 
   return (
     <div className="movie-card__reviews movie-card__row">
@@ -17,14 +16,12 @@ const FilmPageTabReviews = (props) => {
 };
 
 FilmPageTabReviews.propTypes = {
-  film: PropTypes.shape({
-    comments: PropTypes.arrayOf(PropTypes.shape({
-      author: PropTypes.string.isRequired,
-      comment: PropTypes.string.isRequired,
-      date: PropTypes.instanceOf(Date).isRequired,
-      rating: PropTypes.number.isRequired,
-    }).isRequired).isRequired,
-  }).isRequired,
+  comments: PropTypes.arrayOf(PropTypes.shape({
+    author: PropTypes.string.isRequired,
+    comment: PropTypes.string.isRequired,
+    date: PropTypes.instanceOf(Date).isRequired,
+    rating: PropTypes.number.isRequired,
+  }).isRequired).isRequired,
 };
 
 export default FilmPageTabReviews;

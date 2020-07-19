@@ -6,9 +6,11 @@ import FilmPageTabReviews from "@components/film-page/film-page-tab-reviews/film
 import withActiveTab from "@root/hocs/with-active-tab/with-active-tab";
 import withActiveFilmCard from "@root/hocs/with-active-film-card/with-active-film-card";
 import Footer from "@components/footer/footer";
+import withReviews from "@root/hocs/with-reviews/with-reviews";
 
 const TabsWrapped = withActiveTab(Tabs);
 const FilmsListWrapped = withActiveFilmCard(FilmsList);
+const FilmPageTabReviewsWrapped = withReviews(FilmPageTabReviews);
 
 const FilmPage = (props) => {
   const {
@@ -21,8 +23,10 @@ const FilmPage = (props) => {
   } = props;
 
   const {
+    id,
     title,
     poster,
+    bgImage,
     releaseYear,
     genre,
     duration,
@@ -40,7 +44,7 @@ const FilmPage = (props) => {
     },
     {
       id: `Reviews`,
-      component: <FilmPageTabReviews film={film}/>,
+      component: <FilmPageTabReviewsWrapped filmId={id}/>,
     },
   ];
 
@@ -53,7 +57,7 @@ const FilmPage = (props) => {
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img src={`img/${poster}`} alt={title}/>
+            <img src={bgImage} alt={title}/>
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -104,12 +108,12 @@ const FilmPage = (props) => {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src={`img/${poster}`} alt={`${title} poster`} width="218"
+              <img src={poster} alt={`${title} poster`} width="218"
                 height="327"/>
             </div>
 
             <div className="movie-card__desc">
-              <TabsWrapped tabs={PageTabs} film={film}/>
+              <TabsWrapped tabs={PageTabs} tabsId={id}/>
             </div>
           </div>
         </div>
@@ -143,36 +147,25 @@ FilmPage.propTypes = {
     rating: PropTypes.number.isRequired,
     ratingVotes: PropTypes.number.isRequired,
     director: PropTypes.string.isRequired,
-    description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    description: PropTypes.string.isRequired,
     actors: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     preview: PropTypes.string.isRequired,
     duration: PropTypes.number.isRequired,
-    comments: PropTypes.arrayOf(PropTypes.shape({
-      author: PropTypes.string.isRequired,
-      comment: PropTypes.string.isRequired,
-      date: PropTypes.instanceOf(Date).isRequired,
-      rating: PropTypes.number.isRequired,
-    }).isRequired).isRequired,
   }).isRequired).isRequired,
   film: PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     poster: PropTypes.string.isRequired,
+    bgImage: PropTypes.string.isRequired,
     releaseYear: PropTypes.number.isRequired,
     genre: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     ratingVotes: PropTypes.number.isRequired,
     director: PropTypes.string.isRequired,
-    description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    description: PropTypes.string.isRequired,
     actors: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     preview: PropTypes.string.isRequired,
     duration: PropTypes.number.isRequired,
-    comments: PropTypes.arrayOf(PropTypes.shape({
-      author: PropTypes.string.isRequired,
-      comment: PropTypes.string.isRequired,
-      date: PropTypes.instanceOf(Date).isRequired,
-      rating: PropTypes.number.isRequired,
-    }).isRequired).isRequired,
   }).isRequired,
   isPlayerActive: PropTypes.bool.isRequired,
   renderPlayer: PropTypes.func.isRequired,

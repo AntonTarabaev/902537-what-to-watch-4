@@ -11,7 +11,9 @@ const withActiveTab = (Component) => {
     }
 
     componentDidUpdate(prevProps) {
-      if (prevProps !== this.props) {
+      const {tabsId} = this.props;
+
+      if (prevProps.tabsId !== tabsId) {
         this.setState({
           activeTabId: 0,
         });
@@ -36,6 +38,10 @@ const withActiveTab = (Component) => {
       );
     }
   }
+
+  WithActiveTab.propTypes = {
+    tabsId: PropTypes.string.isRequired,
+  };
 
   return WithActiveTab;
 };

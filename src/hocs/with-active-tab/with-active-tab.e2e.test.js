@@ -4,7 +4,7 @@ const MockComponent = () => <div/>;
 const MockComponentWrapped = withActiveTab(MockComponent);
 
 it(`Should change active tab`, () => {
-  const wrapper = shallow(<MockComponentWrapped/>);
+  const wrapper = shallow(<MockComponentWrapped tabsId={`1`}/>);
 
   expect(wrapper.state().activeTabId).toEqual(0);
 
