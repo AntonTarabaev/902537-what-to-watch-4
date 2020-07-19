@@ -10,7 +10,7 @@ Array [
     >
       <img
         alt="The Grand Budapest Hotel"
-        src="img/bg-the-grand-budapest-hotel.jpg"
+        src="bg-the-grand-budapest-hotel.jpg"
       />
     </div>
     <h1
@@ -71,7 +71,7 @@ Array [
           <img
             alt="The Grand Budapest Hotel poster"
             height="327"
-            src="img/the-grand-budapest-hotel-poster.jpg"
+            src="the-grand-budapest-hotel-poster.jpg"
             width="218"
           />
         </div>
@@ -214,7 +214,7 @@ Array [
             <img
               alt="Fantastic Beasts: The Crimes of Grindelwald"
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              src="fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
           </div>
@@ -242,7 +242,7 @@ Array [
             <img
               alt="Bohemian Rhapsody"
               height="175"
-              src="img/bohemian-rhapsody.jpg"
+              src="bohemian-rhapsody.jpg"
               width="280"
             />
           </div>
@@ -270,7 +270,7 @@ Array [
             <img
               alt="Aviator"
               height="175"
-              src="img/aviator.jpg"
+              src="aviator.jpg"
               width="280"
             />
           </div>

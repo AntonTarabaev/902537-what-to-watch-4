@@ -41,10 +41,10 @@ const FilmCard = (props) => {
         {isActive ?
           <PreviewPlayerWrapped
             src={preview}
-            poster={`img/${poster}`}
+            poster={`${poster}`}
           /> :
           <img
-            src={`img/${poster}`}
+            src={`${poster}`}
             alt={title}
             width="280"
             height="175"

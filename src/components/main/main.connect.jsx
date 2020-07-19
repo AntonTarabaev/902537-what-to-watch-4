@@ -2,11 +2,13 @@ import {getFilmsByFilter} from "@components/main/selectors/get-films-by-filter";
 import {incrementShowingFilms} from "@components/main/actions/increment-showing-films";
 import Main from "@components/main/main";
 import {connect} from "react-redux";
+import {getPromo} from "@components/main/selectors/get-promo";
+import {getShowingFilmsCount} from "@components/main/selectors/get-showing-films-count";
 
 const mapStateToProps = (state) => ({
   films: getFilmsByFilter(state),
-  promo: state.data.promo,
-  showingFilmsCount: state.mainPage.showingFilmsCount,
+  promo: getPromo(state),
+  showingFilmsCount: getShowingFilmsCount(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

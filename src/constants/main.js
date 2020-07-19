@@ -1,5 +1,3 @@
-export const MOCK_FILMS_COUNT = 100;
-
 export const FILM_CARD_ACTIVATION_DELAY = 1000;
 
 export const MINUTES_IN_HOUR = 60;
@@ -18,14 +16,4 @@ export const FilmSettings = {
   SHOWING_ON_START_COUNT: 8,
   SHOWING_BY_BUTTON: 8,
   EXTRA_COUNT: 4,
-};
-
-export const PromoSetting = {
-  TITLE: `The Grand Budapest Hotel`,
-  GENRE: `Drama`,
-  RELEASE_DATE: 2014,
-  BG: `bg-the-grand-budapest-hotel.jpg`,
-  POSTER: `the-grand-budapest-hotel-poster.jpg`,
-  DURATION: 33,
-  SRC: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
 };

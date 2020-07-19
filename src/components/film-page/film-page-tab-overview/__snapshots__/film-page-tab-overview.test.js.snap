@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Should FilmPageTabDetails render correctly 1`] = `
+exports[`Should FilmPageTabOverview render correctly 1`] = `
 Array [
   <div
     className="movie-rating"
@@ -30,10 +30,7 @@ Array [
     className="movie-card__text"
   >
     <p>
-      Phasellus eros mauris, condimentum sed nibh vitae, sodales efficitur ipsum. Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui.
-    </p>
-    <p>
-      Aliquam erat volutpat. Nunc fermentum tortor ac porta dapibus. In rutrum ac purus sit amet tempus.
+      Phasellus eros mauris, condimentum sed nibh vitae, sodales efficitur ipsum. Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui. Aliquam erat volutpat. Nunc fermentum tortor ac porta dapibus. In rutrum ac purus sit amet tempus.
     </p>
     <p
       className="movie-card__director"

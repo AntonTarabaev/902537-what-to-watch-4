@@ -19,13 +19,13 @@ const Main = (props) => {
   } = props;
 
   const {
-    TITLE: promoTitle,
-    GENRE: promoGenre,
-    RELEASE_DATE: promoReleaseDate,
-    BG: promoBG,
-    POSTER: promoPoster,
-    DURATION: promoDuration,
-    SRC: promoSrc,
+    title: promoTitle,
+    previewImage: promoPoster,
+    bgImage: promoBG,
+    genre: promoGenre,
+    releaseYear: promoReleaseDate,
+    duration: promoDuration,
+    video: promoSrc,
   } = promo;
 
   if (isPlayerActive) {
@@ -36,7 +36,7 @@ const Main = (props) => {
     <>
       <section className="movie-card">
         <div className="movie-card__bg">
-          <img src={`img/${promoBG}`} alt={promoTitle}/>
+          <img src={`${promoBG}`} alt={promoTitle}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -60,7 +60,7 @@ const Main = (props) => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src={`img/${promoPoster}`} alt={`${promoTitle} poster`} width="218"
+              <img src={`${promoPoster}`} alt={`${promoTitle} poster`} width="218"
                 height="327"/>
             </div>
 
@@ -114,13 +114,13 @@ const Main = (props) => {
 
 Main.propTypes = {
   promo: PropTypes.shape({
-    TITLE: PropTypes.string.isRequired,
-    GENRE: PropTypes.string.isRequired,
-    RELEASE_DATE: PropTypes.number.isRequired,
-    BG: PropTypes.string.isRequired,
-    POSTER: PropTypes.string.isRequired,
-    DURATION: PropTypes.number.isRequired,
-    SRC: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    releaseYear: PropTypes.number.isRequired,
+    bgImage: PropTypes.string.isRequired,
+    previewImage: PropTypes.string.isRequired,
+    duration: PropTypes.number.isRequired,
+    video: PropTypes.string.isRequired,
   }).isRequired,
   films: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
@@ -131,16 +131,10 @@ Main.propTypes = {
     rating: PropTypes.number.isRequired,
     ratingVotes: PropTypes.number.isRequired,
     director: PropTypes.string.isRequired,
-    description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    description: PropTypes.string.isRequired,
     actors: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     preview: PropTypes.string.isRequired,
     duration: PropTypes.number.isRequired,
-    comments: PropTypes.arrayOf(PropTypes.shape({
-      author: PropTypes.string.isRequired,
-      comment: PropTypes.string.isRequired,
-      date: PropTypes.instanceOf(Date).isRequired,
-      rating: PropTypes.number.isRequired,
-    }).isRequired).isRequired,
   }).isRequired).isRequired,
   showingFilmsCount: PropTypes.number.isRequired,
   isPlayerActive: PropTypes.bool.isRequired,

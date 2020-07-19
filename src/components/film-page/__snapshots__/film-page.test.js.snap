@@ -13,7 +13,7 @@ Array [
       >
         <img
           alt="Fantastic Beasts: The Crimes of Grindelwald"
-          src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+          src="path"
         />
       </div>
       <h1
@@ -148,7 +148,7 @@ Array [
           <img
             alt="Fantastic Beasts: The Crimes of Grindelwald poster"
             height="327"
-            src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+            src="fantastic-beasts-the-crimes-of-grindelwald.jpg"
             width="218"
           />
         </div>
@@ -224,10 +224,7 @@ Array [
             className="movie-card__text"
           >
             <p>
-              Phasellus eros mauris, condimentum sed nibh vitae, sodales efficitur ipsum. Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui.
-            </p>
-            <p>
-              Aliquam erat volutpat. Nunc fermentum tortor ac porta dapibus. In rutrum ac purus sit amet tempus.
+              Phasellus eros mauris, condimentum sed nibh vitae, sodales efficitur ipsum. Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui. Aliquam erat volutpat. Nunc fermentum tortor ac porta dapibus. In rutrum ac purus sit amet tempus.
             </p>
             <p
               className="movie-card__director"
@@ -276,7 +273,7 @@ Array [
             <img
               alt="Fantastic Beasts: The Crimes of Grindelwald"
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              src="fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
           </div>
@@ -304,7 +301,7 @@ Array [
             <img
               alt="Bohemian Rhapsody"
               height="175"
-              src="img/bohemian-rhapsody.jpg"
+              src="bohemian-rhapsody.jpg"
               width="280"
             />
           </div>
@@ -332,7 +329,7 @@ Array [
             <img
               alt="Aviator"
               height="175"
-              src="img/aviator.jpg"
+              src="aviator.jpg"
               width="280"
             />
           </div>

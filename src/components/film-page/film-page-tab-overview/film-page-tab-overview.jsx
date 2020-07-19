@@ -62,9 +62,7 @@ const FilmPageTabOverview = (props) => {
       </div>
 
       <div className="movie-card__text">
-        {description.map((it, i) => {
-          return <p key={it + i}>{it}</p>;
-        })}
+        <p>{description}</p>
         <p className="movie-card__director"><strong>Director: {director}</strong></p>
         <p className="movie-card__starring"><strong>Starring: {overviewStarring}</strong></p>
       </div>
@@ -77,7 +75,7 @@ FilmPageTabOverview.propTypes = {
     rating: PropTypes.number.isRequired,
     ratingVotes: PropTypes.number.isRequired,
     director: PropTypes.string.isRequired,
-    description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    description: PropTypes.string.isRequired,
     actors: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   }).isRequired,
 };

@@ -1,8 +1,8 @@
 import Main from "@components/main/main.connect";
 import FilmPage from "@components/film-page/film-page.connect";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
-import {MOCK_FILMS} from "@root/mocks/films";
 import withVideoPlayer from "@root/hocs/with-video-player/with-video-player";
+import Loader from "@components/loader/loader";
 
 const MainWithVideoPlayer = withVideoPlayer(Main);
 const FilmPageWithVideoPlayer = withVideoPlayer(FilmPage);
@@ -10,9 +10,14 @@ const FilmPageWithVideoPlayer = withVideoPlayer(FilmPage);
 const App = (props) => {
   const renderApp = () => {
     const {
+      isLoaded,
       activeFilmId,
       onFilmCardElementClick,
     } = props;
+
+    if (!isLoaded) {
+      return <Loader/>;
+    }
 
     if (activeFilmId !== `-1`) {
       return (
@@ -38,7 +43,7 @@ const App = (props) => {
         </Route>
         <Route exact path="/dev-details">
           <FilmPage
-            filmId={MOCK_FILMS[1].id}
+            filmId={0}
             onFilmCardElementClick={() => {}}
           />
         </Route>
@@ -48,6 +53,7 @@ const App = (props) => {
 };
 
 App.propTypes = {
+  isLoaded: PropTypes.bool.isRequired,
   activeFilmId: PropTypes.string.isRequired,
   onFilmCardElementClick: PropTypes.func.isRequired,
 };
