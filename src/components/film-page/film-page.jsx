@@ -2,16 +2,15 @@ import Tabs from "@components/tabs/tabs";
 import FilmsList from "@components/films-list/films-list";
 import FilmPageTabOverview from "@components/film-page/film-page-tab-overview/film-page-tab-overview";
 import FilmPageTabDetails from "@components/film-page/film-page-tab-details/film-page-tab-details";
-import FilmPageTabReviews from "@components/film-page/film-page-tab-reviews/film-page-tab-reviews";
+import FilmPageTabReviews from "@components/film-page/film-page-tab-reviews/film-page-tab-reviews.connect";
 import withActiveTab from "@root/hocs/with-active-tab/with-active-tab";
 import withActiveFilmCard from "@root/hocs/with-active-film-card/with-active-film-card";
 import Footer from "@components/footer/footer";
-import withReviews from "@root/hocs/with-reviews/with-reviews";
 import Header from "@components/header/header.connect";
+import {Film} from "@root/types";
 
 const TabsWrapped = withActiveTab(Tabs);
 const FilmsListWrapped = withActiveFilmCard(FilmsList);
-const FilmPageTabReviewsWrapped = withReviews(FilmPageTabReviews);
 
 const FilmPage = (props) => {
   const {
@@ -19,9 +18,6 @@ const FilmPage = (props) => {
     similarFilms,
     isPlayerActive,
     renderPlayer,
-    comments,
-    loadFilmComments,
-    setFilmComments,
     onPlayButtonClick,
     onFilmCardElementClick,
   } = props;
@@ -48,13 +44,7 @@ const FilmPage = (props) => {
     },
     {
       id: `Reviews`,
-      component:
-        <FilmPageTabReviewsWrapped
-          filmId={id}
-          comments={comments}
-          loadFilmComments={loadFilmComments}
-          setFilmComments={setFilmComments}
-        />,
+      component: <FilmPageTabReviews filmId={id}/>,
     },
   ];
 
@@ -136,44 +126,9 @@ const FilmPage = (props) => {
 };
 
 FilmPage.propTypes = {
-  similarFilms: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    releaseYear: PropTypes.number.isRequired,
-    genre: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    ratingVotes: PropTypes.number.isRequired,
-    director: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    actors: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    preview: PropTypes.string.isRequired,
-    duration: PropTypes.number.isRequired,
-  }).isRequired).isRequired,
-  film: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    bgImage: PropTypes.string.isRequired,
-    releaseYear: PropTypes.number.isRequired,
-    genre: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    ratingVotes: PropTypes.number.isRequired,
-    director: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    actors: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    preview: PropTypes.string.isRequired,
-    duration: PropTypes.number.isRequired,
-  }).isRequired,
-  comments: PropTypes.arrayOf(PropTypes.shape({
-    author: PropTypes.string.isRequired,
-    comment: PropTypes.string.isRequired,
-    date: PropTypes.instanceOf(Date).isRequired,
-    rating: PropTypes.number.isRequired,
-  }).isRequired).isRequired,
+  similarFilms: PropTypes.arrayOf(Film).isRequired,
+  film: Film,
   isPlayerActive: PropTypes.bool.isRequired,
-  loadFilmComments: PropTypes.func.isRequired,
-  setFilmComments: PropTypes.func.isRequired,
   renderPlayer: PropTypes.func.isRequired,
   onPlayButtonClick: PropTypes.func.isRequired,
   onFilmCardElementClick: PropTypes.func.isRequired,

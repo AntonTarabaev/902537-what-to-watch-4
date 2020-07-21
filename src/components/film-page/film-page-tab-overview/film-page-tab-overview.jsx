@@ -1,3 +1,5 @@
+import {Film} from "@root/types";
+
 const MAX_ACTORS_COUNT = 4;
 
 const FilmRatings = {
@@ -71,13 +73,7 @@ const FilmPageTabOverview = (props) => {
 };
 
 FilmPageTabOverview.propTypes = {
-  film: PropTypes.shape({
-    rating: PropTypes.number.isRequired,
-    ratingVotes: PropTypes.number.isRequired,
-    director: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    actors: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  }).isRequired,
+  film: Film,
 };
 
 export default FilmPageTabOverview;

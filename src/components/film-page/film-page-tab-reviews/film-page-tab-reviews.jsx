@@ -1,27 +1,50 @@
 import Review from "@components/film-page/film-page-tab-reviews/review/review";
+import {Comment} from "@root/types";
 
-const FilmPageTabReviews = (props) => {
-  const {comments} = props;
+class FilmPageTabReviews extends React.PureComponent {
+  componentDidMount() {
+    const {loadFilmComments, filmId} = this.props;
 
-  return (
-    <div className="movie-card__reviews movie-card__row">
-      <div className="movie-card__reviews-col">
-        {comments.slice(0, Math.ceil(comments.length / 2)).map((it, i) => <Review key={it.date + i} userComment={it}/>)}
+    loadFilmComments(filmId);
+  }
+
+  componentWillUnmount() {
+    const {setFilmComments} = this.props;
+
+    setFilmComments();
+  }
+
+  componentDidUpdate(prevProps) {
+    const {filmId} = this.props;
+
+    if (filmId !== prevProps.filmId) {
+      const {loadFilmComments} = this.props;
+
+      loadFilmComments(filmId);
+    }
+  }
+
+  render() {
+    const {comments} = this.props;
+
+    return (
+      <div className="movie-card__reviews movie-card__row">
+        <div className="movie-card__reviews-col">
+          {comments.slice(0, Math.ceil(comments.length / 2)).map((it, i) => <Review key={it.date + i} userComment={it}/>)}
+        </div>
+        <div className="movie-card__reviews-col">
+          {comments.slice(Math.ceil(comments.length / 2)).map((it, i) => <Review key={it.date + i} userComment={it}/>)}
+        </div>
       </div>
-      <div className="movie-card__reviews-col">
-        {comments.slice(Math.ceil(comments.length / 2)).map((it, i) => <Review key={it.date + i} userComment={it}/>)}
-      </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 FilmPageTabReviews.propTypes = {
-  comments: PropTypes.arrayOf(PropTypes.shape({
-    author: PropTypes.string.isRequired,
-    comment: PropTypes.string.isRequired,
-    date: PropTypes.instanceOf(Date).isRequired,
-    rating: PropTypes.number.isRequired,
-  }).isRequired).isRequired,
+  filmId: PropTypes.string.isRequired,
+  loadFilmComments: PropTypes.func.isRequired,
+  setFilmComments: PropTypes.func.isRequired,
+  comments: PropTypes.arrayOf(Comment).isRequired,
 };
 
 export default FilmPageTabReviews;

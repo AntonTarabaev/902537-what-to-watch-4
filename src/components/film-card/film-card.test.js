@@ -1,10 +1,41 @@
 import FilmCard from "@components/film-card/film-card";
 
 const film = {
-  id: `13457894`,
-  title: `Bohemian Rhapsody`,
-  poster: `bohemian-rhapsody.jpg`,
+  id: `573489`,
+  title: `Fantastic Beasts: The Crimes of Grindelwald`,
+  poster: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+  previewImage: `the-grand-budapest-hotel-poster.jpg`,
+  bgImage: `path`,
+  releaseYear: 1999,
+  genre: `Drama`,
+  rating: 8.2,
+  ratingVotes: 197,
+  director: `Some One`,
+  duration: 123,
+  description: `Phasellus eros mauris, condimentum sed nibh vitae, sodales efficitur ipsum. Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui. Aliquam erat volutpat. Nunc fermentum tortor ac porta dapibus. In rutrum ac purus sit amet tempus.`,
+  actors: [
+    `Robert Rodrigues`,
+    `Takeshi Kitano`,
+    `Michael Caine`,
+    `Robert De Niro`,
+    `Tom Hanks`,
+  ],
   preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+  comments: [
+    {
+      author: `John Doe`,
+      rating: 8.9,
+      date: new Date(8475893),
+      comment: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet varius magna, non porta ligula feugiat eget. Sed sed nisi sed augue convallis suscipit in sed felis. Fusce tristique felis at fermentum pharetra. Aliquam id orci ut lectus varius viverra.`,
+    },
+    {
+      author: `Robert Rodrigues`,
+      rating: 5.4,
+      date: new Date(4231284),
+      comment: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet varius magna`,
+    }
+  ],
+  video: `path`,
 };
 
 it(`Should FilmCard render correctly`, () => {

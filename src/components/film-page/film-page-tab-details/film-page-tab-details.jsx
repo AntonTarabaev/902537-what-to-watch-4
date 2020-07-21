@@ -1,4 +1,5 @@
 import {formatTime} from "@utils/common";
+import {Film} from "@root/types";
 
 const FilmPageTabDetails = (props) => {
   const {film} = props;
@@ -54,13 +55,7 @@ const FilmPageTabDetails = (props) => {
 };
 
 FilmPageTabDetails.propTypes = {
-  film: PropTypes.shape({
-    director: PropTypes.string.isRequired,
-    actors: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    releaseYear: PropTypes.number.isRequired,
-    genre: PropTypes.string.isRequired,
-    duration: PropTypes.number.isRequired,
-  }).isRequired,
+  film: Film,
 };
 
 export default FilmPageTabDetails;

@@ -10,6 +10,7 @@ const films = [
     id: `573489`,
     title: `Fantastic Beasts: The Crimes of Grindelwald`,
     poster: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    previewImage: `the-grand-budapest-hotel-poster.jpg`,
     bgImage: `path`,
     releaseYear: 1999,
     genre: `Drama`,
@@ -26,11 +27,13 @@ const films = [
       `Tom Hanks`,
     ],
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    video: `path`,
   },
   {
     id: `5593482`,
     title: `Bohemian Rhapsody`,
     poster: `bohemian-rhapsody.jpg`,
+    previewImage: `the-grand-budapest-hotel-poster.jpg`,
     bgImage: `path`,
     releaseYear: 2001,
     genre: `Comedy`,
@@ -49,11 +52,13 @@ const films = [
       `Michael Caine`,
     ],
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    video: `path`,
   },
   {
     id: `123094`,
     title: `Aviator`,
     poster: `aviator.jpg`,
+    previewImage: `the-grand-budapest-hotel-poster.jpg`,
     bgImage: `path`,
     releaseYear: 2015,
     genre: `Thriller`,
@@ -68,6 +73,7 @@ const films = [
       `Tom Hanks`,
     ],
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    video: `path`,
   }
 ];
 
