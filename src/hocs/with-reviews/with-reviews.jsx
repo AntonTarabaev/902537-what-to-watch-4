@@ -1,8 +1,3 @@
-import {getComments} from "@root/hocs/with-reviews/selectors/get-comments";
-import {loadComments} from "@root/hocs/with-reviews/operations/load-comments";
-import {connect} from "react-redux";
-import {setComments} from "@root/hocs/with-reviews/actions/set-comments";
-
 const withReviews = (Component) => {
   class WithReviews extends React.PureComponent {
     componentDidMount() {
@@ -14,7 +9,7 @@ const withReviews = (Component) => {
     componentWillUnmount() {
       const {setFilmComments} = this.props;
 
-      setFilmComments([]);
+      setFilmComments();
     }
 
     componentDidUpdate(prevProps) {
@@ -46,20 +41,7 @@ const withReviews = (Component) => {
     setFilmComments: PropTypes.func.isRequired,
   };
 
-  const mapStateToProps = (state) => ({
-    comments: getComments(state),
-  });
-
-  const mapDispatchToProps = (dispatch) => ({
-    loadFilmComments(targetFilmId) {
-      dispatch(loadComments(targetFilmId));
-    },
-    setFilmComments(comments) {
-      dispatch(setComments(comments));
-    }
-  });
-
-  return connect(mapStateToProps, mapDispatchToProps)(WithReviews);
+  return WithReviews;
 };
 
 export default withReviews;

@@ -71,8 +71,11 @@ it(`Should FilmPage render correctly`, () => {
       <FilmPage
         film={films[0]}
         similarFilms={films}
+        comments={[]}
         isPlayerActive={false}
         renderPlayer={() => {}}
+        loadFilmComments={() => {}}
+        setFilmComments={() => {}}
         onPlayButtonClick={() => {}}
         onFilmCardElementClick={() => {}}
       />

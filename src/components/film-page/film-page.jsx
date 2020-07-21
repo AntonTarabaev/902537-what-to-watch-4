@@ -18,8 +18,11 @@ const FilmPage = (props) => {
     similarFilms,
     isPlayerActive,
     renderPlayer,
+    comments,
+    loadFilmComments,
+    setFilmComments,
     onPlayButtonClick,
-    onFilmCardElementClick
+    onFilmCardElementClick,
   } = props;
 
   const {
@@ -44,7 +47,13 @@ const FilmPage = (props) => {
     },
     {
       id: `Reviews`,
-      component: <FilmPageTabReviewsWrapped filmId={id}/>,
+      component:
+        <FilmPageTabReviewsWrapped
+          filmId={id}
+          comments={comments}
+          loadFilmComments={loadFilmComments}
+          setFilmComments={setFilmComments}
+        />,
     },
   ];
 
@@ -167,7 +176,15 @@ FilmPage.propTypes = {
     preview: PropTypes.string.isRequired,
     duration: PropTypes.number.isRequired,
   }).isRequired,
+  comments: PropTypes.arrayOf(PropTypes.shape({
+    author: PropTypes.string.isRequired,
+    comment: PropTypes.string.isRequired,
+    date: PropTypes.instanceOf(Date).isRequired,
+    rating: PropTypes.number.isRequired,
+  }).isRequired).isRequired,
   isPlayerActive: PropTypes.bool.isRequired,
+  loadFilmComments: PropTypes.func.isRequired,
+  setFilmComments: PropTypes.func.isRequired,
   renderPlayer: PropTypes.func.isRequired,
   onPlayButtonClick: PropTypes.func.isRequired,
   onFilmCardElementClick: PropTypes.func.isRequired,

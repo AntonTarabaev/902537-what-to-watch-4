@@ -5,9 +5,8 @@ import MockAdapter from "axios-mock-adapter";
 import {createAPI} from "@root/api";
 import {loadData} from "@components/app/operations/load-data";
 import {ServerRoutes} from "@constants/routes";
-import {loadComments} from "@root/hocs/with-reviews/operations/load-comments";
+import {loadComments} from "@root/components/film-page/operations/load-comments";
 import {parseFilm, parseFilms} from "@root/adapters/films";
-import {parseComments} from "@root/adapters/comments";
 
 const films = [
   {

@@ -1,7 +1,13 @@
 import {FILTER_ALL_GENRES} from "@constants/main";
 import {createSelector} from "reselect";
-import {getActiveGenre} from "@components/genres-list/selectors/get-active-genre";
-import {getFilms} from "@components/app/selectors/get-films";
+
+const getFilms = (state) => {
+  return state.data.films;
+};
+
+const getActiveGenre = (state) => {
+  return state.mainPage.filterGenre;
+};
 
 export const getFilmsByFilter = createSelector(
     getFilms,
