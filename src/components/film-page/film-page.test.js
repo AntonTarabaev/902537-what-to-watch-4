@@ -1,4 +1,9 @@
 import FilmPage from "@components/film-page/film-page";
+import configureStore from "redux-mock-store";
+import {AuthorizationStatus} from "@constants/main";
+import {Provider} from "react-redux";
+
+const mockStore = configureStore([]);
 
 const films = [
   {
@@ -67,18 +72,26 @@ const films = [
 ];
 
 it(`Should FilmPage render correctly`, () => {
+  const store = mockStore({
+    user: {
+      authorizationStatus: AuthorizationStatus.AUTH,
+    }
+  });
+
   const tree = renderer.create(
-      <FilmPage
-        film={films[0]}
-        similarFilms={films}
-        comments={[]}
-        isPlayerActive={false}
-        renderPlayer={() => {}}
-        loadFilmComments={() => {}}
-        setFilmComments={() => {}}
-        onPlayButtonClick={() => {}}
-        onFilmCardElementClick={() => {}}
-      />
+      <Provider store={store}>
+        <FilmPage
+          film={films[0]}
+          similarFilms={films}
+          comments={[]}
+          isPlayerActive={false}
+          renderPlayer={() => {}}
+          loadFilmComments={() => {}}
+          setFilmComments={() => {}}
+          onPlayButtonClick={() => {}}
+          onFilmCardElementClick={() => {}}
+        />
+      </Provider>
   ).toJSON();
 
   expect(tree).toMatchSnapshot();

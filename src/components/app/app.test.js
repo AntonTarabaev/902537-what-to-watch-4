@@ -1,7 +1,7 @@
 import App from "@components/app/app.connect";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
-import {FILTER_ALL_GENRES} from "@constants/main";
+import {AuthorizationStatus, FILTER_ALL_GENRES} from "@constants/main";
 
 const mockStore = configureStore([]);
 
@@ -95,6 +95,9 @@ it(`Should render App correctly`, () => {
       filterGenre: genres[0],
       showingFilmsCount: 8,
     },
+    user: {
+      authorizationStatus: AuthorizationStatus.AUTH,
+    }
   });
 
   const tree = renderer
@@ -120,6 +123,9 @@ it(`Should render Loader`, () => {
       filterGenre: genres[0],
       showingFilmsCount: 8,
     },
+    user: {
+      authorizationStatus: AuthorizationStatus.AUTH,
+    }
   });
 
   const tree = renderer
@@ -145,6 +151,9 @@ it(`Should render FilmPage`, () => {
       filterGenre: genres[0],
       showingFilmsCount: 8,
     },
+    user: {
+      authorizationStatus: AuthorizationStatus.AUTH,
+    }
   });
 
   const tree = renderer

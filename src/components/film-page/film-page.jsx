@@ -7,6 +7,7 @@ import withActiveTab from "@root/hocs/with-active-tab/with-active-tab";
 import withActiveFilmCard from "@root/hocs/with-active-film-card/with-active-film-card";
 import Footer from "@components/footer/footer";
 import withReviews from "@root/hocs/with-reviews/with-reviews";
+import Header from "@components/header/header.connect";
 
 const TabsWrapped = withActiveTab(Tabs);
 const FilmsListWrapped = withActiveFilmCard(FilmsList);
@@ -72,19 +73,7 @@ const FilmPage = (props) => {
           <h1 className="visually-hidden">WTW</h1>
 
           <header className="page-header movie-card__head">
-            <div className="logo">
-              <a href="main.html" className="logo__link">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </a>
-            </div>
-
-            <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-              </div>
-            </div>
+            <Header/>
           </header>
 
           <div className="movie-card__wrap">

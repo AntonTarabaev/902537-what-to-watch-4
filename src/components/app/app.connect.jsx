@@ -5,6 +5,7 @@ import {changeActiveFilmId} from "@components/app/actions/change-active-film-id"
 const mapStateToProps = (state) => ({
   isLoaded: state.data.isLoaded,
   activeFilmId: state.data.activeFilmId,
+  authorizationStatus: state.user.authorizationStatus,
 });
 
 const mapDispatchToProps = (dispatch) => ({

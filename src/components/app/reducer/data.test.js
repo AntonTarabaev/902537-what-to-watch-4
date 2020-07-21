@@ -7,6 +7,8 @@ import {loadData} from "@components/app/operations/load-data";
 import {ServerRoutes} from "@constants/routes";
 import {loadComments} from "@root/components/film-page/operations/load-comments";
 import {parseFilm, parseFilms} from "@root/adapters/films";
+import {changeActiveFilmId} from "@components/app/actions/change-active-film-id";
+import {setLoadedStatus} from "@components/app/actions/set-loaded-status";
 
 const films = [
   {
@@ -140,6 +142,22 @@ describe(`Data reducer work correctly`, () => {
     })).toEqual(extend(testInitialState, {
       isLoaded: true,
     }));
+  });
+});
+
+describe(`Action creators work correctly`, () => {
+  it(`Action creator for set loaded status returns correct action`, () => {
+    expect(setLoadedStatus(true)).toEqual({
+      type: AppActionTypes.SET_LOADED_STATUS,
+      payload: true,
+    });
+  });
+
+  it(`Action creator for change activeFilmId returns correct action`, () => {
+    expect(changeActiveFilmId(`443`)).toEqual({
+      type: AppActionTypes.CHANGE_ACTIVE_FILM_ID,
+      payload: `443`,
+    });
   });
 });
 

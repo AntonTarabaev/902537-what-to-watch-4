@@ -1,5 +1,5 @@
 import Main from "@components/main/main.connect";
-import {FILTER_ALL_GENRES} from "@constants/main";
+import {AuthorizationStatus, FILTER_ALL_GENRES} from "@constants/main";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 
@@ -93,6 +93,9 @@ it(`Should Main render correctly`, () => {
       filterGenre: genres[0],
       showingFilmsCount: 8,
     },
+    user: {
+      authorizationStatus: AuthorizationStatus.AUTH,
+    }
   });
 
   const tree = renderer
