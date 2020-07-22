@@ -1,19 +1,9 @@
 import Main from "@components/main/main.connect";
-import {FILTER_ALL_GENRES} from "@constants/main";
+import {AuthorizationStatus, FILTER_ALL_GENRES} from "@constants/main";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 
 const mockStore = configureStore([]);
-
-const promo = {
-  title: `The Grand Budapest Hotel`,
-  genre: `Drama`,
-  releaseYear: 2014,
-  bgImage: `bg-the-grand-budapest-hotel.jpg`,
-  previewImage: `the-grand-budapest-hotel-poster.jpg`,
-  duration: 123,
-  video: `path`,
-};
 
 const genres = [FILTER_ALL_GENRES, `Drama`, `Comedy`, `Thriller`];
 
@@ -22,6 +12,7 @@ const films = [
     id: `573489`,
     title: `Fantastic Beasts: The Crimes of Grindelwald`,
     poster: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    previewImage: `the-grand-budapest-hotel-poster.jpg`,
     bgImage: `path`,
     releaseYear: 1999,
     genre: `Drama`,
@@ -38,11 +29,13 @@ const films = [
       `Tom Hanks`,
     ],
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    video: `path`,
   },
   {
     id: `5593482`,
     title: `Bohemian Rhapsody`,
     poster: `bohemian-rhapsody.jpg`,
+    previewImage: `the-grand-budapest-hotel-poster.jpg`,
     bgImage: `path`,
     releaseYear: 2001,
     genre: `Comedy`,
@@ -61,11 +54,13 @@ const films = [
       `Michael Caine`,
     ],
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    video: `path`,
   },
   {
     id: `123094`,
     title: `Aviator`,
     poster: `aviator.jpg`,
+    previewImage: `the-grand-budapest-hotel-poster.jpg`,
     bgImage: `path`,
     releaseYear: 2015,
     genre: `Thriller`,
@@ -80,6 +75,7 @@ const films = [
       `Tom Hanks`,
     ],
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    video: `path`,
   }
 ];
 
@@ -87,12 +83,15 @@ it(`Should Main render correctly`, () => {
   const store = mockStore({
     data: {
       films,
-      promo,
+      promo: films[0],
     },
     mainPage: {
       filterGenre: genres[0],
       showingFilmsCount: 8,
     },
+    user: {
+      authorizationStatus: AuthorizationStatus.AUTH,
+    }
   });
 
   const tree = renderer

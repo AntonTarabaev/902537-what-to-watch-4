@@ -18,6 +18,9 @@ const comments = [
 it(`Should ReviewsList render correctly`, () => {
   const tree = renderer.create(
       <FilmPageTabReviews
+        filmId={`123`}
+        loadFilmComments={() => {}}
+        setFilmComments={() => {}}
         comments={comments}
       />
   ).toJSON();

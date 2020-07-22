@@ -2,6 +2,9 @@ import {mainPage} from "@components/main/reducer/main-page";
 import {FilmSettings, FILTER_ALL_GENRES} from "@constants/main";
 import {GenresListActionTypes} from "@constants/action-types";
 import {MainPageActionTypes} from "@constants/action-types";
+import {incrementShowingFilms} from "@components/main/actions/increment-showing-films";
+import {changeActiveGenre} from "@components/genres-list/actions/change-active-genre";
+import {resetShowingFilms} from "@components/genres-list/actions/reset-showing-films";
 
 describe(`MainPage reducer work correctly`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
@@ -72,6 +75,29 @@ describe(`MainPage reducer work correctly`, () => {
       payload: 5,
     })).toEqual({
       showingFilmsCount: 15,
+    });
+  });
+});
+
+describe(`Action creators work correctly`, () => {
+  it(`Action creator for increment showing films returns correct action`, () => {
+    expect(incrementShowingFilms()).toEqual({
+      type: MainPageActionTypes.INCREMENT_SHOWING_FILMS,
+      payload: FilmSettings.SHOWING_BY_BUTTON,
+    });
+  });
+
+  it(`Action creator for reset showing films returns correct action`, () => {
+    expect(resetShowingFilms()).toEqual({
+      type: GenresListActionTypes.RESET_SHOWING_FILMS,
+      payload: FilmSettings.SHOWING_ON_START_COUNT,
+    });
+  });
+
+  it(`Action creator for change filterGenre returns correct action`, () => {
+    expect(changeActiveGenre(`genre`)).toEqual({
+      type: GenresListActionTypes.CHANGE_GENRE_FILTER,
+      payload: `genre`,
     });
   });
 });

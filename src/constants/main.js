@@ -17,3 +17,8 @@ export const FilmSettings = {
   SHOWING_BY_BUTTON: 8,
   EXTRA_COUNT: 4,
 };
+
+export const AuthorizationStatus = {
+  AUTH: `AUTH`,
+  NO_AUTH: `NO_AUTH`,
+};

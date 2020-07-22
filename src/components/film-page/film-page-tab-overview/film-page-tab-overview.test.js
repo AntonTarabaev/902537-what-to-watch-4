@@ -4,6 +4,8 @@ const film = {
   id: `573489`,
   title: `Fantastic Beasts: The Crimes of Grindelwald`,
   poster: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+  previewImage: `the-grand-budapest-hotel-poster.jpg`,
+  bgImage: `path`,
   releaseYear: 1999,
   genre: `Drama`,
   rating: 8.2,
@@ -32,7 +34,8 @@ const film = {
       date: new Date(4231284),
       comment: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet varius magna`,
     }
-  ]
+  ],
+  video: `path`,
 };
 
 it(`Should FilmPageTabOverview render correctly`, () => {

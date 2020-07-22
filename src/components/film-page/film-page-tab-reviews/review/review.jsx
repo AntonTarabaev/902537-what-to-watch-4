@@ -1,4 +1,5 @@
 import {formatDate} from "@utils/common";
+import {Comment} from "@root/types";
 
 const Review = (props) => {
   const {userComment} = props;
@@ -24,12 +25,7 @@ const Review = (props) => {
 };
 
 Review.propTypes = {
-  userComment: PropTypes.shape({
-    author: PropTypes.string.isRequired,
-    comment: PropTypes.string.isRequired,
-    date: PropTypes.instanceOf(Date).isRequired,
-    rating: PropTypes.number.isRequired,
-  }).isRequired,
+  userComment: Comment,
 };
 
 export default Review;

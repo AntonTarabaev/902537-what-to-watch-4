@@ -3,10 +3,9 @@ import {changeActiveGenre} from "@components/genres-list/actions/change-active-g
 import {resetShowingFilms} from "@components/genres-list/actions/reset-showing-films";
 import {connect} from "react-redux";
 import GenresList from "@components/genres-list/genres-list";
-import {getActiveGenre} from "@components/genres-list/selectors/get-active-genre";
 
 const mapStateToProps = (state) => ({
-  activeFilter: getActiveGenre(state),
+  activeFilter: state.mainPage.filterGenre,
   genres: getGenres(state),
 });
 

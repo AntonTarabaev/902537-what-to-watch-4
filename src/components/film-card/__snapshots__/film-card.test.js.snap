@@ -11,9 +11,9 @@ exports[`Should FilmCard render correctly 1`] = `
     onClick={[Function]}
   >
     <img
-      alt="Bohemian Rhapsody"
+      alt="Fantastic Beasts: The Crimes of Grindelwald"
       height="175"
-      src="bohemian-rhapsody.jpg"
+      src="fantastic-beasts-the-crimes-of-grindelwald.jpg"
       width="280"
     />
   </div>
@@ -25,7 +25,7 @@ exports[`Should FilmCard render correctly 1`] = `
       href="movie-page.html"
       onClick={[Function]}
     >
-      Bohemian Rhapsody
+      Fantastic Beasts: The Crimes of Grindelwald
     </a>
   </h3>
 </article>

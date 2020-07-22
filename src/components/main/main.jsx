@@ -3,6 +3,8 @@ import GenresList from "@components/genres-list/genres-list.connect";
 import ShowMoreButton from "@components/show-more-button/show-more-button";
 import withActiveFilmCard from "@root/hocs/with-active-film-card/with-active-film-card";
 import Footer from "@components/footer/footer";
+import Header from "@components/header/header.connect";
+import {Film} from "@root/types";
 
 const FilmsListWrapped = withActiveFilmCard(FilmsList);
 
@@ -42,19 +44,7 @@ const Main = (props) => {
         <h1 className="visually-hidden">WTW</h1>
 
         <header className="page-header movie-card__head">
-          <div className="logo">
-            <a className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-            </div>
-          </div>
+          <Header/>
         </header>
 
         <div className="movie-card__wrap">
@@ -113,29 +103,8 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  promo: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    releaseYear: PropTypes.number.isRequired,
-    bgImage: PropTypes.string.isRequired,
-    previewImage: PropTypes.string.isRequired,
-    duration: PropTypes.number.isRequired,
-    video: PropTypes.string.isRequired,
-  }).isRequired,
-  films: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    releaseYear: PropTypes.number.isRequired,
-    genre: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    ratingVotes: PropTypes.number.isRequired,
-    director: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    actors: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    preview: PropTypes.string.isRequired,
-    duration: PropTypes.number.isRequired,
-  }).isRequired).isRequired,
+  promo: Film,
+  films: PropTypes.arrayOf(Film).isRequired,
   showingFilmsCount: PropTypes.number.isRequired,
   isPlayerActive: PropTypes.bool.isRequired,
   renderPlayer: PropTypes.func.isRequired,

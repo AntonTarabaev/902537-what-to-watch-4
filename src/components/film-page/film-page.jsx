@@ -2,15 +2,15 @@ import Tabs from "@components/tabs/tabs";
 import FilmsList from "@components/films-list/films-list";
 import FilmPageTabOverview from "@components/film-page/film-page-tab-overview/film-page-tab-overview";
 import FilmPageTabDetails from "@components/film-page/film-page-tab-details/film-page-tab-details";
-import FilmPageTabReviews from "@components/film-page/film-page-tab-reviews/film-page-tab-reviews";
+import FilmPageTabReviews from "@components/film-page/film-page-tab-reviews/film-page-tab-reviews.connect";
 import withActiveTab from "@root/hocs/with-active-tab/with-active-tab";
 import withActiveFilmCard from "@root/hocs/with-active-film-card/with-active-film-card";
 import Footer from "@components/footer/footer";
-import withReviews from "@root/hocs/with-reviews/with-reviews";
+import Header from "@components/header/header.connect";
+import {Film} from "@root/types";
 
 const TabsWrapped = withActiveTab(Tabs);
 const FilmsListWrapped = withActiveFilmCard(FilmsList);
-const FilmPageTabReviewsWrapped = withReviews(FilmPageTabReviews);
 
 const FilmPage = (props) => {
   const {
@@ -19,7 +19,7 @@ const FilmPage = (props) => {
     isPlayerActive,
     renderPlayer,
     onPlayButtonClick,
-    onFilmCardElementClick
+    onFilmCardElementClick,
   } = props;
 
   const {
@@ -44,7 +44,7 @@ const FilmPage = (props) => {
     },
     {
       id: `Reviews`,
-      component: <FilmPageTabReviewsWrapped filmId={id}/>,
+      component: <FilmPageTabReviews filmId={id}/>,
     },
   ];
 
@@ -63,19 +63,7 @@ const FilmPage = (props) => {
           <h1 className="visually-hidden">WTW</h1>
 
           <header className="page-header movie-card__head">
-            <div className="logo">
-              <a href="main.html" className="logo__link">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </a>
-            </div>
-
-            <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-              </div>
-            </div>
+            <Header/>
           </header>
 
           <div className="movie-card__wrap">
@@ -138,35 +126,8 @@ const FilmPage = (props) => {
 };
 
 FilmPage.propTypes = {
-  similarFilms: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    releaseYear: PropTypes.number.isRequired,
-    genre: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    ratingVotes: PropTypes.number.isRequired,
-    director: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    actors: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    preview: PropTypes.string.isRequired,
-    duration: PropTypes.number.isRequired,
-  }).isRequired).isRequired,
-  film: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    bgImage: PropTypes.string.isRequired,
-    releaseYear: PropTypes.number.isRequired,
-    genre: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    ratingVotes: PropTypes.number.isRequired,
-    director: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    actors: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    preview: PropTypes.string.isRequired,
-    duration: PropTypes.number.isRequired,
-  }).isRequired,
+  similarFilms: PropTypes.arrayOf(Film).isRequired,
+  film: Film,
   isPlayerActive: PropTypes.bool.isRequired,
   renderPlayer: PropTypes.func.isRequired,
   onPlayButtonClick: PropTypes.func.isRequired,

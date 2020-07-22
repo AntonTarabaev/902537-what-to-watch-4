@@ -1,5 +1,6 @@
 import PreviewPlayer from "@components/preview-player/preview-player";
 import withPreview from "@root/hocs/with-preview/with-preview";
+import {Film} from "@root/types";
 
 const PreviewPlayerWrapped = withPreview(PreviewPlayer);
 
@@ -69,12 +70,7 @@ FilmCard.propTypes = {
   onFilmCardMouseLeave: PropTypes.func.isRequired,
   onFilmCardElementClick: PropTypes.func.isRequired,
   isActive: PropTypes.bool.isRequired,
-  film: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    preview: PropTypes.string.isRequired,
-  }).isRequired,
+  film: Film,
 };
 
 export default React.memo(FilmCard);

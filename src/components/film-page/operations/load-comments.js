@@ -1,4 +1,4 @@
-import {setComments} from "@root/hocs/with-reviews/actions/set-comments";
+import {setComments} from "@components/film-page/actions/set-comments";
 import {ServerRoutes} from "@constants/routes";
 import {parseComments} from "@root/adapters/comments";
 

@@ -7,8 +7,15 @@ import {createAPI} from "@root/api";
 import thunk from "redux-thunk";
 import {composeWithDevTools} from "redux-devtools-extension";
 import {loadData} from "@components/app/operations/load-data";
+import {requireAuthorization} from "@components/sign-in/actions/require-authorization";
+import {AuthorizationStatus} from "@constants/main";
+import {checkAuth} from "@components/sign-in/operations/check-auth";
 
-const api = createAPI();
+const onUnauthorized = () => {
+  store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
+};
+
+const api = createAPI(onUnauthorized);
 
 const store = createStore(
     rootReducer,
@@ -18,6 +25,7 @@ const store = createStore(
 );
 
 store.dispatch(loadData());
+store.dispatch(checkAuth());
 
 ReactDOM.render(
     <Provider store={store}>
