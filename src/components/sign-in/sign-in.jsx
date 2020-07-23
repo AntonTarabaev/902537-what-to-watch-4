@@ -1,17 +1,6 @@
 import Footer from "@components/footer/footer";
-
-const ErrorMessage = {
-  LOGIN: `Please enter a valid email address`,
-  PASSWORD: `Password is too short`,
-};
-
-const isValidEmail = (email) => {
-  return /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/.test(email);
-};
-
-const isValidPassword = (password) => {
-  return typeof password === `string` && password.length > 3;
-};
+import {isValidEmail, isValidPassword} from "@utils/validation";
+import {ErrorMessage} from "@components/sign-in/consts";
 
 class SignIn extends React.PureComponent {
   constructor(props) {
@@ -76,12 +65,14 @@ class SignIn extends React.PureComponent {
             <div className="sign-in__fields">
               <div className={`sign-in__field ${!emailIsValid && `sign-in__field--error`}`}>
                 <input className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email"
+                  autoComplete="email"
                   ref={this.loginRef}
                 />
                 <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
               </div>
               <div className={`sign-in__field ${!passwordIsValid && `sign-in__field--error`}`}>
                 <input className="sign-in__input" type="password" placeholder="Password" name="user-password" id="user-password"
+                  autoComplete="off"
                   ref={this.passwordRef}
                 />
                 <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
