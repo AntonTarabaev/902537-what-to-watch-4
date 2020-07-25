@@ -21,7 +21,7 @@ const Main = (props) => {
 
   const {
     title: promoTitle,
-    previewImage: promoPoster,
+    poster: promoPoster,
     bgImage: promoBG,
     genre: promoGenre,
     releaseYear: promoReleaseDate,
