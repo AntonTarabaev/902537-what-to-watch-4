@@ -8,6 +8,9 @@ describe(`SignIn component render correctly`, () => {
     const tree = renderer.create(
         <Router history={history}>
           <Header
+            userData={{
+              avatar: `path`,
+            }}
             authorizationStatus={AuthorizationStatus.AUTH}
           />
         </Router>
@@ -20,6 +23,7 @@ describe(`SignIn component render correctly`, () => {
     const tree = renderer.create(
         <Router history={history}>
           <Header
+            userData={{}}
             authorizationStatus={AuthorizationStatus.NO_AUTH}
           />
         </Router>

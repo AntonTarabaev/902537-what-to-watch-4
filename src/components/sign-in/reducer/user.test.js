@@ -6,6 +6,7 @@ import {requireAuthorization} from "@components/sign-in/actions/require-authoriz
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(user(void 0, {})).toEqual({
     authorizationStatus: AuthorizationStatus.NO_AUTH,
+    userData: {},
   });
 });
 

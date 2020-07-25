@@ -1,5 +1,4 @@
 import SignIn from "@components/sign-in/sign-in";
-import {AuthorizationStatus} from "@constants/main";
 import history from "@root/history";
 import {Router} from "react-router-dom";
 
@@ -10,7 +9,6 @@ it(`Should prevent SignIn component form default behavior`, () => {
         <SignIn
           emailIsValid={true}
           passwordIsValid={true}
-          authorizationStatus={AuthorizationStatus.NO_AUTH}
           onSubmit={onSubmit}
           validateData={() => {}}
         />
