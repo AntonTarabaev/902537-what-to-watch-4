@@ -3,5 +3,5 @@ export const isValidEmail = (email) => {
 };
 
 export const isValidPassword = (password) => {
-  return typeof password === `string` && password.length > 3;
+  return typeof password === `string` && password.length > 0;
 };

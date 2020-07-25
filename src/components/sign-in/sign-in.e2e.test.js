@@ -8,8 +8,11 @@ it(`Should prevent SignIn component form default behavior`, () => {
   const signIn = mount(
       <Router history={history}>
         <SignIn
+          emailIsValid={true}
+          passwordIsValid={true}
           authorizationStatus={AuthorizationStatus.NO_AUTH}
           onSubmit={onSubmit}
+          validateData={() => {}}
         />
       </Router>
   );

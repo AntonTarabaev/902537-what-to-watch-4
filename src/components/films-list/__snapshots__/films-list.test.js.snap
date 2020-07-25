@@ -46,7 +46,7 @@ exports[`Should FilmsList render correctly 1`] = `
         <img
           alt="Bohemian Rhapsody"
           height="175"
-          src="bohemian-rhapsody.jpg"
+          src="the-grand-budapest-hotel-poster.jpg"
           width="280"
         />
       </div>
@@ -78,7 +78,7 @@ exports[`Should FilmsList render correctly 1`] = `
         <img
           alt="Aviator"
           height="175"
-          src="aviator.jpg"
+          src="the-grand-budapest-hotel-poster.jpg"
           width="280"
         />
       </div>

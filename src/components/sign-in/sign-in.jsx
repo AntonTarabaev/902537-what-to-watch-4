@@ -1,5 +1,4 @@
 import Footer from "@components/footer/footer";
-import {isValidEmail, isValidPassword} from "@utils/validation";
 import {ErrorMessage} from "@components/sign-in/consts";
 import Logo from "@components/logo/logo";
 import {AuthorizationStatus} from "@constants/main";
@@ -10,11 +9,6 @@ class SignIn extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {
-      emailIsValid: true,
-      passwordIsValid: true,
-    };
-
     this.loginRef = React.createRef();
     this.passwordRef = React.createRef();
 
@@ -22,24 +16,22 @@ class SignIn extends React.PureComponent {
   }
 
   handleSubmit(evt) {
-    const {onSubmit} = this.props;
+    const {onSubmit, validateData} = this.props;
+    const email = this.loginRef.current.value;
+    const password = this.passwordRef.current.value;
 
     evt.preventDefault();
 
-    this.setState({
-      emailIsValid: isValidEmail(this.loginRef.current.value),
-      passwordIsValid: isValidPassword(this.passwordRef.current.value),
-    });
+    validateData(email, password);
 
     onSubmit({
-      login: this.loginRef.current.value,
-      password: this.passwordRef.current.value,
+      login: email,
+      password,
     });
   }
 
   render() {
-    const {authorizationStatus} = this.props;
-    const {emailIsValid, passwordIsValid} = this.state;
+    const {authorizationStatus, emailIsValid, passwordIsValid} = this.props;
 
     return (
       authorizationStatus === AuthorizationStatus.AUTH ?
@@ -95,6 +87,9 @@ class SignIn extends React.PureComponent {
 SignIn.propTypes = {
   authorizationStatus: PropTypes.oneOf([AuthorizationStatus.AUTH, AuthorizationStatus.NO_AUTH]),
   onSubmit: PropTypes.func.isRequired,
+  emailIsValid: PropTypes.bool.isRequired,
+  passwordIsValid: PropTypes.bool.isRequired,
+  validateData: PropTypes.func.isRequired,
 };
 
 export default SignIn;

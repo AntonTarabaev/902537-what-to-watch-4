@@ -6,9 +6,11 @@ import Loader from "@components/loader/loader";
 import SignIn from "@components/sign-in/sign-in.connect";
 import {AppRoutes} from "@constants/routes";
 import history from "@root/history";
+import withValidation from "@root/hocs/with-validation/with-validation";
 
 const MainWithVideoPlayer = withVideoPlayer(Main);
 const FilmPageWithVideoPlayer = withVideoPlayer(FilmPage);
+const SignInWithValidation = withValidation(SignIn);
 
 const App = (props) => {
   const {
@@ -24,7 +26,7 @@ const App = (props) => {
 
         <Route exact path={`${AppRoutes.FILMS}/:id`} component={FilmPageWithVideoPlayer}/>
 
-        <Route exact path={AppRoutes.LOGIN} component={SignIn}/>
+        <Route exact path={AppRoutes.LOGIN} component={SignInWithValidation}/>
       </Switch>
     </Router>
   );

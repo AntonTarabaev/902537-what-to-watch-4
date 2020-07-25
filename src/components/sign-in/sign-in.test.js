@@ -3,15 +3,36 @@ import {AuthorizationStatus} from "@constants/main";
 import history from "@root/history";
 import {Router} from "react-router-dom";
 
-it(`SignIn component render correctly`, () => {
-  const tree = renderer.create(
-      <Router history={history}>
-        <SignIn
-          authorizationStatus={AuthorizationStatus.NO_AUTH}
-          onSubmit={() => {}}
-        />
-      </Router>
-  ).toJSON();
+describe(`SignIn component render correctly`, () => {
+  it(`with correct data`, () => {
+    const tree = renderer.create(
+        <Router history={history}>
+          <SignIn
+            emailIsValid={true}
+            passwordIsValid={true}
+            authorizationStatus={AuthorizationStatus.NO_AUTH}
+            validateData={() => {}}
+            onSubmit={() => {}}
+          />
+        </Router>
+    ).toJSON();
 
-  expect(tree).toMatchSnapshot();
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`with incorrect data`, () => {
+    const tree = renderer.create(
+        <Router history={history}>
+          <SignIn
+            emailIsValid={false}
+            passwordIsValid={false}
+            authorizationStatus={AuthorizationStatus.NO_AUTH}
+            validateData={() => {}}
+            onSubmit={() => {}}
+          />
+        </Router>
+    ).toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
 });
