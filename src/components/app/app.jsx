@@ -7,6 +7,7 @@ import SignIn from "@components/sign-in/sign-in.connect";
 import {AppRoutes} from "@constants/routes";
 import history from "@root/history";
 import withValidation from "@root/hocs/with-validation/with-validation";
+import NotFound from "@components/not-found/not-found";
 
 const MainWithVideoPlayer = withVideoPlayer(Main);
 const FilmPageWithVideoPlayer = withVideoPlayer(FilmPage);
@@ -27,6 +28,8 @@ const App = (props) => {
         <Route exact path={`${AppRoutes.FILMS}/:id`} component={FilmPageWithVideoPlayer}/>
 
         <Route exact path={AppRoutes.LOGIN} component={SignInWithValidation}/>
+
+        <Route component={NotFound}/>
       </Switch>
     </Router>
   );
