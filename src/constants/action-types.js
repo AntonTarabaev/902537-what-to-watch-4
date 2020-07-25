@@ -12,7 +12,6 @@ export const AppActionTypes = {
   SET_PROMO: `LOAD_PROMO`,
   SET_COMMENTS: `SET_COMMENTS`,
   SET_LOADED_STATUS: `SET_LOADED_STATUS`,
-  CHANGE_ACTIVE_FILM_ID: `CHANGE_ACTIVE_FILM_ID`,
 };
 
 export const UserActionTypes = {

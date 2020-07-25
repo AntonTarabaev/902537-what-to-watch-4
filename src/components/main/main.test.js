@@ -2,6 +2,8 @@ import Main from "@components/main/main.connect";
 import {AuthorizationStatus, FILTER_ALL_GENRES} from "@constants/main";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
+import history from "@root/history";
+import {Router} from "react-router-dom";
 
 const mockStore = configureStore([]);
 
@@ -97,12 +99,13 @@ it(`Should Main render correctly`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
-          <Main
-            isPlayerActive={false}
-            renderPlayer={() => {}}
-            onPlayButtonClick={() => {}}
-            onFilmCardElementClick={() => {}}
-          />
+          <Router history={history}>
+            <Main
+              isPlayerActive={false}
+              renderPlayer={() => {}}
+              onPlayButtonClick={() => {}}
+            />
+          </Router>
         </Provider>, {
           createNodeMock: () => {
             return {};

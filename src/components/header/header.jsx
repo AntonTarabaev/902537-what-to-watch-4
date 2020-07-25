@@ -1,5 +1,7 @@
 import Logo from "@components/logo/logo";
 import {AuthorizationStatus} from "@constants/main";
+import {Link} from "react-router-dom";
+import {AppRoutes} from "@constants/routes";
 
 const Header = (props) => {
   const {authorizationStatus} = props;
@@ -12,10 +14,10 @@ const Header = (props) => {
         <div className="user-block">
           {isAuthorized ?
             <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
+              <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63"/>
             </div> :
 
-            <a href="sign-in.html" className="user-block__link">Sign in</a>
+            <Link to={AppRoutes.LOGIN} className="user-block__link">Sign in</Link>
           }
         </div>
     </>

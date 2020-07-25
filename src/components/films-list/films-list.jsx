@@ -4,7 +4,6 @@ import {Film} from "@root/types";
 const FilmsList = (props) => {
   const {
     films,
-    onFilmCardElementClick,
     activeFilmCardId,
     onFilmCardMouseEnter,
     onFilmCardMouseLeave,
@@ -17,7 +16,6 @@ const FilmsList = (props) => {
           key={`${i}-${film.poster}`}
           onFilmCardMouseEnter={onFilmCardMouseEnter}
           onFilmCardMouseLeave={onFilmCardMouseLeave}
-          onFilmCardElementClick={onFilmCardElementClick}
           isActive={activeFilmCardId === film.id}
           film={film}
         />
@@ -27,7 +25,6 @@ const FilmsList = (props) => {
 };
 
 FilmsList.propTypes = {
-  onFilmCardElementClick: PropTypes.func.isRequired,
   activeFilmCardId: PropTypes.string.isRequired,
   onFilmCardMouseEnter: PropTypes.func.isRequired,
   onFilmCardMouseLeave: PropTypes.func.isRequired,

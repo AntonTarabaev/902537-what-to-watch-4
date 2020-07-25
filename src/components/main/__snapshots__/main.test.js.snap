@@ -26,6 +26,8 @@ Array [
       >
         <a
           className="logo__link"
+          href="/"
+          onClick={[Function]}
         >
           <span
             className="logo__letter logo__letter--1"
@@ -53,7 +55,7 @@ Array [
           <img
             alt="User avatar"
             height="63"
-            src="img/avatar.jpg"
+            src="/img/avatar.jpg"
             width="63"
           />
         </div>
@@ -207,23 +209,27 @@ Array [
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <div
-            className="small-movie-card__image"
+          <a
+            href="/films/573489"
             onClick={[Function]}
           >
-            <img
-              alt="Fantastic Beasts: The Crimes of Grindelwald"
-              height="175"
-              src="fantastic-beasts-the-crimes-of-grindelwald.jpg"
-              width="280"
-            />
-          </div>
+            <div
+              className="small-movie-card__image"
+            >
+              <img
+                alt="Fantastic Beasts: The Crimes of Grindelwald"
+                height="175"
+                src="fantastic-beasts-the-crimes-of-grindelwald.jpg"
+                width="280"
+              />
+            </div>
+          </a>
           <h3
             className="small-movie-card__title"
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/films/573489"
               onClick={[Function]}
             >
               Fantastic Beasts: The Crimes of Grindelwald
@@ -235,23 +241,27 @@ Array [
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <div
-            className="small-movie-card__image"
+          <a
+            href="/films/5593482"
             onClick={[Function]}
           >
-            <img
-              alt="Bohemian Rhapsody"
-              height="175"
-              src="bohemian-rhapsody.jpg"
-              width="280"
-            />
-          </div>
+            <div
+              className="small-movie-card__image"
+            >
+              <img
+                alt="Bohemian Rhapsody"
+                height="175"
+                src="bohemian-rhapsody.jpg"
+                width="280"
+              />
+            </div>
+          </a>
           <h3
             className="small-movie-card__title"
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/films/5593482"
               onClick={[Function]}
             >
               Bohemian Rhapsody
@@ -263,23 +273,27 @@ Array [
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <div
-            className="small-movie-card__image"
+          <a
+            href="/films/123094"
             onClick={[Function]}
           >
-            <img
-              alt="Aviator"
-              height="175"
-              src="aviator.jpg"
-              width="280"
-            />
-          </div>
+            <div
+              className="small-movie-card__image"
+            >
+              <img
+                alt="Aviator"
+                height="175"
+                src="aviator.jpg"
+                width="280"
+              />
+            </div>
+          </a>
           <h3
             className="small-movie-card__title"
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/films/123094"
               onClick={[Function]}
             >
               Aviator
@@ -296,7 +310,8 @@ Array [
       >
         <a
           className="logo__link logo__link--light"
-          href={null}
+          href="/"
+          onClick={[Function]}
         >
           <span
             className="logo__letter logo__letter--1"

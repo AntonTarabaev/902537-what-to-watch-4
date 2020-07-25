@@ -6,7 +6,6 @@ const initialState = {
   promo: {},
   comments: [],
   isLoaded: false,
-  activeFilmId: `-1`,
 };
 
 export const data = (state = initialState, action) => {
@@ -29,11 +28,6 @@ export const data = (state = initialState, action) => {
     case AppActionTypes.SET_LOADED_STATUS:
       return extend(state, {
         isLoaded: action.payload,
-      });
-
-    case AppActionTypes.CHANGE_ACTIVE_FILM_ID:
-      return extend(state, {
-        activeFilmId: action.payload,
       });
 
     default:

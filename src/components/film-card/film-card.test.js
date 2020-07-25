@@ -1,4 +1,6 @@
 import FilmCard from "@components/film-card/film-card";
+import {Router} from "react-router-dom";
+import history from "@root/history";
 
 const film = {
   id: `573489`,
@@ -40,13 +42,14 @@ const film = {
 
 it(`Should FilmCard render correctly`, () => {
   const tree = renderer.create(
-      <FilmCard
-        onFilmCardMouseEnter={() => {}}
-        onFilmCardMouseLeave={() => {}}
-        onFilmCardElementClick={() => {}}
-        isActive={false}
-        film={film}
-      />, {
+      <Router history={history}>
+        <FilmCard
+          onFilmCardMouseEnter={() => {}}
+          onFilmCardMouseLeave={() => {}}
+          isActive={false}
+          film={film}
+        />
+      </Router>, {
         createNodeMock() {
           return {};
         }

@@ -7,7 +7,6 @@ import {loadData} from "@components/app/operations/load-data";
 import {ServerRoutes} from "@constants/routes";
 import {loadComments} from "@root/components/film-page/operations/load-comments";
 import {parseFilm, parseFilms} from "@root/adapters/films";
-import {changeActiveFilmId} from "@components/app/actions/change-active-film-id";
 import {setLoadedStatus} from "@components/app/actions/set-loaded-status";
 
 const films = [
@@ -98,7 +97,6 @@ const testInitialState = {
   promo: films[0],
   comments,
   isLoaded: true,
-  activeFilmId: `-1`,
 };
 
 describe(`Data reducer work correctly`, () => {
@@ -108,24 +106,7 @@ describe(`Data reducer work correctly`, () => {
       promo: {},
       comments: [],
       isLoaded: false,
-      activeFilmId: `-1`,
     });
-  });
-
-  it(`Reducer should change activeFilmId by a given value`, () => {
-    expect(data(testInitialState, {
-      type: AppActionTypes.CHANGE_ACTIVE_FILM_ID,
-      payload: `47328947`,
-    })).toEqual(extend(testInitialState, {
-      activeFilmId: `47328947`,
-    }));
-
-    expect(data(testInitialState, {
-      type: AppActionTypes.CHANGE_ACTIVE_FILM_ID,
-      payload: `1111`,
-    })).toEqual(extend(testInitialState, {
-      activeFilmId: `1111`,
-    }));
   });
 
   it(`Reducer should change loadedStatus by a given value`, () => {
@@ -150,13 +131,6 @@ describe(`Action creators work correctly`, () => {
     expect(setLoadedStatus(true)).toEqual({
       type: AppActionTypes.SET_LOADED_STATUS,
       payload: true,
-    });
-  });
-
-  it(`Action creator for change activeFilmId returns correct action`, () => {
-    expect(changeActiveFilmId(`443`)).toEqual({
-      type: AppActionTypes.CHANGE_ACTIVE_FILM_ID,
-      payload: `443`,
     });
   });
 });

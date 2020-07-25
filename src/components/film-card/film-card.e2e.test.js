@@ -30,7 +30,6 @@ it(`Should film card hover work properly`, () => {
   const filmCard = shallow(<FilmCard
     onFilmCardMouseEnter={onFilmCardMouseEnter}
     onFilmCardMouseLeave={onFilmCardMouseLeave}
-    onFilmCardElementClick={() => {}}
     isActive={false}
     film={film}
   />);
@@ -40,44 +39,4 @@ it(`Should film card hover work properly`, () => {
 
   expect(onFilmCardMouseEnter).toHaveBeenCalledTimes(1);
   expect(onFilmCardMouseLeave).toHaveBeenCalledTimes(1);
-});
-
-it(`Should film card elements be clicked`, () => {
-  const onFilmCardElementClick = jest.fn();
-
-  const filmCard = shallow(<FilmCard
-    onFilmCardMouseEnter={() => {}}
-    onFilmCardMouseLeave={() => {}}
-    onFilmCardElementClick={onFilmCardElementClick}
-    isActive={false}
-    film={film}
-  />);
-
-  const header = filmCard.find(`a.small-movie-card__link`);
-  const image = filmCard.find(`div.small-movie-card__image`);
-  header.simulate(`click`, {preventDefault() {}});
-  image.simulate(`click`, {preventDefault() {}});
-
-  expect(onFilmCardElementClick).toHaveBeenCalledTimes(2);
-});
-
-it(`When user click film card header prevent link default behavior`, () => {
-  const onFilmCardElementClick = jest.fn();
-
-  const filmCard = shallow(<FilmCard
-    onFilmCardMouseEnter={() => {}}
-    onFilmCardMouseLeave={() => {}}
-    onFilmCardElementClick={onFilmCardElementClick}
-    isActive={false}
-    film={film}
-  />);
-
-  const header = filmCard.find(`a.small-movie-card__link`);
-  const linkDefaultBehaviorPrevention = jest.fn();
-  header.simulate(`click`, {
-    preventDefault: linkDefaultBehaviorPrevention,
-  });
-
-  expect(onFilmCardElementClick).toHaveBeenCalledTimes(1);
-  expect(linkDefaultBehaviorPrevention).toHaveBeenCalledTimes(1);
 });

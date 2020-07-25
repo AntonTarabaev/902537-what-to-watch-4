@@ -4,7 +4,7 @@ import {getFilmById} from "@components/film-page/selectors/get-film-by-id";
 import {getSimilarFilms} from "@components/film-page/selectors/get-similar-films";
 
 const mapStateToProps = (state, ownProps) => {
-  const film = getFilmById(state, ownProps.filmId);
+  const film = getFilmById(state, ownProps.match.params.id);
 
   return {
     film,

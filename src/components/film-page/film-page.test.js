@@ -2,6 +2,8 @@ import FilmPage from "@components/film-page/film-page";
 import configureStore from "redux-mock-store";
 import {AuthorizationStatus} from "@constants/main";
 import {Provider} from "react-redux";
+import history from "@root/history";
+import {Router} from "react-router-dom";
 
 const mockStore = configureStore([]);
 
@@ -86,17 +88,18 @@ it(`Should FilmPage render correctly`, () => {
 
   const tree = renderer.create(
       <Provider store={store}>
-        <FilmPage
-          film={films[0]}
-          similarFilms={films}
-          comments={[]}
-          isPlayerActive={false}
-          renderPlayer={() => {}}
-          loadFilmComments={() => {}}
-          setFilmComments={() => {}}
-          onPlayButtonClick={() => {}}
-          onFilmCardElementClick={() => {}}
-        />
+        <Router history={history}>
+          <FilmPage
+            film={films[0]}
+            similarFilms={films}
+            comments={[]}
+            isPlayerActive={false}
+            renderPlayer={() => {}}
+            loadFilmComments={() => {}}
+            setFilmComments={() => {}}
+            onPlayButtonClick={() => {}}
+          />
+        </Router>
       </Provider>
   ).toJSON();
 

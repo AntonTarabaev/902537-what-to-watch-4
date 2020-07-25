@@ -19,7 +19,6 @@ const FilmPage = (props) => {
     isPlayerActive,
     renderPlayer,
     onPlayButtonClick,
-    onFilmCardElementClick,
   } = props;
 
   const {
@@ -113,7 +112,6 @@ const FilmPage = (props) => {
             <h2 className="catalog__title">More like this</h2>
 
             <FilmsListWrapped
-              onFilmCardElementClick={onFilmCardElementClick}
               films={similarFilms}
             />
           </section>
@@ -131,7 +129,6 @@ FilmPage.propTypes = {
   isPlayerActive: PropTypes.bool.isRequired,
   renderPlayer: PropTypes.func.isRequired,
   onPlayButtonClick: PropTypes.func.isRequired,
-  onFilmCardElementClick: PropTypes.func.isRequired,
 };
 
 export default FilmPage;

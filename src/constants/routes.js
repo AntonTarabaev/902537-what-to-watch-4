@@ -4,3 +4,9 @@ export const ServerRoutes = {
   COMMENTS: `/comments`,
   LOGIN: `/login`,
 };
+
+export const AppRoutes = {
+  FILMS: `/films`,
+  LOGIN: `/login`,
+  MAIN: `/`,
+};

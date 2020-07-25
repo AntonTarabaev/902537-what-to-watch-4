@@ -10,7 +10,7 @@ export const GENRES_MAX_COUNT = 9;
 
 export const SIMILAR_FILMS_COUNT = 4;
 
-export const PLAYER_POSTER_PATH = `img/player-poster.jpg`;
+export const PLAYER_POSTER_PATH = `/img/player-poster.jpg`;
 
 export const FilmSettings = {
   SHOWING_ON_START_COUNT: 8,

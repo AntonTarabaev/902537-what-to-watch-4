@@ -16,7 +16,6 @@ const Main = (props) => {
     isPlayerActive,
     renderPlayer,
     onPlayButtonClick,
-    onFilmCardElementClick,
     onShowMoreButtonClick,
   } = props;
 
@@ -87,16 +86,13 @@ const Main = (props) => {
           <GenresList/>
 
           <FilmsListWrapped
-            onFilmCardElementClick={onFilmCardElementClick}
             films={films.slice(0, showingFilmsCount)}
           />
 
           {showingFilmsCount < films.length && <ShowMoreButton onShowMoreButtonClick={onShowMoreButtonClick}/>}
         </section>
 
-        <Footer
-          isMainPage={true}
-        />
+        <Footer/>
       </div>
     </>
   );
@@ -109,7 +105,6 @@ Main.propTypes = {
   isPlayerActive: PropTypes.bool.isRequired,
   renderPlayer: PropTypes.func.isRequired,
   onPlayButtonClick: PropTypes.func.isRequired,
-  onFilmCardElementClick: PropTypes.func.isRequired,
   onShowMoreButtonClick: PropTypes.func.isRequired,
 };
 
