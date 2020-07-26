@@ -1,4 +1,5 @@
 import axios from "axios";
+import {ServerRoutes} from "@constants/routes";
 
 const ServerErrors = {
   UNAUTHORIZED: 401,
@@ -18,7 +19,7 @@ export const createAPI = (onUnauthorized) => {
   const onFail = (err) => {
     const {response} = err;
 
-    if (response.status === ServerErrors.UNAUTHORIZED) {
+    if (response.status === ServerErrors.UNAUTHORIZED && (response.config.url !== ServerRoutes.LOGIN)) {
       onUnauthorized();
 
       throw err;

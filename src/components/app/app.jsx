@@ -23,7 +23,7 @@ const App = (props) => {
       <Switch>
         {!isLoaded && <Route component={Loader}/>}
 
-        <Route exact path={AppRoutes.MAIN} component={() => <MainWithVideoPlayer/>}/>
+        <Route exact path={AppRoutes.MAIN} component={MainWithVideoPlayer}/>
 
         <Route exact path={`${AppRoutes.FILMS}/:id`} component={FilmPageWithVideoPlayer}/>
 
