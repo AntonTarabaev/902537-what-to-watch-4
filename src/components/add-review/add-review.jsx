@@ -44,7 +44,7 @@ class AddReview extends React.PureComponent {
   }
 
   _handleSubmit(evt) {
-    const {onSubmit, film} = this.props;
+    const {onSubmit, film, toggleError} = this.props;
     const filmId = film.id;
     const submitButton = this._submitButtonRef.current;
 
@@ -58,9 +58,7 @@ class AddReview extends React.PureComponent {
     };
 
     const onError = () => {
-      this.setState({
-        isAddingErrored: true,
-      });
+      toggleError(true);
 
       changeFormElementsDisabledProperty(evt.target, false);
       submitButton.style.opacity = `1`;
@@ -76,8 +74,7 @@ class AddReview extends React.PureComponent {
   }
 
   render() {
-    const {isAddingErrored} = this.state;
-    const {film} = this.props;
+    const {film, isErrored: isAddingErrored} = this.props;
     const {
       id,
       title,
@@ -163,6 +160,8 @@ class AddReview extends React.PureComponent {
 AddReview.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   film: Film,
+  toggleError: PropTypes.func.isRequired,
+  isErrored: PropTypes.bool.isRequired,
 };
 
 export default AddReview;

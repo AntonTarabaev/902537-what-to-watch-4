@@ -10,10 +10,12 @@ import withValidation from "@root/hocs/with-validation/with-validation";
 import NotFound from "@components/not-found/not-found";
 import AddReview from "@components/add-review/add-review.connect";
 import PrivateRoute from "@components/private-route/private-route.connect";
+import withError from "@root/hocs/with-error/with-error";
 
 const MainWithVideoPlayer = withVideoPlayer(Main);
 const FilmPageWithVideoPlayer = withVideoPlayer(FilmPage);
 const SignInWithValidation = withValidation(SignIn);
+const AddReviewWithError = withError(AddReview);
 
 const App = (props) => {
   const {
@@ -31,7 +33,7 @@ const App = (props) => {
 
         <Route exact path={AppRoutes.LOGIN} component={SignInWithValidation}/>
 
-        <PrivateRoute exact path={`${AppRoutes.FILMS}/:id/review`} render={(componentProps) => <AddReview {...componentProps}/>}/>
+        <PrivateRoute exact path={`${AppRoutes.FILMS}/:id/review`} render={(componentProps) => <AddReviewWithError {...componentProps}/>}/>
 
         <Route component={NotFound}/>
       </Switch>
