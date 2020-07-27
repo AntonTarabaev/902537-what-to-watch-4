@@ -93,6 +93,9 @@ it(`Should Main render correctly`, () => {
     },
     user: {
       authorizationStatus: AuthorizationStatus.AUTH,
+      userData: {
+        avatar: `path`,
+      },
     }
   });
 

@@ -1,6 +1,11 @@
-import FilmCard from "@components/film-card/film-card";
-import {Router} from "react-router-dom";
+import AddReview from "@components/add-review/add-review";
 import history from "@root/history";
+import {Router} from "react-router-dom";
+import {Provider} from "react-redux";
+import {AuthorizationStatus} from "@constants/main";
+import configureStore from "redux-mock-store";
+
+const mockStore = configureStore([]);
 
 const film = {
   id: `573489`,
@@ -26,20 +31,26 @@ const film = {
   video: `path`,
 };
 
-it(`Should FilmCard render correctly`, () => {
+it(`Should AddReview render correctly`, () => {
+  const store = mockStore({
+    user: {
+      authorizationStatus: AuthorizationStatus.AUTH,
+      userData: {
+        avatar: `path`,
+      },
+    }
+  });
+
   const tree = renderer.create(
-      <Router history={history}>
-        <FilmCard
-          onFilmCardMouseEnter={() => {}}
-          onFilmCardMouseLeave={() => {}}
-          isActive={false}
-          film={film}
-        />
-      </Router>, {
-        createNodeMock() {
-          return {};
-        }
-      }).toJSON();
+      <Provider store={store}>
+        <Router history={history}>
+          <AddReview
+            film={film}
+            onSubmit={() => {}}
+          />
+        </Router>
+      </Provider>
+  ).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

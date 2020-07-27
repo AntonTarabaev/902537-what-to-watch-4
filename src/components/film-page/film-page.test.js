@@ -83,6 +83,9 @@ it(`Should FilmPage render correctly`, () => {
   const store = mockStore({
     user: {
       authorizationStatus: AuthorizationStatus.AUTH,
+      userData: {
+        avatar: `path`,
+      },
     }
   });
 
@@ -90,6 +93,7 @@ it(`Should FilmPage render correctly`, () => {
       <Provider store={store}>
         <Router history={history}>
           <FilmPage
+            authorizationStatus={AuthorizationStatus.AUTH}
             film={films[0]}
             similarFilms={films}
             comments={[]}

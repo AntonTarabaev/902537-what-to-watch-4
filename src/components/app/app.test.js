@@ -92,6 +92,9 @@ it(`Should render App correctly`, () => {
     },
     user: {
       authorizationStatus: AuthorizationStatus.AUTH,
+      userData: {
+        avatar: `path`,
+      },
     },
   });
 
@@ -119,6 +122,9 @@ it(`Should render Loader`, () => {
     },
     user: {
       authorizationStatus: AuthorizationStatus.AUTH,
+      userData: {
+        avatar: `path`,
+      },
     },
   });
 

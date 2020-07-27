@@ -7,6 +7,7 @@ const mapStateToProps = (state, ownProps) => {
   const film = getFilmById(state, ownProps.match.params.id);
 
   return {
+    authorizationStatus: state.user.authorizationStatus,
     film,
     similarFilms: getSimilarFilms(state, film),
   };

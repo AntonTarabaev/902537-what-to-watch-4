@@ -23,6 +23,11 @@ Array [
     >
       <div
         className="logo"
+        style={
+          Object {
+            "order": "-1",
+          }
+        }
       >
         <a
           className="logo__link"
@@ -55,6 +60,7 @@ Array [
           <img
             alt="User avatar"
             height="63"
+            src="https://4.react.pages.academypath"
             width="63"
           />
         </div>
@@ -350,6 +356,11 @@ exports[`Should render Loader 1`] = `
   >
     <div
       className="logo"
+      style={
+        Object {
+          "order": "-1",
+        }
+      }
     >
       <a
         className="logo__link"

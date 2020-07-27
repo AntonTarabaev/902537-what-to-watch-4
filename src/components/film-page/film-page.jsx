@@ -8,12 +8,16 @@ import withActiveFilmCard from "@root/hocs/with-active-film-card/with-active-fil
 import Footer from "@components/footer/footer";
 import Header from "@components/header/header.connect";
 import {Film} from "@root/types";
+import {AuthorizationStatus} from "@constants/main";
+import {AppRoutes} from "@constants/routes";
+import {Link} from "react-router-dom";
 
 const TabsWrapped = withActiveTab(Tabs);
 const FilmsListWrapped = withActiveFilmCard(FilmsList);
 
 const FilmPage = (props) => {
   const {
+    authorizationStatus,
     film,
     similarFilms,
     isPlayerActive,
@@ -31,6 +35,8 @@ const FilmPage = (props) => {
     duration,
     preview,
   } = film;
+
+  const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
 
   const PageTabs = [
     {
@@ -86,7 +92,7 @@ const FilmPage = (props) => {
                   </svg>
                   <span>My list</span>
                 </button>
-                <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                {isAuthorized && <Link to={`${AppRoutes.FILMS}/${id}/review`} className="btn movie-card__button">Add review</Link>}
               </div>
             </div>
           </div>
@@ -124,6 +130,7 @@ const FilmPage = (props) => {
 };
 
 FilmPage.propTypes = {
+  authorizationStatus: PropTypes.oneOf([AuthorizationStatus.NO_AUTH, AuthorizationStatus.AUTH]).isRequired,
   similarFilms: PropTypes.arrayOf(Film).isRequired,
   film: Film,
   isPlayerActive: PropTypes.bool.isRequired,

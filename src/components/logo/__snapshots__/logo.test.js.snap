@@ -3,6 +3,11 @@
 exports[`Logo component render correctly 1`] = `
 <div
   className="logo"
+  style={
+    Object {
+      "order": "-1",
+    }
+  }
 >
   <a
     className="logo__link"

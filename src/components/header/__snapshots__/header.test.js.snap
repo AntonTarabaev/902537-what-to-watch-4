@@ -4,6 +4,11 @@ exports[`SignIn component render correctly when authorized 1`] = `
 Array [
   <div
     className="logo"
+    style={
+      Object {
+        "order": "-1",
+      }
+    }
   >
     <a
       className="logo__link"
@@ -48,6 +53,11 @@ exports[`SignIn component render correctly when don't authorized 1`] = `
 Array [
   <div
     className="logo"
+    style={
+      Object {
+        "order": "-1",
+      }
+    }
   >
     <a
       className="logo__link"

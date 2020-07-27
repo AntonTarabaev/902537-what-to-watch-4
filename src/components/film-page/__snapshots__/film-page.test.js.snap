@@ -26,6 +26,11 @@ Array [
       >
         <div
           className="logo"
+          style={
+            Object {
+              "order": "-1",
+            }
+          }
         >
           <a
             className="logo__link"
@@ -58,6 +63,7 @@ Array [
             <img
               alt="User avatar"
               height="63"
+              src="https://4.react.pages.academypath"
               width="63"
             />
           </div>
@@ -128,7 +134,8 @@ Array [
             </button>
             <a
               className="btn movie-card__button"
-              href="add-review.html"
+              href="/films/573489/review"
+              onClick={[Function]}
             >
               Add review
             </a>

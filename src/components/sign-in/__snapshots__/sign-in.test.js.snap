@@ -9,6 +9,11 @@ exports[`SignIn component render correctly with correct data 1`] = `
   >
     <div
       className="logo"
+      style={
+        Object {
+          "order": "-1",
+        }
+      }
     >
       <a
         className="logo__link"
@@ -146,6 +151,11 @@ exports[`SignIn component render correctly with incorrect data 1`] = `
   >
     <div
       className="logo"
+      style={
+        Object {
+          "order": "-1",
+        }
+      }
     >
       <a
         className="logo__link"
