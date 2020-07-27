@@ -17,9 +17,11 @@ const Main = (props) => {
     renderPlayer,
     onPlayButtonClick,
     onShowMoreButtonClick,
+    onFavoriteChange,
   } = props;
 
   const {
+    id: promoId,
     title: promoTitle,
     poster: promoPoster,
     bgImage: promoBG,
@@ -27,7 +29,12 @@ const Main = (props) => {
     releaseYear: promoReleaseDate,
     duration: promoDuration,
     video: promoSrc,
+    isFavorite: promoIsFavorite,
   } = promo;
+
+  const onFavoriteButtonClick = () => {
+    onFavoriteChange(promoId, promoIsFavorite);
+  };
 
   if (isPlayerActive) {
     return renderPlayer(promoTitle, promoSrc, promoDuration);
@@ -67,10 +74,17 @@ const Main = (props) => {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"/>
-                  </svg>
+                <button className="btn btn--list movie-card__button" type="button"
+                  onClick={onFavoriteButtonClick}
+                >
+                  {promoIsFavorite
+                    ? <svg viewBox="0 0 18 14" width="18" height="14">
+                      <use xlinkHref="#in-list"/>
+                    </svg>
+                    : <svg viewBox="0 0 19 20" width="19" height="20">
+                      <use xlinkHref="#add"/>
+                    </svg>
+                  }
                   <span>My list</span>
                 </button>
               </div>
@@ -106,6 +120,7 @@ Main.propTypes = {
   renderPlayer: PropTypes.func.isRequired,
   onPlayButtonClick: PropTypes.func.isRequired,
   onShowMoreButtonClick: PropTypes.func.isRequired,
+  onFavoriteChange: PropTypes.func.isRequired,
 };
 
 export default Main;

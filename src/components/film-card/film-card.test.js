@@ -24,6 +24,7 @@ const film = {
   ],
   preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   video: `path`,
+  isFavorite: true,
 };
 
 it(`Should FilmCard render correctly`, () => {

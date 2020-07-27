@@ -3,6 +3,7 @@ export const ServerRoutes = {
   PROMO: `/films/promo`,
   COMMENTS: `/comments`,
   LOGIN: `/login`,
+  FAVORITE: `/favorite`,
 };
 
 export const AppRoutes = {

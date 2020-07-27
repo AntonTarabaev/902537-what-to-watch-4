@@ -29,6 +29,7 @@ const film = {
   ],
   preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   video: `path`,
+  isFavorite: true,
 };
 
 it(`Should AddReview render correctly`, () => {
@@ -46,7 +47,9 @@ it(`Should AddReview render correctly`, () => {
         <Router history={history}>
           <AddReview
             film={film}
+            isErrored={false}
             onSubmit={() => {}}
+            toggleError={() => {}}
           />
         </Router>
       </Provider>

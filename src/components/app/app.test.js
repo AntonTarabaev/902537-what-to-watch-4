@@ -30,6 +30,7 @@ const films = [
     ],
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     video: `path`,
+    isFavorite: true,
   },
   {
     id: `5593482`,
@@ -55,6 +56,7 @@ const films = [
     ],
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     video: `path`,
+    isFavorite: false,
   },
   {
     id: `123094`,
@@ -76,6 +78,7 @@ const films = [
     ],
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     video: `path`,
+    isFavorite: false,
   }
 ];
 

@@ -23,6 +23,7 @@ const FilmPage = (props) => {
     isPlayerActive,
     renderPlayer,
     onPlayButtonClick,
+    onFavoriteChange,
   } = props;
 
   const {
@@ -34,6 +35,7 @@ const FilmPage = (props) => {
     genre,
     duration,
     preview,
+    isFavorite,
   } = film;
 
   const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
@@ -52,6 +54,10 @@ const FilmPage = (props) => {
       component: <FilmPageTabReviews filmId={id}/>,
     },
   ];
+
+  const onFavoriteButtonClick = () => {
+    onFavoriteChange(id, isFavorite);
+  };
 
   if (isPlayerActive) {
     return renderPlayer(title, preview, duration);
@@ -86,10 +92,17 @@ const FilmPage = (props) => {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"/>
-                  </svg>
+                <button className="btn btn--list movie-card__button" type="button"
+                  onClick={onFavoriteButtonClick}
+                >
+                  {isFavorite
+                    ? <svg viewBox="0 0 18 14" width="18" height="14">
+                      <use xlinkHref="#in-list"/>
+                    </svg>
+                    : <svg viewBox="0 0 19 20" width="19" height="20">
+                      <use xlinkHref="#add"/>
+                    </svg>
+                  }
                   <span>My list</span>
                 </button>
                 {isAuthorized && <Link to={`${AppRoutes.FILMS}/${id}/review`} className="btn movie-card__button">Add review</Link>}
@@ -136,6 +149,7 @@ FilmPage.propTypes = {
   isPlayerActive: PropTypes.bool.isRequired,
   renderPlayer: PropTypes.func.isRequired,
   onPlayButtonClick: PropTypes.func.isRequired,
+  onFavoriteChange: PropTypes.func.isRequired,
 };
 
 export default FilmPage;

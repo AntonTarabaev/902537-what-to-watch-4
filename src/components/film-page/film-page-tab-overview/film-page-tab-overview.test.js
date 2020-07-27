@@ -36,6 +36,7 @@ const film = {
     }
   ],
   video: `path`,
+  isFavorite: true,
 };
 
 it(`Should FilmPageTabOverview render correctly`, () => {

@@ -14,6 +14,7 @@ export const Film = PropTypes.shape({
   preview: PropTypes.string.isRequired,
   duration: PropTypes.number.isRequired,
   video: PropTypes.string.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
 }).isRequired;
 
 export const Comment = PropTypes.shape({
