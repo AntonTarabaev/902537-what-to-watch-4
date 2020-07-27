@@ -15,9 +15,11 @@ const Header = (props) => {
 
         <div className="user-block">
           {isAuthorized ?
-            <div className="user-block__avatar">
-              <img src={avatarLink} alt="User avatar" width="63" height="63"/>
-            </div> :
+            <Link to={AppRoutes.MY_LIST}>
+              <div className="user-block__avatar">
+                <img src={avatarLink} alt="User avatar" width="63" height="63"/>
+              </div>
+            </Link> :
 
             <Link to={AppRoutes.LOGIN} className="user-block__link">Sign in</Link>
           }

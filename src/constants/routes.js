@@ -9,5 +9,6 @@ export const ServerRoutes = {
 export const AppRoutes = {
   FILMS: `/films`,
   LOGIN: `/login`,
+  MY_LIST: `/mylist`,
   MAIN: `/`,
 };

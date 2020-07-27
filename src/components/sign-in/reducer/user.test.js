@@ -3,11 +3,13 @@ import {AuthorizationStatus} from "@constants/main";
 import {UserActionTypes} from "@constants/action-types";
 import {requireAuthorization} from "@components/sign-in/actions/require-authorization";
 import {setUserData} from "@components/sign-in/actions/set-user-data";
+import {setFavorite} from "@components/my-list/actions/set-favorite";
 
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(user(void 0, {})).toEqual({
     authorizationStatus: AuthorizationStatus.NO_AUTH,
     userData: {},
+    favoriteFilms: [],
   });
 });
 
@@ -69,6 +71,26 @@ it(`Reducer should change user data by a given value`, () => {
   });
 });
 
+it(`Reducer should change favorite films by a given value`, () => {
+  expect(user({
+    favoriteFilms: [],
+  }, {
+    type: UserActionTypes.SET_FAVORITE,
+    payload: [{fake: true}],
+  })).toEqual({
+    favoriteFilms: [{fake: true}],
+  });
+
+  expect(user({
+    favoriteFilms: [{fake: true}],
+  }, {
+    type: UserActionTypes.SET_FAVORITE,
+    payload: [1, 2, 3],
+  })).toEqual({
+    favoriteFilms: [1, 2, 3],
+  });
+});
+
 describe(`Action creators work correctly`, () => {
   it(`Action creator for require authorization returns correct action`, () => {
     expect(requireAuthorization(AuthorizationStatus.NO_AUTH)).toEqual({
@@ -86,6 +108,13 @@ describe(`Action creators work correctly`, () => {
     expect(setUserData({fake: true})).toEqual({
       type: UserActionTypes.SET_USER_DATA,
       payload: {fake: true},
+    });
+  });
+
+  it(`Action creator for set favorite films returns correct action`, () => {
+    expect(setFavorite([{fake: true}])).toEqual({
+      type: UserActionTypes.SET_FAVORITE,
+      payload: [{fake: true}],
     });
   });
 });

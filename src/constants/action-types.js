@@ -18,4 +18,5 @@ export const AppActionTypes = {
 export const UserActionTypes = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   SET_USER_DATA: `SET_USER_DATA`,
+  SET_FAVORITE: `SET_FAVORITE`,
 };
