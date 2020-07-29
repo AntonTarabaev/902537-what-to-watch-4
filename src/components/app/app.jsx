@@ -30,7 +30,7 @@ const App = (props) => {
 
         <Route exact path={`${AppRoutes.FILMS}/:id`} component={FilmPage}/>
 
-        <Route exact path={`${AppRoutes.FILMS}/:id/player`} render={(componentProps) => <FullscreenPlayer {...componentProps}/>}/>
+        <Route exact path={`${AppRoutes.PLAYER}/:id`} render={(componentProps) => <FullscreenPlayer {...componentProps}/>}/>
 
         <Route exact path={AppRoutes.LOGIN} component={SignInWithValidation}/>
 

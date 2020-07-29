@@ -77,7 +77,7 @@ const FilmPage = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <Link className="btn btn--play movie-card__button" to={`${AppRoutes.FILMS}/${id}/player`}>
+                <Link className="btn btn--play movie-card__button" to={`${AppRoutes.PLAYER}/${id}`}>
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"/>
                   </svg>
