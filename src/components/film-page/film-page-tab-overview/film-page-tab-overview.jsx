@@ -76,4 +76,4 @@ FilmPageTabOverview.propTypes = {
   film: Film,
 };
 
-export default FilmPageTabOverview;
+export default React.memo(FilmPageTabOverview);

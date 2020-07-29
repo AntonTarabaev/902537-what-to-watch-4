@@ -2,6 +2,8 @@ import Main from "@components/main/main.connect";
 import {AuthorizationStatus, FILTER_ALL_GENRES} from "@constants/main";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
+import history from "@root/history";
+import {Router} from "react-router-dom";
 
 const mockStore = configureStore([]);
 
@@ -30,6 +32,7 @@ const films = [
     ],
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     video: `path`,
+    isFavorite: true,
   },
   {
     id: `5593482`,
@@ -55,6 +58,7 @@ const films = [
     ],
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     video: `path`,
+    isFavorite: false,
   },
   {
     id: `123094`,
@@ -76,6 +80,7 @@ const films = [
     ],
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     video: `path`,
+    isFavorite: false,
   }
 ];
 
@@ -91,18 +96,22 @@ it(`Should Main render correctly`, () => {
     },
     user: {
       authorizationStatus: AuthorizationStatus.AUTH,
+      userData: {
+        avatar: `path`,
+      },
     }
   });
 
   const tree = renderer
     .create(
         <Provider store={store}>
-          <Main
-            isPlayerActive={false}
-            renderPlayer={() => {}}
-            onPlayButtonClick={() => {}}
-            onFilmCardElementClick={() => {}}
-          />
+          <Router history={history}>
+            <Main
+              isPlayerActive={false}
+              renderPlayer={() => {}}
+              onPlayButtonClick={() => {}}
+            />
+          </Router>
         </Provider>, {
           createNodeMock: () => {
             return {};

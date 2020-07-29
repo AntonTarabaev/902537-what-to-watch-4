@@ -2,6 +2,8 @@ import FilmPage from "@components/film-page/film-page";
 import configureStore from "redux-mock-store";
 import {AuthorizationStatus} from "@constants/main";
 import {Provider} from "react-redux";
+import history from "@root/history";
+import {Router} from "react-router-dom";
 
 const mockStore = configureStore([]);
 
@@ -28,6 +30,7 @@ const films = [
     ],
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     video: `path`,
+    isFavorite: true,
   },
   {
     id: `5593482`,
@@ -53,6 +56,7 @@ const films = [
     ],
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     video: `path`,
+    isFavorite: false,
   },
   {
     id: `123094`,
@@ -74,6 +78,7 @@ const films = [
     ],
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     video: `path`,
+    isFavorite: false,
   }
 ];
 
@@ -81,22 +86,28 @@ it(`Should FilmPage render correctly`, () => {
   const store = mockStore({
     user: {
       authorizationStatus: AuthorizationStatus.AUTH,
+      userData: {
+        avatar: `path`,
+      },
     }
   });
 
   const tree = renderer.create(
       <Provider store={store}>
-        <FilmPage
-          film={films[0]}
-          similarFilms={films}
-          comments={[]}
-          isPlayerActive={false}
-          renderPlayer={() => {}}
-          loadFilmComments={() => {}}
-          setFilmComments={() => {}}
-          onPlayButtonClick={() => {}}
-          onFilmCardElementClick={() => {}}
-        />
+        <Router history={history}>
+          <FilmPage
+            authorizationStatus={AuthorizationStatus.AUTH}
+            film={films[0]}
+            similarFilms={films}
+            comments={[]}
+            isPlayerActive={false}
+            renderPlayer={() => {}}
+            loadFilmComments={() => {}}
+            setFilmComments={() => {}}
+            onPlayButtonClick={() => {}}
+            onFavoriteChange={() => {}}
+          />
+        </Router>
       </Provider>
   ).toJSON();
 

@@ -9,18 +9,22 @@ exports[`Should FilmsList render correctly 1`] = `
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      href="/films/573489"
       onClick={[Function]}
     >
-      <video />
-    </div>
+      <div
+        className="small-movie-card__image"
+      >
+        <video />
+      </div>
+    </a>
     <h3
       className="small-movie-card__title"
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/films/573489"
         onClick={[Function]}
       >
         Fantastic Beasts: The Crimes of Grindelwald
@@ -32,23 +36,27 @@ exports[`Should FilmsList render correctly 1`] = `
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      href="/films/5593482"
       onClick={[Function]}
     >
-      <img
-        alt="Bohemian Rhapsody"
-        height="175"
-        src="bohemian-rhapsody.jpg"
-        width="280"
-      />
-    </div>
+      <div
+        className="small-movie-card__image"
+      >
+        <img
+          alt="Bohemian Rhapsody"
+          height="175"
+          src="the-grand-budapest-hotel-poster.jpg"
+          width="280"
+        />
+      </div>
+    </a>
     <h3
       className="small-movie-card__title"
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/films/5593482"
         onClick={[Function]}
       >
         Bohemian Rhapsody
@@ -60,23 +68,27 @@ exports[`Should FilmsList render correctly 1`] = `
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      href="/films/123094"
       onClick={[Function]}
     >
-      <img
-        alt="Aviator"
-        height="175"
-        src="aviator.jpg"
-        width="280"
-      />
-    </div>
+      <div
+        className="small-movie-card__image"
+      >
+        <img
+          alt="Aviator"
+          height="175"
+          src="the-grand-budapest-hotel-poster.jpg"
+          width="280"
+        />
+      </div>
+    </a>
     <h3
       className="small-movie-card__title"
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/films/123094"
         onClick={[Function]}
       >
         Aviator

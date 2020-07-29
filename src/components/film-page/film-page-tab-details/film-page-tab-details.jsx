@@ -58,4 +58,4 @@ FilmPageTabDetails.propTypes = {
   film: Film,
 };
 
-export default FilmPageTabDetails;
+export default React.memo(FilmPageTabDetails);

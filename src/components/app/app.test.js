@@ -30,6 +30,7 @@ const films = [
     ],
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     video: `path`,
+    isFavorite: true,
   },
   {
     id: `5593482`,
@@ -55,6 +56,7 @@ const films = [
     ],
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     video: `path`,
+    isFavorite: false,
   },
   {
     id: `123094`,
@@ -76,6 +78,7 @@ const films = [
     ],
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     video: `path`,
+    isFavorite: false,
   }
 ];
 
@@ -84,7 +87,6 @@ it(`Should render App correctly`, () => {
     data: {
       films,
       promo: films[0],
-      activeFilmId: `-1`,
       isLoaded: true,
     },
     mainPage: {
@@ -93,7 +95,10 @@ it(`Should render App correctly`, () => {
     },
     user: {
       authorizationStatus: AuthorizationStatus.AUTH,
-    }
+      userData: {
+        avatar: `path`,
+      },
+    },
   });
 
   const tree = renderer
@@ -112,7 +117,6 @@ it(`Should render Loader`, () => {
     data: {
       films,
       promo: films[0],
-      activeFilmId: films[1].id,
       isLoaded: false,
     },
     mainPage: {
@@ -121,35 +125,10 @@ it(`Should render Loader`, () => {
     },
     user: {
       authorizationStatus: AuthorizationStatus.AUTH,
-    }
-  });
-
-  const tree = renderer
-    .create(
-        <Provider store={store}>
-          <App/>
-        </Provider>
-    )
-    .toJSON();
-
-  expect(tree).toMatchSnapshot();
-});
-
-it(`Should render FilmPage`, () => {
-  const store = mockStore({
-    data: {
-      films,
-      promo: films[0],
-      activeFilmId: films[1].id,
-      isLoaded: true,
+      userData: {
+        avatar: `path`,
+      },
     },
-    mainPage: {
-      filterGenre: genres[0],
-      showingFilmsCount: 8,
-    },
-    user: {
-      authorizationStatus: AuthorizationStatus.AUTH,
-    }
   });
 
   const tree = renderer

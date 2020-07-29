@@ -6,7 +6,6 @@ const initialState = {
   promo: {},
   comments: [],
   isLoaded: false,
-  activeFilmId: `-1`,
 };
 
 export const data = (state = initialState, action) => {
@@ -31,9 +30,19 @@ export const data = (state = initialState, action) => {
         isLoaded: action.payload,
       });
 
-    case AppActionTypes.CHANGE_ACTIVE_FILM_ID:
+    case AppActionTypes.SET_FILM_IS_FAVORITE:
+      const targetFilmIndex = state.films.findIndex((it) => it.id === action.payload.id);
+      const newFilms = [].concat(state.films.slice(0, targetFilmIndex), action.payload, state.films.slice(targetFilmIndex + 1));
+
+      if (state.promo.id === action.payload.id) {
+        return extend(state, {
+          films: newFilms,
+          promo: action.payload,
+        });
+      }
+
       return extend(state, {
-        activeFilmId: action.payload,
+        films: newFilms,
       });
 
     default:

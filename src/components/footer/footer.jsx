@@ -1,17 +1,19 @@
-const Footer = (props) => {
-  const {isMainPage = false} = props;
+import {Link} from "react-router-dom";
+import {AppRoutes} from "@constants/routes";
+
+const Footer = () => {
 
   return (
     <footer className="page-footer">
       <div className="logo">
-        <a
+        <Link
+          to={AppRoutes.MAIN}
           className="logo__link logo__link--light"
-          href={isMainPage ? null : `main.html`}
         >
           <span className="logo__letter logo__letter--1">W</span>
           <span className="logo__letter logo__letter--2">T</span>
           <span className="logo__letter logo__letter--3">W</span>
-        </a>
+        </Link>
       </div>
 
       <div className="copyright">
@@ -19,10 +21,6 @@ const Footer = (props) => {
       </div>
     </footer>
   );
-};
-
-Footer.propTypes = {
-  isMainPage: PropTypes.bool,
 };
 
 export default Footer;

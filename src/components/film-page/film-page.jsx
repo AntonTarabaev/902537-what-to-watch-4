@@ -8,18 +8,22 @@ import withActiveFilmCard from "@root/hocs/with-active-film-card/with-active-fil
 import Footer from "@components/footer/footer";
 import Header from "@components/header/header.connect";
 import {Film} from "@root/types";
+import {AuthorizationStatus} from "@constants/main";
+import {AppRoutes} from "@constants/routes";
+import {Link} from "react-router-dom";
 
 const TabsWrapped = withActiveTab(Tabs);
 const FilmsListWrapped = withActiveFilmCard(FilmsList);
 
 const FilmPage = (props) => {
   const {
+    authorizationStatus,
     film,
     similarFilms,
     isPlayerActive,
     renderPlayer,
     onPlayButtonClick,
-    onFilmCardElementClick,
+    onFavoriteChange,
   } = props;
 
   const {
@@ -31,7 +35,10 @@ const FilmPage = (props) => {
     genre,
     duration,
     preview,
+    isFavorite,
   } = film;
+
+  const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
 
   const PageTabs = [
     {
@@ -47,6 +54,10 @@ const FilmPage = (props) => {
       component: <FilmPageTabReviews filmId={id}/>,
     },
   ];
+
+  const onFavoriteButtonClick = () => {
+    onFavoriteChange(id, isFavorite);
+  };
 
   if (isPlayerActive) {
     return renderPlayer(title, preview, duration);
@@ -81,13 +92,20 @@ const FilmPage = (props) => {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"/>
-                  </svg>
+                <button className="btn btn--list movie-card__button" type="button"
+                  onClick={onFavoriteButtonClick}
+                >
+                  {isFavorite
+                    ? <svg viewBox="0 0 18 14" width="18" height="14">
+                      <use xlinkHref="#in-list"/>
+                    </svg>
+                    : <svg viewBox="0 0 19 20" width="19" height="20">
+                      <use xlinkHref="#add"/>
+                    </svg>
+                  }
                   <span>My list</span>
                 </button>
-                <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                {isAuthorized && <Link to={`${AppRoutes.FILMS}/${id}/review`} className="btn movie-card__button">Add review</Link>}
               </div>
             </div>
           </div>
@@ -113,7 +131,6 @@ const FilmPage = (props) => {
             <h2 className="catalog__title">More like this</h2>
 
             <FilmsListWrapped
-              onFilmCardElementClick={onFilmCardElementClick}
               films={similarFilms}
             />
           </section>
@@ -126,12 +143,13 @@ const FilmPage = (props) => {
 };
 
 FilmPage.propTypes = {
+  authorizationStatus: PropTypes.oneOf([AuthorizationStatus.NO_AUTH, AuthorizationStatus.AUTH]).isRequired,
   similarFilms: PropTypes.arrayOf(Film).isRequired,
   film: Film,
   isPlayerActive: PropTypes.bool.isRequired,
   renderPlayer: PropTypes.func.isRequired,
   onPlayButtonClick: PropTypes.func.isRequired,
-  onFilmCardElementClick: PropTypes.func.isRequired,
+  onFavoriteChange: PropTypes.func.isRequired,
 };
 
 export default FilmPage;

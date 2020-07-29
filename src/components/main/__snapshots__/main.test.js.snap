@@ -23,9 +23,16 @@ Array [
     >
       <div
         className="logo"
+        style={
+          Object {
+            "order": "-1",
+          }
+        }
       >
         <a
           className="logo__link"
+          href="/"
+          onClick={[Function]}
         >
           <span
             className="logo__letter logo__letter--1"
@@ -47,16 +54,21 @@ Array [
       <div
         className="user-block"
       >
-        <div
-          className="user-block__avatar"
+        <a
+          href="/mylist"
+          onClick={[Function]}
         >
-          <img
-            alt="User avatar"
-            height="63"
-            src="img/avatar.jpg"
-            width="63"
-          />
-        </div>
+          <div
+            className="user-block__avatar"
+          >
+            <img
+              alt="User avatar"
+              height="63"
+              src="https://4.react.pages.academypath"
+              width="63"
+            />
+          </div>
+        </a>
       </div>
     </header>
     <div
@@ -71,7 +83,7 @@ Array [
           <img
             alt="Fantastic Beasts: The Crimes of Grindelwald poster"
             height="327"
-            src="the-grand-budapest-hotel-poster.jpg"
+            src="fantastic-beasts-the-crimes-of-grindelwald.jpg"
             width="218"
           />
         </div>
@@ -120,15 +132,16 @@ Array [
             </button>
             <button
               className="btn btn--list movie-card__button"
+              onClick={[Function]}
               type="button"
             >
               <svg
-                height="20"
-                viewBox="0 0 19 20"
-                width="19"
+                height="14"
+                viewBox="0 0 18 14"
+                width="18"
               >
                 <use
-                  xlinkHref="#add"
+                  xlinkHref="#in-list"
                 />
               </svg>
               <span>
@@ -207,23 +220,27 @@ Array [
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <div
-            className="small-movie-card__image"
+          <a
+            href="/films/573489"
             onClick={[Function]}
           >
-            <img
-              alt="Fantastic Beasts: The Crimes of Grindelwald"
-              height="175"
-              src="fantastic-beasts-the-crimes-of-grindelwald.jpg"
-              width="280"
-            />
-          </div>
+            <div
+              className="small-movie-card__image"
+            >
+              <img
+                alt="Fantastic Beasts: The Crimes of Grindelwald"
+                height="175"
+                src="the-grand-budapest-hotel-poster.jpg"
+                width="280"
+              />
+            </div>
+          </a>
           <h3
             className="small-movie-card__title"
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/films/573489"
               onClick={[Function]}
             >
               Fantastic Beasts: The Crimes of Grindelwald
@@ -235,23 +252,27 @@ Array [
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <div
-            className="small-movie-card__image"
+          <a
+            href="/films/5593482"
             onClick={[Function]}
           >
-            <img
-              alt="Bohemian Rhapsody"
-              height="175"
-              src="bohemian-rhapsody.jpg"
-              width="280"
-            />
-          </div>
+            <div
+              className="small-movie-card__image"
+            >
+              <img
+                alt="Bohemian Rhapsody"
+                height="175"
+                src="the-grand-budapest-hotel-poster.jpg"
+                width="280"
+              />
+            </div>
+          </a>
           <h3
             className="small-movie-card__title"
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/films/5593482"
               onClick={[Function]}
             >
               Bohemian Rhapsody
@@ -263,23 +284,27 @@ Array [
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <div
-            className="small-movie-card__image"
+          <a
+            href="/films/123094"
             onClick={[Function]}
           >
-            <img
-              alt="Aviator"
-              height="175"
-              src="aviator.jpg"
-              width="280"
-            />
-          </div>
+            <div
+              className="small-movie-card__image"
+            >
+              <img
+                alt="Aviator"
+                height="175"
+                src="the-grand-budapest-hotel-poster.jpg"
+                width="280"
+              />
+            </div>
+          </a>
           <h3
             className="small-movie-card__title"
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/films/123094"
               onClick={[Function]}
             >
               Aviator
@@ -296,7 +321,8 @@ Array [
       >
         <a
           className="logo__link logo__link--light"
-          href={null}
+          href="/"
+          onClick={[Function]}
         >
           <span
             className="logo__letter logo__letter--1"

@@ -27,4 +27,4 @@ GenreItem.propTypes = {
   onFilterClick: PropTypes.func.isRequired,
 };
 
-export default GenreItem;
+export default React.memo(GenreItem);

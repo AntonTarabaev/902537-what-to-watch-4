@@ -9,9 +9,16 @@ exports[`Loader component rendered correctly 1`] = `
   >
     <div
       className="logo"
+      style={
+        Object {
+          "order": "-1",
+        }
+      }
     >
       <a
         className="logo__link"
+        href="/"
+        onClick={[Function]}
       >
         <span
           className="logo__letter logo__letter--1"
@@ -49,7 +56,8 @@ exports[`Loader component rendered correctly 1`] = `
     >
       <a
         className="logo__link logo__link--light"
-        href={null}
+        href="/"
+        onClick={[Function]}
       >
         <span
           className="logo__letter logo__letter--1"

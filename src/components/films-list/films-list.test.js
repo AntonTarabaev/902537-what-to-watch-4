@@ -1,4 +1,6 @@
 import FilmsList from "@components/films-list/films-list";
+import history from "@root/history";
+import {Router} from "react-router-dom";
 
 const films = [
   {
@@ -23,6 +25,7 @@ const films = [
     ],
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     video: `path`,
+    isFavorite: true,
   },
   {
     id: `5593482`,
@@ -48,6 +51,7 @@ const films = [
     ],
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     video: `path`,
+    isFavorite: false,
   },
   {
     id: `123094`,
@@ -69,18 +73,20 @@ const films = [
     ],
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     video: `path`,
+    isFavorite: false,
   }
 ];
 
 it(`Should FilmsList render correctly`, () => {
   const tree = renderer.create(
-      <FilmsList
-        onFilmCardElementClick={() => {}}
-        films={films}
-        activeFilmCardId={films[0].id}
-        onFilmCardMouseLeave={() => {}}
-        onFilmCardMouseEnter={() => {}}
-      />, {
+      <Router history={history}>
+        <FilmsList
+          films={films}
+          activeFilmCardId={films[0].id}
+          onFilmCardMouseLeave={() => {}}
+          onFilmCardMouseEnter={() => {}}
+        />
+      </Router>, {
         createNodeMock() {
           return {};
         }

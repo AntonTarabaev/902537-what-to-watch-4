@@ -4,6 +4,8 @@ import {extend} from "@utils/common";
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
+  userData: {},
+  favoriteFilms: [],
 };
 
 export const user = (state = initialState, action) => {
@@ -11,6 +13,16 @@ export const user = (state = initialState, action) => {
     case UserActionTypes.REQUIRED_AUTHORIZATION:
       return extend(state, {
         authorizationStatus: action.payload,
+      });
+
+    case UserActionTypes.SET_USER_DATA:
+      return extend(state, {
+        userData: action.payload,
+      });
+
+    case UserActionTypes.SET_FAVORITE:
+      return extend(state, {
+        favoriteFilms: action.payload,
       });
 
     default:
