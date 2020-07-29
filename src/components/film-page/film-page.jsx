@@ -20,9 +20,6 @@ const FilmPage = (props) => {
     authorizationStatus,
     film,
     similarFilms,
-    isPlayerActive,
-    renderPlayer,
-    onPlayButtonClick,
     onFavoriteChange,
   } = props;
 
@@ -33,8 +30,6 @@ const FilmPage = (props) => {
     bgImage,
     releaseYear,
     genre,
-    duration,
-    preview,
     isFavorite,
   } = film;
 
@@ -59,10 +54,6 @@ const FilmPage = (props) => {
     onFavoriteChange(id, isFavorite);
   };
 
-  if (isPlayerActive) {
-    return renderPlayer(title, preview, duration);
-  }
-
   return (
     <>
       <section className="movie-card movie-card--full">
@@ -86,12 +77,12 @@ const FilmPage = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button" onClick={onPlayButtonClick}>
+                <Link className="btn btn--play movie-card__button" to={`${AppRoutes.FILMS}/${id}/player`}>
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"/>
                   </svg>
                   <span>Play</span>
-                </button>
+                </Link>
                 <button className="btn btn--list movie-card__button" type="button"
                   onClick={onFavoriteButtonClick}
                 >
@@ -146,9 +137,6 @@ FilmPage.propTypes = {
   authorizationStatus: PropTypes.oneOf([AuthorizationStatus.NO_AUTH, AuthorizationStatus.AUTH]).isRequired,
   similarFilms: PropTypes.arrayOf(Film).isRequired,
   film: Film,
-  isPlayerActive: PropTypes.bool.isRequired,
-  renderPlayer: PropTypes.func.isRequired,
-  onPlayButtonClick: PropTypes.func.isRequired,
   onFavoriteChange: PropTypes.func.isRequired,
 };
 

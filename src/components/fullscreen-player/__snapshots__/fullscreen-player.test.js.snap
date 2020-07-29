@@ -24,13 +24,13 @@ exports[`FullscreenPlayer is rendered correctly 1`] = `
         <progress
           className="player__progress"
           max="100"
-          value={24.456521739130434}
+          value={36.58536585365854}
         />
         <div
           className="player__toggler"
           style={
             Object {
-              "left": "24.456521739130434%",
+              "left": "36.58536585365854%",
             }
           }
         >
@@ -40,7 +40,7 @@ exports[`FullscreenPlayer is rendered correctly 1`] = `
       <div
         className="player__time-value"
       >
-        0:02:19
+        0:01:18
       </div>
     </div>
     <div
@@ -67,7 +67,7 @@ exports[`FullscreenPlayer is rendered correctly 1`] = `
       <div
         className="player__name"
       >
-        Film title
+        Fantastic Beasts: The Crimes of Grindelwald
       </div>
       <button
         className="player__full-screen"

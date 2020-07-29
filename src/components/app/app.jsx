@@ -1,7 +1,6 @@
 import Main from "@components/main/main.connect";
 import FilmPage from "@components/film-page/film-page.connect";
 import {Switch, Route, Router} from "react-router-dom";
-import withVideoPlayer from "@root/hocs/with-video-player/with-video-player";
 import Loader from "@components/loader/loader";
 import SignIn from "@components/sign-in/sign-in.connect";
 import {AppRoutes} from "@constants/routes";
@@ -12,9 +11,8 @@ import AddReview from "@components/add-review/add-review.connect";
 import PrivateRoute from "@components/private-route/private-route.connect";
 import withError from "@root/hocs/with-error/with-error";
 import MyList from "@components/my-list/my-list.connect";
+import FullscreenPlayer from "@components/fullscreen-player/fullscreen-player.connect";
 
-const MainWithVideoPlayer = withVideoPlayer(Main);
-const FilmPageWithVideoPlayer = withVideoPlayer(FilmPage);
 const SignInWithValidation = withValidation(SignIn);
 const AddReviewWithError = withError(AddReview);
 
@@ -28,9 +26,11 @@ const App = (props) => {
       <Switch>
         {!isLoaded && <Route component={Loader}/>}
 
-        <Route exact path={AppRoutes.MAIN} component={MainWithVideoPlayer}/>
+        <Route exact path={AppRoutes.MAIN} component={Main}/>
 
-        <Route exact path={`${AppRoutes.FILMS}/:id`} component={FilmPageWithVideoPlayer}/>
+        <Route exact path={`${AppRoutes.FILMS}/:id`} component={FilmPage}/>
+
+        <Route exact path={`${AppRoutes.FILMS}/:id/player`} render={(componentProps) => <FullscreenPlayer {...componentProps}/>}/>
 
         <Route exact path={AppRoutes.LOGIN} component={SignInWithValidation}/>
 

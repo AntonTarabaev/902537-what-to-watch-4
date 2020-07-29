@@ -1,14 +1,20 @@
+import history from "@root/history";
+import {Film} from "@root/types";
+
 const FullscreenPlayer = (props) => {
   const {
-    title,
-    duration,
+    film,
     progress,
     isPlaying,
     onPlayButtonClick,
     onFullscreenButtonClick,
-    onExitButtonClick,
-    children,
+    children
   } = props;
+
+  const {
+    title,
+    duration,
+  } = film;
 
   const progressInPercents = progress / duration * 100;
   const timeElapsed = new Date((duration - progress) * 1000).toISOString().substr(12, 7);
@@ -17,7 +23,7 @@ const FullscreenPlayer = (props) => {
     <div className="player">
       {children}
 
-      <button type="button" className="player__exit" onClick={onExitButtonClick}>Exit</button>
+      <button type="button" className="player__exit" onClick={history.goBack}>Exit</button>
 
       <div className="player__controls">
         <div className="player__controls-row">
@@ -50,13 +56,11 @@ const FullscreenPlayer = (props) => {
 };
 
 FullscreenPlayer.propTypes = {
-  title: PropTypes.string.isRequired,
-  duration: PropTypes.number.isRequired,
+  film: Film,
   progress: PropTypes.number.isRequired,
   isPlaying: PropTypes.bool.isRequired,
   onPlayButtonClick: PropTypes.func.isRequired,
   onFullscreenButtonClick: PropTypes.func.isRequired,
-  onExitButtonClick: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node

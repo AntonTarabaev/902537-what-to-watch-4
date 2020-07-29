@@ -5,6 +5,8 @@ import withActiveFilmCard from "@root/hocs/with-active-film-card/with-active-fil
 import Footer from "@components/footer/footer";
 import Header from "@components/header/header.connect";
 import {Film} from "@root/types";
+import {Link} from "react-router-dom";
+import {AppRoutes} from "@constants/routes";
 
 const FilmsListWrapped = withActiveFilmCard(FilmsList);
 
@@ -13,9 +15,6 @@ const Main = (props) => {
     promo,
     films,
     showingFilmsCount,
-    isPlayerActive,
-    renderPlayer,
-    onPlayButtonClick,
     onShowMoreButtonClick,
     onFavoriteChange,
   } = props;
@@ -27,18 +26,12 @@ const Main = (props) => {
     bgImage: promoBG,
     genre: promoGenre,
     releaseYear: promoReleaseDate,
-    duration: promoDuration,
-    video: promoSrc,
     isFavorite: promoIsFavorite,
   } = promo;
 
   const onFavoriteButtonClick = () => {
     onFavoriteChange(promoId, promoIsFavorite);
   };
-
-  if (isPlayerActive) {
-    return renderPlayer(promoTitle, promoSrc, promoDuration);
-  }
 
   return (
     <>
@@ -68,12 +61,12 @@ const Main = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button" onClick={onPlayButtonClick}>
+                <Link className="btn btn--play movie-card__button" to={`${AppRoutes.FILMS}/${promoId}/player`}>
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"/>
                   </svg>
                   <span>Play</span>
-                </button>
+                </Link>
                 <button className="btn btn--list movie-card__button" type="button"
                   onClick={onFavoriteButtonClick}
                 >
@@ -116,9 +109,6 @@ Main.propTypes = {
   promo: Film,
   films: PropTypes.arrayOf(Film).isRequired,
   showingFilmsCount: PropTypes.number.isRequired,
-  isPlayerActive: PropTypes.bool.isRequired,
-  renderPlayer: PropTypes.func.isRequired,
-  onPlayButtonClick: PropTypes.func.isRequired,
   onShowMoreButtonClick: PropTypes.func.isRequired,
   onFavoriteChange: PropTypes.func.isRequired,
 };
