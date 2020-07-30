@@ -106,11 +106,7 @@ it(`Should Main render correctly`, () => {
     .create(
         <Provider store={store}>
           <Router history={history}>
-            <Main
-              isPlayerActive={false}
-              renderPlayer={() => {}}
-              onPlayButtonClick={() => {}}
-            />
+            <Main/>
           </Router>
         </Provider>, {
           createNodeMock: () => {

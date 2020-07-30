@@ -100,11 +100,8 @@ it(`Should FilmPage render correctly`, () => {
             film={films[0]}
             similarFilms={films}
             comments={[]}
-            isPlayerActive={false}
-            renderPlayer={() => {}}
             loadFilmComments={() => {}}
             setFilmComments={() => {}}
-            onPlayButtonClick={() => {}}
             onFavoriteChange={() => {}}
           />
         </Router>
