@@ -34,7 +34,6 @@ module.exports = (env) => {
     plugins: [
       new webpack.ProvidePlugin({
         React: 'react',
-        PropTypes: 'prop-types',
       }),
     ],
     devtool: env.devtool,
