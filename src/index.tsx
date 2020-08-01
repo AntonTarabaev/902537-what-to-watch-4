@@ -1,4 +1,4 @@
-import ReactDOM from "react-dom";
+import * as ReactDOM from "react-dom";
 import App from "@components/app/app.connect";
 import {applyMiddleware, createStore} from "redux";
 import {Provider} from "react-redux";
