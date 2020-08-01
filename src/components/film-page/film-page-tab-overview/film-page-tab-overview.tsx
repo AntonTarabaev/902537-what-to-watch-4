@@ -1,5 +1,9 @@
 import {Film} from "@root/types";
 
+interface Props {
+  film: Film;
+}
+
 const MAX_ACTORS_COUNT = 4;
 
 const FilmRatings = {
@@ -40,7 +44,7 @@ const getFilmRankText = (filmRating) => {
   return FilmRatings.AWESOME.RATING_TEXT;
 };
 
-const FilmPageTabOverview = (props) => {
+const FilmPageTabOverview: React.FunctionComponent<Props> = (props: Props) => {
   const {film} = props;
   const {
     rating,
@@ -70,10 +74,6 @@ const FilmPageTabOverview = (props) => {
       </div>
     </>
   );
-};
-
-FilmPageTabOverview.propTypes = {
-  film: Film,
 };
 
 export default React.memo(FilmPageTabOverview);

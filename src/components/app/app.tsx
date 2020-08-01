@@ -13,10 +13,14 @@ import withError from "@root/hocs/with-error/with-error";
 import MyList from "@components/my-list/my-list.connect";
 import FullscreenPlayer from "@components/fullscreen-player/fullscreen-player.connect";
 
+interface Props {
+  isLoaded: boolean;
+}
+
 const SignInWithValidation = withValidation(SignIn);
 const AddReviewWithError = withError(AddReview);
 
-const App = (props) => {
+const App: React.FunctionComponent<Props> = (props: Props) => {
   const {
     isLoaded,
   } = props;
@@ -42,10 +46,6 @@ const App = (props) => {
       </Switch>
     </Router>
   );
-};
-
-App.propTypes = {
-  isLoaded: PropTypes.bool.isRequired,
 };
 
 export default App;

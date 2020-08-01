@@ -6,7 +6,17 @@ import {Film} from "@root/types";
 import {Link} from "react-router-dom";
 import {changeFormElementsDisabledProperty} from "@utils/common";
 
-class AddReview extends React.PureComponent {
+interface Props {
+  onSubmit: (commentData: {rating: number; comment: string}, filmId: string, onSuccess: () => void, onError: () => void) => void;
+  film: Film;
+  toggleError: (isErrored: boolean) => void;
+  isErrored: boolean;
+}
+
+class AddReview extends React.PureComponent<Props, {}> {
+  private readonly commentRef: React.RefObject<HTMLTextAreaElement>;
+  private readonly submitButtonRef: React.RefObject<HTMLButtonElement>;
+
   constructor(props) {
     super(props);
 
@@ -14,15 +24,15 @@ class AddReview extends React.PureComponent {
       isAddingErrored: false,
     };
 
-    this._commentRef = React.createRef();
-    this._submitButtonRef = React.createRef();
+    this.commentRef = React.createRef();
+    this.submitButtonRef = React.createRef();
 
     this._handleSubmit = this._handleSubmit.bind(this);
     this._handleCommentChange = this._handleCommentChange.bind(this);
   }
 
   componentDidMount() {
-    const commentArea = this._commentRef.current;
+    const commentArea = this.commentRef.current;
 
     if (commentArea) {
       commentArea.focus();
@@ -30,8 +40,8 @@ class AddReview extends React.PureComponent {
   }
 
   _handleCommentChange() {
-    const comment = this._commentRef.current.value;
-    const submitButton = this._submitButtonRef.current;
+    const comment = this.commentRef.current.value;
+    const submitButton = this.submitButtonRef.current;
     const isCommentValid = isValidComment(comment);
 
     submitButton.disabled = !isCommentValid;
@@ -46,10 +56,10 @@ class AddReview extends React.PureComponent {
   _handleSubmit(evt) {
     const {onSubmit, film, toggleError} = this.props;
     const filmId = film.id;
-    const submitButton = this._submitButtonRef.current;
+    const submitButton = this.submitButtonRef.current;
 
     const commentData = {
-      comment: this._commentRef.current.value,
+      comment: this.commentRef.current.value,
       rating: evt.target.rating.value * 2,
     };
 
@@ -138,12 +148,12 @@ class AddReview extends React.PureComponent {
 
             <div className="add-review__text">
               <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text"
-                ref={this._commentRef}
+                ref={this.commentRef}
                 onChange={this._handleCommentChange}
               />
               <div className="add-review__submit">
                 <button className="add-review__btn" type="submit"
-                  ref={this._submitButtonRef}
+                  ref={this.submitButtonRef}
                 >
                   Post
                 </button>
@@ -156,12 +166,5 @@ class AddReview extends React.PureComponent {
     );
   }
 }
-
-AddReview.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-  film: Film,
-  toggleError: PropTypes.func.isRequired,
-  isErrored: PropTypes.bool.isRequired,
-};
 
 export default AddReview;

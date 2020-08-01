@@ -1,5 +1,23 @@
+import {Subtract} from "utility-types";
+
+interface Props {
+  tabsId: string;
+}
+
+interface State {
+  activeTabId: number;
+}
+
+interface InjectingProps {
+  tabTitleClickHandler: (tabId: number) => void;
+  activeTabId: number;
+}
+
 const withActiveTab = (Component) => {
-  class WithActiveTab extends React.PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Props & Subtract<P, InjectingProps>;
+
+  class WithActiveTab extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
 
@@ -38,10 +56,6 @@ const withActiveTab = (Component) => {
       );
     }
   }
-
-  WithActiveTab.propTypes = {
-    tabsId: PropTypes.string.isRequired,
-  };
 
   return WithActiveTab;
 };

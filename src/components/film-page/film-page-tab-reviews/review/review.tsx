@@ -1,7 +1,11 @@
 import {formatDate} from "@utils/common";
 import {Comment} from "@root/types";
 
-const Review = (props) => {
+interface Props {
+  userComment: Comment;
+}
+
+const Review: React.FunctionComponent<Props> = (props: Props) => {
   const {userComment} = props;
   const {author, rating, date, comment} = userComment;
 
@@ -22,10 +26,6 @@ const Review = (props) => {
       <div className="review__rating">{rating}</div>
     </div>
   );
-};
-
-Review.propTypes = {
-  userComment: Comment,
 };
 
 export default Review;

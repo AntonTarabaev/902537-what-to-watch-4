@@ -8,9 +8,17 @@ import {Film} from "@root/types";
 import {Link} from "react-router-dom";
 import {AppRoutes} from "@constants/routes";
 
+interface Props {
+  promo: Film;
+  films: Film[];
+  showingFilmsCount: number;
+  onShowMoreButtonClick: () => void;
+  onFavoriteChange: (id: string, isFavorite: boolean) => void;
+}
+
 const FilmsListWrapped = withActiveFilmCard(FilmsList);
 
-const Main = (props) => {
+const Main: React.FunctionComponent<Props> = (props: Props) => {
   const {
     promo,
     films,
@@ -103,14 +111,6 @@ const Main = (props) => {
       </div>
     </>
   );
-};
-
-Main.propTypes = {
-  promo: Film,
-  films: PropTypes.arrayOf(Film).isRequired,
-  showingFilmsCount: PropTypes.number.isRequired,
-  onShowMoreButtonClick: PropTypes.func.isRequired,
-  onFavoriteChange: PropTypes.func.isRequired,
 };
 
 export default Main;

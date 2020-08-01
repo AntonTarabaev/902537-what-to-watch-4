@@ -1,7 +1,14 @@
 import FilmCard from "@components/film-card/film-card";
 import {Film} from "@root/types";
 
-const FilmsList = (props) => {
+interface Props {
+  activeFilmCardId: string;
+  onFilmCardMouseEnter: () => void;
+  onFilmCardMouseLeave: () => void;
+  films: Film[];
+}
+
+const FilmsList: React.FunctionComponent<Props> = (props: Props) => {
   const {
     films,
     activeFilmCardId,
@@ -22,13 +29,6 @@ const FilmsList = (props) => {
       ))}
     </div>
   );
-};
-
-FilmsList.propTypes = {
-  activeFilmCardId: PropTypes.string.isRequired,
-  onFilmCardMouseEnter: PropTypes.func.isRequired,
-  onFilmCardMouseLeave: PropTypes.func.isRequired,
-  films: PropTypes.arrayOf(Film).isRequired,
 };
 
 export default FilmsList;

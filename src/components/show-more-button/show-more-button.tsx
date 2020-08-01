@@ -1,4 +1,8 @@
-const ShowMoreButton = (props) => {
+interface Props {
+  onShowMoreButtonClick: () => void;
+}
+
+const ShowMoreButton: React.FunctionComponent<Props> = (props: Props) => {
   const {onShowMoreButtonClick} = props;
 
   return (
@@ -12,10 +16,6 @@ const ShowMoreButton = (props) => {
       </button>
     </div>
   );
-};
-
-ShowMoreButton.propTypes = {
-  onShowMoreButtonClick: PropTypes.func.isRequired,
 };
 
 export default React.memo(ShowMoreButton);

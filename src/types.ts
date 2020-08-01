@@ -23,7 +23,9 @@ export interface Film {
 }
 
 export interface Comment {
+  id: number;
   author: string;
+  authorId: number;
   comment: string;
   date: Date;
   rating: number;

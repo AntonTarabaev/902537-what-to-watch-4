@@ -1,7 +1,16 @@
 import history from "@root/history";
 import {Film} from "@root/types";
 
-const FullscreenPlayer = (props) => {
+interface Props {
+  film: Film;
+  progress: number;
+  isPlaying: boolean;
+  onPlayButtonClick: () => void;
+  onFullscreenButtonClick: () => void;
+  children: React.ReactNode;
+}
+
+const FullscreenPlayer: React.FunctionComponent<Props> = (props: Props) => {
   const {
     film,
     progress,
@@ -53,18 +62,6 @@ const FullscreenPlayer = (props) => {
       </div>
     </div>
   );
-};
-
-FullscreenPlayer.propTypes = {
-  film: Film,
-  progress: PropTypes.number.isRequired,
-  isPlaying: PropTypes.bool.isRequired,
-  onPlayButtonClick: PropTypes.func.isRequired,
-  onFullscreenButtonClick: PropTypes.func.isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired,
 };
 
 export default FullscreenPlayer;

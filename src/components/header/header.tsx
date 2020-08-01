@@ -3,7 +3,12 @@ import {AuthorizationStatus} from "@root/types";
 import {Link} from "react-router-dom";
 import {AppRoutes} from "@constants/routes";
 
-const Header = (props) => {
+interface Props {
+  authorizationStatus: AuthorizationStatus;
+  userData: {avatar: string};
+}
+
+const Header: React.FunctionComponent<Props> = (props: Props) => {
   const {authorizationStatus, userData} = props;
   const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
 
@@ -26,13 +31,6 @@ const Header = (props) => {
         </div>
     </>
   );
-};
-
-Header.propTypes = {
-  authorizationStatus: PropTypes.oneOf([AuthorizationStatus.AUTH, AuthorizationStatus.NO_AUTH]).isRequired,
-  userData: PropTypes.shape({
-    avatar: PropTypes.string,
-  }).isRequired,
 };
 
 export default Header;

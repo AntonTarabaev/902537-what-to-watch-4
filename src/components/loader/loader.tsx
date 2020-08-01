@@ -1,7 +1,7 @@
 import Footer from "@components/footer/footer";
 import Logo from "@components/logo/logo";
 
-const Loader = () => {
+const Loader: React.FunctionComponent = () => {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">

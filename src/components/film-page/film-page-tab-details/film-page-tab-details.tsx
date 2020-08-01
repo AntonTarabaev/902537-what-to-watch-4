@@ -1,7 +1,11 @@
 import {formatTime} from "@utils/common";
 import {Film} from "@root/types";
 
-const FilmPageTabDetails = (props) => {
+interface Props {
+  film: Film;
+}
+
+const FilmPageTabDetails: React.FunctionComponent<Props> = (props: Props) => {
   const {film} = props;
   const {
     actors,
@@ -52,10 +56,6 @@ const FilmPageTabDetails = (props) => {
       </div>
     </div>
   );
-};
-
-FilmPageTabDetails.propTypes = {
-  film: Film,
 };
 
 export default React.memo(FilmPageTabDetails);

@@ -1,6 +1,12 @@
 import GenreItem from "@components/genres-list/genre-item/genre-item";
 
-const GenresList = (props) => {
+interface Props {
+  genres: string[];
+  activeFilter: string;
+  onFilterClick: () => void;
+}
+
+const GenresList: React.FunctionComponent<Props> = (props: Props) => {
   const {genres, activeFilter, onFilterClick} = props;
 
   return (
@@ -15,12 +21,6 @@ const GenresList = (props) => {
       ))}
     </ul>
   );
-};
-
-GenresList.propTypes = {
-  genres: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  activeFilter: PropTypes.string.isRequired,
-  onFilterClick: PropTypes.func.isRequired,
 };
 
 export default GenresList;

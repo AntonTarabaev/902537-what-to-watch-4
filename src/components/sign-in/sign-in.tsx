@@ -5,20 +5,31 @@ import {AppRoutes} from "@constants/routes";
 import {AuthorizationStatus} from "@root/types";
 import {Redirect} from "react-router-dom";
 
-class SignIn extends React.PureComponent {
+interface Props {
+  authorizationStatus: AuthorizationStatus;
+  onSubmit: ({login, password}: {login: string; password: string}) => void;
+  emailIsValid: boolean;
+  passwordIsValid: boolean;
+  validateData: (email: string, password: string) => void;
+};
+
+class SignIn extends React.PureComponent<Props> {
+  private readonly loginRef: React.RefObject<HTMLInputElement>;
+  private readonly passwordRef: React.RefObject<HTMLInputElement>;
+
   constructor(props) {
     super(props);
 
-    this._loginRef = React.createRef();
-    this._passwordRef = React.createRef();
+    this.loginRef = React.createRef();
+    this.passwordRef = React.createRef();
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(evt) {
     const {onSubmit, validateData} = this.props;
-    const email = this._loginRef.current.value;
-    const password = this._passwordRef.current.value;
+    const email = this.loginRef.current.value;
+    const password = this.passwordRef.current.value;
 
     evt.preventDefault();
 
@@ -60,14 +71,14 @@ class SignIn extends React.PureComponent {
                 <div className={`sign-in__field ${!emailIsValid && `sign-in__field--error`}`}>
                   <input className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email"
                     autoComplete="email"
-                    ref={this._loginRef}
+                    ref={this.loginRef}
                   />
                   <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
                 </div>
                 <div className={`sign-in__field ${!passwordIsValid && `sign-in__field--error`}`}>
                   <input className="sign-in__input" type="password" placeholder="Password" name="user-password" id="user-password"
                     autoComplete="off"
-                    ref={this._passwordRef}
+                    ref={this.passwordRef}
                   />
                   <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
                 </div>
@@ -83,13 +94,5 @@ class SignIn extends React.PureComponent {
     );
   }
 }
-
-SignIn.propTypes = {
-  authorizationStatus: PropTypes.oneOf([AuthorizationStatus.NO_AUTH, AuthorizationStatus.AUTH]).isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  emailIsValid: PropTypes.bool.isRequired,
-  passwordIsValid: PropTypes.bool.isRequired,
-  validateData: PropTypes.func.isRequired,
-};
 
 export default SignIn;

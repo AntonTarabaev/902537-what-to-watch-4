@@ -4,9 +4,16 @@ import {Film} from "@root/types";
 import {Link} from "react-router-dom";
 import {AppRoutes} from "@constants/routes";
 
+interface Props {
+  onFilmCardMouseEnter: (id: string) => void;
+  onFilmCardMouseLeave: () => void;
+  isActive: boolean;
+  film: Film;
+}
+
 const PreviewPlayerWrapped = withPreview(PreviewPlayer);
 
-const FilmCard = (props) => {
+const FilmCard: React.FunctionComponent<Props> = (props: Props) => {
   const {
     film,
     onFilmCardMouseEnter,
@@ -60,13 +67,6 @@ const FilmCard = (props) => {
       </h3>
     </article>
   );
-};
-
-FilmCard.propTypes = {
-  onFilmCardMouseEnter: PropTypes.func.isRequired,
-  onFilmCardMouseLeave: PropTypes.func.isRequired,
-  isActive: PropTypes.bool.isRequired,
-  film: Film,
 };
 
 export default React.memo(FilmCard);

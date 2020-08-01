@@ -1,4 +1,10 @@
-const GenreItem = (props) => {
+interface Props {
+  genre: string;
+  activeFilter: string;
+  onFilterClick: (genre: string) => void;
+}
+
+const GenreItem: React.FunctionComponent<Props> = (props: Props) => {
   const {genre, activeFilter, onFilterClick} = props;
 
   const onGenreTitleClick = (evt) => {
@@ -19,12 +25,6 @@ const GenreItem = (props) => {
       </a>
     </li>
   );
-};
-
-GenreItem.propTypes = {
-  genre: PropTypes.string.isRequired,
-  activeFilter: PropTypes.string.isRequired,
-  onFilterClick: PropTypes.func.isRequired,
 };
 
 export default React.memo(GenreItem);

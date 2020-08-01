@@ -4,9 +4,14 @@ import FilmsList from "@components/films-list/films-list";
 import Header from "@components/header/header.connect";
 import {Film} from "@root/types";
 
+interface Props {
+  favoriteFilms: Film[];
+  loadFavorite: () => void;
+}
+
 const FilmsListWrapped = withActiveFilmCard(FilmsList);
 
-class MyList extends React.PureComponent {
+class MyList extends React.PureComponent<Props, {}> {
   componentDidMount() {
     const {loadFavorite} = this.props;
 
@@ -39,10 +44,5 @@ class MyList extends React.PureComponent {
     );
   }
 }
-
-MyList.propTypes = {
-  favoriteFilms: PropTypes.arrayOf(Film).isRequired,
-  loadFavorite: PropTypes.func.isRequired,
-};
 
 export default MyList;

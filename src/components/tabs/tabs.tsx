@@ -1,6 +1,12 @@
 import TabNav from "@components/tabs/tabs-nav/tab-nav";
 
-const Tabs = (props) => {
+interface Props {
+  tabs: {id: string; component: React.ReactNode}[];
+  activeTabId: number;
+  tabTitleClickHandler: () => void;
+}
+
+const Tabs: React.FunctionComponent<Props> = (props: Props) => {
   const {tabs, activeTabId, tabTitleClickHandler} = props;
   const ActiveTab = tabs[activeTabId].component;
 
@@ -25,15 +31,6 @@ const Tabs = (props) => {
       {ActiveTab}
     </>
   );
-};
-
-Tabs.propTypes = {
-  tabs: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    component: PropTypes.node.isRequired,
-  }).isRequired).isRequired,
-  activeTabId: PropTypes.number.isRequired,
-  tabTitleClickHandler: PropTypes.func.isRequired,
 };
 
 export default Tabs;

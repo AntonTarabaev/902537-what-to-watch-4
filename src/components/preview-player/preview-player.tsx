@@ -1,4 +1,8 @@
-const PreviewPlayer = (props) => {
+interface Props {
+  children: React.ReactNode;
+}
+
+const PreviewPlayer: React.FunctionComponent<Props> = (props: Props) => {
   const {children} = props;
 
   return (
@@ -6,13 +10,6 @@ const PreviewPlayer = (props) => {
       {children}
     </>
   );
-};
-
-PreviewPlayer.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired,
 };
 
 export default PreviewPlayer;

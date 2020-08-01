@@ -1,14 +1,21 @@
+interface Props {
+  src: string;
+  poster: string;
+}
+
 const withPreview = (Component) => {
-  class WithPreview extends React.PureComponent {
+  class WithPreview extends React.PureComponent<Props, {}> {
+    private readonly videoRef: React.RefObject<HTMLVideoElement>;
+
     constructor(props) {
       super(props);
 
-      this._videoRef = React.createRef();
+      this.videoRef = React.createRef();
     }
 
     componentDidMount() {
       const {src, poster} = this.props;
-      const video = this._videoRef.current;
+      const video = this.videoRef.current;
 
       video.src = src;
       video.poster = poster;
@@ -17,7 +24,7 @@ const withPreview = (Component) => {
     }
 
     componentWillUnmount() {
-      const video = this._videoRef.current;
+      const video = this.videoRef.current;
 
       video.src = ``;
       video.autoplay = null;
@@ -31,17 +38,12 @@ const withPreview = (Component) => {
           {...this.props}
         >
           <video
-            ref={this._videoRef}
+            ref={this.videoRef}
           />
         </Component>
       );
     }
   }
-
-  WithPreview.propTypes = {
-    src: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-  };
 
   return WithPreview;
 };

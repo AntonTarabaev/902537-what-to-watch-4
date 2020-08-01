@@ -1,7 +1,14 @@
 import Review from "@components/film-page/film-page-tab-reviews/review/review";
 import {Comment} from "@root/types";
 
-class FilmPageTabReviews extends React.PureComponent {
+interface Props {
+  filmId: string;
+  loadFilmComments: (filmId: string) => void;
+  setFilmComments: () => void;
+  comments: Comment[];
+}
+
+class FilmPageTabReviews extends React.PureComponent<Props, {}> {
   componentDidMount() {
     const {loadFilmComments, filmId} = this.props;
 
@@ -30,21 +37,14 @@ class FilmPageTabReviews extends React.PureComponent {
     return (
       <div className="movie-card__reviews movie-card__row">
         <div className="movie-card__reviews-col">
-          {comments.slice(0, Math.ceil(comments.length / 2)).map((it, i) => <Review key={it.date + i} userComment={it}/>)}
+          {comments.slice(0, Math.ceil(comments.length / 2)).map((it, i) => <Review key={it.id + i} userComment={it}/>)}
         </div>
         <div className="movie-card__reviews-col">
-          {comments.slice(Math.ceil(comments.length / 2)).map((it, i) => <Review key={it.date + i} userComment={it}/>)}
+          {comments.slice(Math.ceil(comments.length / 2)).map((it, i) => <Review key={it.id + i} userComment={it}/>)}
         </div>
       </div>
     );
   }
 }
-
-FilmPageTabReviews.propTypes = {
-  filmId: PropTypes.string.isRequired,
-  loadFilmComments: PropTypes.func.isRequired,
-  setFilmComments: PropTypes.func.isRequired,
-  comments: PropTypes.arrayOf(Comment).isRequired,
-};
 
 export default FilmPageTabReviews;

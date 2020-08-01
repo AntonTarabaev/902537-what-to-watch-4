@@ -1,11 +1,33 @@
 import {PLAYER_POSTER_PATH} from "@constants/main";
+import {Subtract} from "utility-types";
+
+interface Props {
+  src: string;
+}
+
+interface State {
+  progress: number;
+  isPlaying: boolean;
+}
+
+interface InjectingProps {
+  progress: number;
+  isPlaying: boolean;
+  onPlayButtonClick: () => void;
+  onFullscreenButtonClick: () => void;
+}
 
 const withVideo = (Component) => {
-  class WithVideo extends React.PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Props & Subtract<P, InjectingProps>;
+
+  class WithVideo extends React.PureComponent<T, State> {
+    private readonly videoRef: React.RefObject<HTMLVideoElement>;
+
     constructor(props) {
       super(props);
 
-      this._videoRef = React.createRef();
+      this.videoRef = React.createRef();
 
       this.state = {
         progress: 0,
@@ -18,7 +40,7 @@ const withVideo = (Component) => {
 
     componentDidMount() {
       const {src} = this.props;
-      const video = this._videoRef.current;
+      const video = this.videoRef.current;
 
       video.src = src;
       video.poster = PLAYER_POSTER_PATH;
@@ -37,7 +59,7 @@ const withVideo = (Component) => {
     }
 
     componentWillUnmount() {
-      const video = this._videoRef.current;
+      const video = this.videoRef.current;
 
       video.src = ``;
       video.poster = ``;
@@ -47,7 +69,7 @@ const withVideo = (Component) => {
     }
 
     componentDidUpdate() {
-      const video = this._videoRef.current;
+      const video = this.videoRef.current;
       const {isPlaying} = this.state;
 
       if (isPlaying) {
@@ -65,7 +87,7 @@ const withVideo = (Component) => {
     }
 
     onFullscreenButtonClick() {
-      const video = this._videoRef.current;
+      const video = this.videoRef.current;
 
       video.requestFullscreen();
     }
@@ -82,7 +104,7 @@ const withVideo = (Component) => {
           onFullscreenButtonClick={this.onFullscreenButtonClick}
         >
           <video
-            ref={this._videoRef}
+            ref={this.videoRef}
             onClick={this.onPlayButtonClick}
             className="player__video"
           />
@@ -90,10 +112,6 @@ const withVideo = (Component) => {
       );
     }
   }
-
-  WithVideo.propTypes = {
-    src: PropTypes.string.isRequired,
-  };
 
   return WithVideo;
 };

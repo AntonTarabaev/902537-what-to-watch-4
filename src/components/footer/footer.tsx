@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 import {AppRoutes} from "@constants/routes";
 
-const Footer = () => {
+const Footer: React.FunctionComponent = () => {
 
   return (
     <footer className="page-footer">

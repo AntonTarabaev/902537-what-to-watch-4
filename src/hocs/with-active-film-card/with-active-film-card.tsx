@@ -1,7 +1,22 @@
 import {FILM_CARD_ACTIVATION_DELAY} from "@constants/main";
+import {Subtract} from "utility-types";
+
+interface State {
+  activeFilmCardId: string;
+  filmCardActivationTimeout: NodeJS.Timeout;
+}
+
+interface InjectingProps {
+  activeFilmCardId: string;
+  onFilmCardMouseEnter: (filmId: number) => void;
+  onFilmCardMouseLeave: () => void;
+}
 
 const withActiveFilmCard = (Component) => {
-  class WithActiveFilmCard extends React.PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, InjectingProps>
+
+  class WithActiveFilmCard extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
 

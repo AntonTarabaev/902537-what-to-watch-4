@@ -1,4 +1,11 @@
-const TabNav = (props) => {
+interface Props {
+  title: string;
+  number: number;
+  activeTabId: number;
+  tabTitleClickHandler: (number: number) => void;
+}
+
+const TabNav: React.FunctionComponent<Props> = (props: Props) => {
   const {title, number, activeTabId, tabTitleClickHandler} = props;
 
   const tabNavClickHandler = (evt) => {
@@ -19,13 +26,6 @@ const TabNav = (props) => {
       </a>
     </li>
   );
-};
-
-TabNav.propTypes = {
-  title: PropTypes.string.isRequired,
-  number: PropTypes.number.isRequired,
-  activeTabId: PropTypes.number.isRequired,
-  tabTitleClickHandler: PropTypes.func.isRequired,
 };
 
 export default React.memo(TabNav);

@@ -12,10 +12,17 @@ import {AuthorizationStatus} from "@root/types";
 import {AppRoutes} from "@constants/routes";
 import {Link} from "react-router-dom";
 
+interface Props {
+  authorizationStatus: AuthorizationStatus;
+  similarFilms: Film[];
+  film: Film;
+  onFavoriteChange: (id: string, isFavorite: boolean) => void;
+}
+
 const TabsWrapped = withActiveTab(Tabs);
 const FilmsListWrapped = withActiveFilmCard(FilmsList);
 
-const FilmPage = (props) => {
+const FilmPage: React.FunctionComponent<Props> = (props: Props) => {
   const {
     authorizationStatus,
     film,
@@ -131,13 +138,6 @@ const FilmPage = (props) => {
       </div>
     </>
   );
-};
-
-FilmPage.propTypes = {
-  authorizationStatus: PropTypes.oneOf([AuthorizationStatus.NO_AUTH, AuthorizationStatus.AUTH]).isRequired,
-  similarFilms: PropTypes.arrayOf(Film).isRequired,
-  film: Film,
-  onFavoriteChange: PropTypes.func.isRequired,
 };
 
 export default FilmPage;
