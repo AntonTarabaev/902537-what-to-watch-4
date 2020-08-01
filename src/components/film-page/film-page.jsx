@@ -8,7 +8,7 @@ import withActiveFilmCard from "@root/hocs/with-active-film-card/with-active-fil
 import Footer from "@components/footer/footer";
 import Header from "@components/header/header.connect";
 import {Film} from "@root/types";
-import {AuthorizationStatus} from "@constants/main";
+import {AuthorizationStatus} from "@root/types";
 import {AppRoutes} from "@constants/routes";
 import {Link} from "react-router-dom";
 

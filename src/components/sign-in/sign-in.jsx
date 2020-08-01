@@ -2,7 +2,7 @@ import Footer from "@components/footer/footer";
 import {ErrorMessage} from "@components/sign-in/consts";
 import Logo from "@components/logo/logo";
 import {AppRoutes} from "@constants/routes";
-import {AuthorizationStatus} from "@constants/main";
+import {AuthorizationStatus} from "@root/types";
 import {Redirect} from "react-router-dom";
 
 class SignIn extends React.PureComponent {

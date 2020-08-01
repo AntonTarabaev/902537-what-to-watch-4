@@ -1,5 +1,5 @@
 import {Route, Redirect} from "react-router-dom";
-import {AuthorizationStatus} from "@constants/main";
+import {AuthorizationStatus} from "@root/types";
 import {AppRoutes} from "@constants/routes";
 
 const PrivateRoute = (props) => {

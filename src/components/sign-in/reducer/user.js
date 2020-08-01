@@ -1,4 +1,4 @@
-import {AuthorizationStatus} from "@constants/main";
+import {AuthorizationStatus} from "@root/types";
 import {UserActionTypes} from "@constants/action-types";
 import {extend} from "@utils/common";
 

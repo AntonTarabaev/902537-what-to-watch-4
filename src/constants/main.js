@@ -22,8 +22,3 @@ export const CommentSettings = {
   MIN_LENGTH: 50,
   MAX_LENGTH: 400,
 };
-
-export const AuthorizationStatus = {
-  AUTH: `AUTH`,
-  NO_AUTH: `NO_AUTH`,
-};

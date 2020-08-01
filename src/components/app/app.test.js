@@ -1,7 +1,8 @@
 import App from "@components/app/app.connect";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
-import {AuthorizationStatus, FILTER_ALL_GENRES} from "@constants/main";
+import {AuthorizationStatus} from "@root/types";
+import {FILTER_ALL_GENRES} from "@constants/main";
 
 const mockStore = configureStore([]);
 

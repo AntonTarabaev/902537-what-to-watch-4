@@ -1,5 +1,5 @@
 import Logo from "@components/logo/logo";
-import {AuthorizationStatus} from "@constants/main";
+import {AuthorizationStatus} from "@root/types";
 import {Link} from "react-router-dom";
 import {AppRoutes} from "@constants/routes";
 

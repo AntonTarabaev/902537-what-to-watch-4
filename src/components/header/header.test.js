@@ -1,5 +1,5 @@
 import Header from "@components/header/header";
-import {AuthorizationStatus} from "@constants/main";
+import {AuthorizationStatus} from "@root/types";
 import history from "@root/history";
 import {Router} from "react-router-dom";
 

@@ -2,7 +2,7 @@ import AddReview from "@components/add-review/add-review";
 import history from "@root/history";
 import {Router} from "react-router-dom";
 import {Provider} from "react-redux";
-import {AuthorizationStatus} from "@constants/main";
+import {AuthorizationStatus} from "@root/types";
 import configureStore from "redux-mock-store";
 
 const mockStore = configureStore([]);

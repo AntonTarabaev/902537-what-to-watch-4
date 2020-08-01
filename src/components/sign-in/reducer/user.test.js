@@ -1,5 +1,5 @@
 import {user} from "@components/sign-in/reducer/user";
-import {AuthorizationStatus} from "@constants/main";
+import {AuthorizationStatus} from "@root/types";
 import {UserActionTypes} from "@constants/action-types";
 import {requireAuthorization} from "@components/sign-in/actions/require-authorization";
 import {setUserData} from "@components/sign-in/actions/set-user-data";

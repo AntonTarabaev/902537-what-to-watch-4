@@ -1,6 +1,6 @@
 import {ServerRoutes} from "@constants/routes";
 import {requireAuthorization} from "@components/sign-in/actions/require-authorization";
-import {AuthorizationStatus} from "@constants/main";
+import {AuthorizationStatus} from "@root/types";
 import {setUserData} from "@components/sign-in/actions/set-user-data";
 import {parseUser} from "@root/adapters/user";
 import history from "@root/history";

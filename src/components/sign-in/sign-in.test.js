@@ -1,7 +1,7 @@
 import SignIn from "@components/sign-in/sign-in";
 import history from "@root/history";
 import {Router} from "react-router-dom";
-import {AuthorizationStatus} from "@constants/main";
+import {AuthorizationStatus} from "@root/types";
 
 describe(`SignIn component render correctly`, () => {
   it(`with correct data`, () => {

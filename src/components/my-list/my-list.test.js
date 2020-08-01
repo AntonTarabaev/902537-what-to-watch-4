@@ -1,4 +1,4 @@
-import {AuthorizationStatus} from "@constants/main";
+import {AuthorizationStatus} from "@root/types";
 import {Provider} from "react-redux";
 import {Router} from "react-router-dom";
 import history from "@root/history";

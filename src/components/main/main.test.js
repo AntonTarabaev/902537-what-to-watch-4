@@ -1,5 +1,6 @@
 import Main from "@components/main/main.connect";
-import {AuthorizationStatus, FILTER_ALL_GENRES} from "@constants/main";
+import {AuthorizationStatus} from "@root/types";
+import {FILTER_ALL_GENRES} from "@constants/main";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import history from "@root/history";

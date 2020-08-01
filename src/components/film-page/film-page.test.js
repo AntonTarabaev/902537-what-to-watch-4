@@ -1,6 +1,6 @@
 import FilmPage from "@components/film-page/film-page";
 import configureStore from "redux-mock-store";
-import {AuthorizationStatus} from "@constants/main";
+import {AuthorizationStatus} from "@root/types";
 import {Provider} from "react-redux";
 import history from "@root/history";
 import {Router} from "react-router-dom";

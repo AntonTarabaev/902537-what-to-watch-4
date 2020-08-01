@@ -8,7 +8,7 @@ import thunk from "redux-thunk";
 import {composeWithDevTools} from "redux-devtools-extension";
 import {loadData} from "@components/app/operations/load-data";
 import {requireAuthorization} from "@components/sign-in/actions/require-authorization";
-import {AuthorizationStatus} from "@constants/main";
+import {AuthorizationStatus} from "@root/types";
 import {checkAuth} from "@components/sign-in/operations/check-auth";
 import history from "@root/history";
 import {AppRoutes} from "@constants/routes";
