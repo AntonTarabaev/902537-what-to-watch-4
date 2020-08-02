@@ -1,11 +1,11 @@
 import Logo from "@components/logo/logo";
-import {AuthorizationStatus} from "@root/types";
+import {AuthorizationStatus, User} from "@root/types";
 import {Link} from "react-router-dom";
 import {AppRoutes} from "@constants/routes";
 
 interface Props {
   authorizationStatus: AuthorizationStatus;
-  userData: {avatar: string};
+  userData: User;
 }
 
 const Header: React.FunctionComponent<Props> = (props: Props) => {

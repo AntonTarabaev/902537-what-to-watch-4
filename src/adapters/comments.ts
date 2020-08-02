@@ -9,6 +9,6 @@ const parseComment = (data) => {
   };
 };
 
-export const parseComments = (comments) => {
+export const parseComments = (comments: Comment[]) => {
   return comments.map(parseComment);
 };

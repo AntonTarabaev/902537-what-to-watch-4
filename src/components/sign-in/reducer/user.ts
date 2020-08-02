@@ -1,14 +1,15 @@
 import {AuthorizationStatus} from "@root/types";
 import {UserActionTypes} from "@constants/action-types";
 import {extend} from "@utils/common";
+import {UserActions, UserState} from "@components/sign-in/types";
 
-const initialState = {
+const initialState: UserState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
-  userData: {},
+  userData: null,
   favoriteFilms: [],
 };
 
-export const user = (state = initialState, action) => {
+export const user = (state = initialState, action: UserActions) => {
   switch (action.type) {
     case UserActionTypes.REQUIRED_AUTHORIZATION:
       return extend(state, {

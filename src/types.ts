@@ -30,3 +30,10 @@ export interface Comment {
   date: Date;
   rating: number;
 }
+
+export interface User {
+  id: string;
+  name: string;
+  avatar: string;
+  email: string;
+}

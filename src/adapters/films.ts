@@ -1,3 +1,5 @@
+import {Film} from "../types";
+
 export const parseFilm = (film) => {
   return {
     id: String(film[`id`]),
@@ -20,6 +22,6 @@ export const parseFilm = (film) => {
   };
 };
 
-export const parseFilms = (films) => {
+export const parseFilms = (films: Film[]) => {
   return films.map(parseFilm);
 };

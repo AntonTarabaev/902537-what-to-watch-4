@@ -10,7 +10,10 @@ describe(`SignIn component render correctly`, () => {
         <Router history={history}>
           <Header
             userData={{
+              id: `123`,
               avatar: `path`,
+              name: `path`,
+              email: `path`,
             }}
             authorizationStatus={AuthorizationStatus.AUTH}
           />
