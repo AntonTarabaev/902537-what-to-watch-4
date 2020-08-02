@@ -21,12 +21,9 @@ export const mainPage = (state = initialState, action: MainPageActions) => {
       });
 
     case MainPageActionTypes.INCREMENT_SHOWING_FILMS:
-      if (typeof action.payload === `number`) {
-        return extend(state, {
-          showingFilmsCount: state.showingFilmsCount + action.payload,
-        });
-      }
-      return state;
+      return extend(state, {
+        showingFilmsCount: state.showingFilmsCount + action.payload,
+      });
 
     default:
       return state;

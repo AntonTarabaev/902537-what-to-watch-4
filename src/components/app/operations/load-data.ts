@@ -3,8 +3,11 @@ import {setPromo} from "@components/app/actions/set-promo";
 import {setLoadedStatus} from "@components/app/actions/set-loaded-status";
 import {setFilms} from "@components/app/actions/set-films";
 import {parseFilm, parseFilms} from "@root/adapters/films";
+import {Dispatch} from "redux";
+import {DataActions, DataState} from "@components/app/types";
+import {AxiosInstance} from "axios";
 
-export const loadData = () => (dispatch, getState, api) => {
+export const loadData = () => (dispatch: Dispatch<DataActions>, getState: () => DataState, api: AxiosInstance) => {
   const promo = () => api.get(ServerRoutes.PROMO);
   const films = () => api.get(ServerRoutes.FILMS);
 

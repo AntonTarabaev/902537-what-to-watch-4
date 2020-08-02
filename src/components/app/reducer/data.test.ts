@@ -1,23 +1,25 @@
 import {data} from "@components/app/reducer/data";
 import {AppActionTypes} from "@constants/action-types";
-import {extend} from "@utils/common";
+import {extend, noop} from "@utils/common";
 import MockAdapter from "axios-mock-adapter";
 import {createAPI} from "@root/api";
 import {loadData} from "@components/app/operations/load-data";
 import {ServerRoutes} from "@constants/routes";
-import {loadComments} from "@root/components/film-page/operations/load-comments";
+import {loadComments} from "@components/film-page/operations/load-comments";
 import {parseFilm, parseFilms} from "@root/adapters/films";
 import {setLoadedStatus} from "@components/app/actions/set-loaded-status";
 import {setFilms} from "@components/app/actions/set-films";
 import {setComments} from "@components/film-page/actions/set-comments";
 import {setFilmIsFavorite} from "@components/app/actions/set-film-is-favorite";
 import {setPromo} from "@components/app/actions/set-promo";
+import {Comment, Film} from "../../../types";
 
-const films = [
+const films: Film[] = [
   {
     id: `573489`,
     title: `Fantastic Beasts: The Crimes of Grindelwald`,
     poster: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    previewImage: `the-grand-budapest-hotel-poster.jpg`,
     bgImage: `path`,
     releaseYear: 1999,
     genre: `Drama`,
@@ -34,11 +36,14 @@ const films = [
       `Tom Hanks`,
     ],
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    video: `path`,
+    isFavorite: true,
   },
   {
     id: `5593482`,
     title: `Bohemian Rhapsody`,
     poster: `bohemian-rhapsody.jpg`,
+    previewImage: `the-grand-budapest-hotel-poster.jpg`,
     bgImage: `path`,
     releaseYear: 2001,
     genre: `Comedy`,
@@ -57,11 +62,14 @@ const films = [
       `Michael Caine`,
     ],
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    video: `path`,
+    isFavorite: false,
   },
   {
     id: `123094`,
     title: `Aviator`,
     poster: `aviator.jpg`,
+    previewImage: `the-grand-budapest-hotel-poster.jpg`,
     bgImage: `path`,
     releaseYear: 2015,
     genre: `Thriller`,
@@ -76,25 +84,31 @@ const films = [
       `Tom Hanks`,
     ],
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    video: `path`,
+    isFavorite: false,
   }
 ];
 
-const comments = [
+const comments: Comment[] = [
   {
+    id: 1,
     author: `John Doe`,
+    authorId: 123,
     rating: 8.9,
     date: new Date(8475893),
     comment: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet varius magna, non porta ligula feugiat eget. Sed sed nisi sed augue convallis suscipit in sed felis. Fusce tristique felis at fermentum pharetra. Aliquam id orci ut lectus varius viverra.`,
   },
   {
+    id: 2,
     author: `Robert Rodrigues`,
+    authorId: 321,
     rating: 5.4,
     date: new Date(4231284),
     comment: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet varius magna`,
   }
 ];
 
-const api = createAPI(() => {});
+const api = createAPI(noop);
 
 const testInitialState = {
   films,
@@ -105,9 +119,12 @@ const testInitialState = {
 
 describe(`Data reducer work correctly`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
-    expect(data(void 0, {})).toEqual({
+    expect(data(void 0, {
+      type: null,
+      payload: null,
+    })).toEqual({
       films: [],
-      promo: {},
+      promo: null,
       comments: [],
       isLoaded: false,
     });
@@ -132,9 +149,9 @@ describe(`Data reducer work correctly`, () => {
   it(`Reducer should change films by a given value`, () => {
     expect(data(testInitialState, {
       type: AppActionTypes.SET_FILMS,
-      payload: [{fake: true}],
+      payload: films.slice(1, 2),
     })).toEqual(extend(testInitialState, {
-      films: [{fake: true}],
+      films: films.slice(1, 2),
     }));
 
     expect(data(testInitialState, {
@@ -148,9 +165,9 @@ describe(`Data reducer work correctly`, () => {
   it(`Reducer should change promo by a given value`, () => {
     expect(data(testInitialState, {
       type: AppActionTypes.SET_PROMO,
-      payload: {fake: true},
+      payload: films[2],
     })).toEqual(extend(testInitialState, {
-      promo: {fake: true},
+      promo: films[2],
     }));
 
     expect(data(testInitialState, {
@@ -164,79 +181,70 @@ describe(`Data reducer work correctly`, () => {
   it(`Reducer should change comments by a given value`, () => {
     expect(data(testInitialState, {
       type: AppActionTypes.SET_COMMENTS,
-      payload: [{fake: true}],
+      payload: comments,
     })).toEqual(extend(testInitialState, {
-      comments: [{fake: true}],
+      comments,
     }));
 
     expect(data(testInitialState, {
       type: AppActionTypes.SET_COMMENTS,
-      payload: films,
+      payload: comments.slice(1, 2),
     })).toEqual(extend(testInitialState, {
-      comments: films,
+      comments: comments.slice(1, 2),
     }));
   });
 
   it(`Reducer should change film favorite`, () => {
     expect(data(testInitialState, {
       type: AppActionTypes.SET_FILM_IS_FAVORITE,
-      payload: {
-        fake: true,
-        id: `573489`
-      },
+      payload: films[0],
     })).toEqual(extend(testInitialState, {
-      promo: {
-        fake: true,
-        id: `573489`
-      },
-      films: [].concat({fake: true, id: `573489`}, films.slice(1)),
+      promo: films[0],
+      films,
     }));
 
     expect(data(testInitialState, {
       type: AppActionTypes.SET_FILM_IS_FAVORITE,
-      payload: {
-        fake: true,
-        id: `5593482`
-      },
+      payload: films[1],
     })).toEqual(extend(testInitialState, {
-      films: [].concat(films[0], {fake: true, id: `5593482`}, films.slice(2)),
+      films,
     }));
   });
 });
 
 describe(`Action creators work correctly`, () => {
   it(`Action creator for set loaded status returns correct action`, () => {
-    expect(setLoadedStatus(true)).toEqual({
+    expect(setLoadedStatus()).toEqual({
       type: AppActionTypes.SET_LOADED_STATUS,
       payload: true,
     });
   });
 
   it(`Action creator for set films returns correct action`, () => {
-    expect(setFilms([{fake: true}])).toEqual({
+    expect(setFilms(films)).toEqual({
       type: AppActionTypes.SET_FILMS,
-      payload: [{fake: true}],
+      payload: films,
     });
   });
 
   it(`Action creator for set comments returns correct action`, () => {
-    expect(setComments([{fake: true}])).toEqual({
+    expect(setComments(comments)).toEqual({
       type: AppActionTypes.SET_COMMENTS,
-      payload: [{fake: true}],
+      payload: comments,
     });
   });
 
   it(`Action creator for set promo returns correct action`, () => {
-    expect(setPromo({fake: true})).toEqual({
+    expect(setPromo(films[1])).toEqual({
       type: AppActionTypes.SET_PROMO,
-      payload: {fake: true},
+      payload: films[1],
     });
   });
 
   it(`Action creator for set film is favorite returns correct action`, () => {
-    expect(setFilmIsFavorite({fake: true})).toEqual({
+    expect(setFilmIsFavorite(films[2])).toEqual({
       type: AppActionTypes.SET_FILM_IS_FAVORITE,
-      payload: {fake: true},
+      payload: films[2],
     });
   });
 });
@@ -249,20 +257,20 @@ describe(`Operations work correctly`, () => {
 
     apiMock
       .onGet(ServerRoutes.FILMS)
-      .reply(200, [{fake: true}])
+      .reply(200, films)
       .onGet(ServerRoutes.PROMO)
-      .reply(200, {fake: true});
+      .reply(200, films[0]);
 
-    return dataLoader(dispatch, () => {}, api)
+    return dataLoader(dispatch, () => testInitialState, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(3);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: AppActionTypes.SET_PROMO,
-          payload: parseFilm({fake: true}),
+          payload: parseFilm(films[0]),
         });
         expect(dispatch).toHaveBeenNthCalledWith(2, {
           type: AppActionTypes.SET_FILMS,
-          payload: parseFilms([{fake: true}]),
+          payload: parseFilms(films),
         });
         expect(dispatch).toHaveBeenNthCalledWith(3, {
           type: AppActionTypes.SET_LOADED_STATUS,
@@ -280,7 +288,7 @@ describe(`Operations work correctly`, () => {
       .onGet(`${ServerRoutes.COMMENTS}/111`)
       .reply(200, []);
 
-    return commentsLoader(dispatch, () => {}, api)
+    return commentsLoader(dispatch, () => testInitialState, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {

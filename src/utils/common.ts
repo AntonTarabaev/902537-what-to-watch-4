@@ -30,3 +30,7 @@ export const changeFormElementsDisabledProperty = (form: HTMLFormElement, disabl
 export const noop = () => {
   // do nothing
 };
+
+export const inferLiteralFromString = <T extends string>(arg: T) => {
+  return arg;
+};

@@ -37,3 +37,7 @@ export interface User {
   avatar: string;
   email: string;
 }
+
+export const instanceOfFilm = (target): target is Film => {
+  return `title` in target;
+};

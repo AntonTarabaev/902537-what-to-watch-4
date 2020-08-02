@@ -1,14 +1,15 @@
 import {AppActionTypes} from "@constants/action-types";
 import {extend} from "@utils/common";
+import {DataActions, DataState} from "../types";
 
-const initialState = {
+const initialState: DataState = {
   films: [],
-  promo: {},
+  promo: null,
   comments: [],
   isLoaded: false,
 };
 
-export const data = (state = initialState, action) => {
+export const data = (state = initialState, action: DataActions) => {
   switch (action.type) {
     case AppActionTypes.SET_FILMS:
       return extend(state, {
