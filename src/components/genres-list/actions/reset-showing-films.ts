@@ -1,7 +1,8 @@
 import {FilmSettings} from "@constants/main";
 import {GenresListActionTypes} from "@constants/action-types";
+import {MainPageActions} from "@components/main/types";
 
-export const resetShowingFilms = () => ({
+export const resetShowingFilms = (): MainPageActions => ({
   type: GenresListActionTypes.RESET_SHOWING_FILMS,
   payload: FilmSettings.SHOWING_ON_START_COUNT,
 });

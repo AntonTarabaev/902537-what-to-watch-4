@@ -1,14 +1,14 @@
 import {FilmSettings, FILTER_ALL_GENRES} from "@constants/main";
-import {GenresListActionTypes} from "@constants/action-types";
+import {GenresListActionTypes, MainPageActionTypes} from "@constants/action-types";
 import {extend} from "@utils/common";
-import {MainPageActionTypes} from "@constants/action-types";
+import {MainPageActions, MainPageState} from "@components/main/types";
 
-const initialState = {
+const initialState: MainPageState = {
   filterGenre: FILTER_ALL_GENRES,
   showingFilmsCount: FilmSettings.SHOWING_ON_START_COUNT,
 };
 
-export const mainPage = (state = initialState, action) => {
+export const mainPage = (state = initialState, action: MainPageActions) => {
   switch (action.type) {
     case GenresListActionTypes.CHANGE_GENRE_FILTER:
       return extend(state, {
@@ -21,9 +21,12 @@ export const mainPage = (state = initialState, action) => {
       });
 
     case MainPageActionTypes.INCREMENT_SHOWING_FILMS:
-      return extend(state, {
-        showingFilmsCount: state.showingFilmsCount + action.payload,
-      });
+      if (typeof action.payload === `number`) {
+        return extend(state, {
+          showingFilmsCount: state.showingFilmsCount + action.payload,
+        });
+      }
+      return state;
 
     default:
       return state;

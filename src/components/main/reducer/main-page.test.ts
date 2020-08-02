@@ -8,7 +8,10 @@ import {resetShowingFilms} from "@components/genres-list/actions/reset-showing-f
 
 describe(`MainPage reducer work correctly`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
-    expect(mainPage(void 0, {})).toEqual({
+    expect(mainPage(void 0, {
+      type: null,
+      payload: null,
+    })).toEqual({
       filterGenre: FILTER_ALL_GENRES,
       showingFilmsCount: FilmSettings.SHOWING_ON_START_COUNT,
     });
@@ -40,40 +43,48 @@ describe(`MainPage reducer work correctly`, () => {
 
   it(`Reducer should reset films count to a given value`, () => {
     expect(mainPage({
+      filterGenre: FILTER_ALL_GENRES,
       showingFilmsCount: FilmSettings.SHOWING_ON_START_COUNT,
     }, {
       type: GenresListActionTypes.RESET_SHOWING_FILMS,
       payload: 5,
     })).toEqual({
+      filterGenre: FILTER_ALL_GENRES,
       showingFilmsCount: 5,
     });
 
     expect(mainPage({
+      filterGenre: FILTER_ALL_GENRES,
       showingFilmsCount: FilmSettings.SHOWING_ON_START_COUNT,
     }, {
       type: GenresListActionTypes.RESET_SHOWING_FILMS,
       payload: 15,
     })).toEqual({
+      filterGenre: FILTER_ALL_GENRES,
       showingFilmsCount: 15,
     });
   });
 
   it(`Reducer should increment films count by a given value`, () => {
     expect(mainPage({
+      filterGenre: FILTER_ALL_GENRES,
       showingFilmsCount: FilmSettings.SHOWING_ON_START_COUNT,
     }, {
       type: MainPageActionTypes.INCREMENT_SHOWING_FILMS,
       payload: FilmSettings.SHOWING_BY_BUTTON,
     })).toEqual({
+      filterGenre: FILTER_ALL_GENRES,
       showingFilmsCount: FilmSettings.SHOWING_ON_START_COUNT + FilmSettings.SHOWING_BY_BUTTON,
     });
 
     expect(mainPage({
+      filterGenre: FILTER_ALL_GENRES,
       showingFilmsCount: 10,
     }, {
       type: MainPageActionTypes.INCREMENT_SHOWING_FILMS,
       payload: 5,
     })).toEqual({
+      filterGenre: FILTER_ALL_GENRES,
       showingFilmsCount: 15,
     });
   });
