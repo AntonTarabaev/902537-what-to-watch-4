@@ -36,7 +36,7 @@ const withActiveFilmCard = (Component) => {
     }
 
     _filmCardMouseEnterHandler(filmId) {
-      const timeout = setTimeout(() => {
+      const timeout = global.setTimeout(() => {
         this.setState({
           activeFilmCardId: filmId,
         });

@@ -11,7 +11,7 @@ interface Props {
   emailIsValid: boolean;
   passwordIsValid: boolean;
   validateData: (email: string, password: string) => void;
-};
+}
 
 class SignIn extends React.PureComponent<Props> {
   private readonly loginRef: React.RefObject<HTMLInputElement>;
