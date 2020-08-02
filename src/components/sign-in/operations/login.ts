@@ -5,10 +5,10 @@ import {setUserData} from "@components/sign-in/actions/set-user-data";
 import {parseUser} from "@root/adapters/user";
 import history from "@root/history";
 import {Dispatch} from "redux";
-import {AxiosStatic} from "axios";
+import {AxiosInstance} from "axios";
 import {UserActions, UserState} from "@components/sign-in/types";
 
-export const login = (authData: {login: string; password: string}) => (dispatch: Dispatch<UserActions>, getState: () => UserState, api: AxiosStatic) => {
+export const login = (authData: {login: string; password: string}) => (dispatch: Dispatch<UserActions>, getState: () => UserState, api: AxiosInstance) => {
   return api.post(ServerRoutes.LOGIN, {
     email: authData.login,
     password: authData.password,
