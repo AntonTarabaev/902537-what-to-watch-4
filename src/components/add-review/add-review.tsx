@@ -33,9 +33,15 @@ class AddReview extends React.PureComponent<Props, {}> {
 
   componentDidMount() {
     const commentArea = this.commentRef.current;
+    const submitButton = this.submitButtonRef.current;
 
     if (commentArea) {
       commentArea.focus();
+    }
+
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.style.opacity = `0.1`;
     }
   }
 
