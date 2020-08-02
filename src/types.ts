@@ -1,3 +1,7 @@
+import {MainPageState} from "@components/main/types";
+import {DataState} from "@components/app/types";
+import {UserState} from "@components/sign-in/types";
+
 export enum AuthorizationStatus {
   AUTH = `AUTH`,
   NO_AUTH = `NO_AUTH`,
@@ -38,6 +42,8 @@ export interface User {
   email: string;
 }
 
-export const instanceOfFilm = (target): target is Film => {
-  return `title` in target;
-};
+export interface RootState {
+  mainPage: MainPageState;
+  data: DataState;
+  user: UserState;
+}

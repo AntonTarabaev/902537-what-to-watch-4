@@ -1,11 +1,12 @@
 import {FILTER_ALL_GENRES} from "@constants/main";
 import {createSelector} from "reselect";
+import {RootState} from "@root/types";
 
-const getFilms = (state) => {
+const getFilms = (state: RootState) => {
   return state.data.films;
 };
 
-const getActiveGenre = (state) => {
+const getActiveGenre = (state: RootState) => {
   return state.mainPage.filterGenre;
 };
 
