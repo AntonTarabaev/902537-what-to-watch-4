@@ -1,5 +1,5 @@
 import SignIn from "@components/sign-in/sign-in";
-import history from "@root/history";
+import customHistory from "@root/customHistory";
 import {Router} from "react-router-dom";
 import {AuthorizationStatus} from "@root/types";
 import * as renderer from "react-test-renderer";
@@ -9,7 +9,7 @@ import {noop} from "@utils/common";
 describe(`SignIn component render correctly`, () => {
   it(`with correct data`, () => {
     const tree = renderer.create(
-        <Router history={history}>
+        <Router history={customHistory}>
           <SignIn
             authorizationStatus={AuthorizationStatus.NO_AUTH}
             emailIsValid={true}
@@ -25,7 +25,7 @@ describe(`SignIn component render correctly`, () => {
 
   it(`with incorrect data`, () => {
     const tree = renderer.create(
-        <Router history={history}>
+        <Router history={customHistory}>
           <SignIn
             authorizationStatus={AuthorizationStatus.NO_AUTH}
             emailIsValid={false}

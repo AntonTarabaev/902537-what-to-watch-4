@@ -3,7 +3,7 @@ import {AuthorizationStatus, Film} from "@root/types";
 import {FILTER_ALL_GENRES} from "@constants/main";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
-import history from "@root/history";
+import customHistory from "@root/customHistory";
 import {Router} from "react-router-dom";
 import * as renderer from "react-test-renderer";
 
@@ -107,7 +107,7 @@ it(`Should Main render correctly`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
-          <Router history={history}>
+          <Router history={customHistory}>
             <Main/>
           </Router>
         </Provider>, {

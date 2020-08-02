@@ -1,5 +1,5 @@
 import SignIn from "@components/sign-in/sign-in";
-import history from "@root/history";
+import customHistory from "@root/customHistory";
 import {Router} from "react-router-dom";
 import {AuthorizationStatus} from "@root/types";
 import {noop} from "@utils/common";
@@ -8,7 +8,7 @@ import {mount} from "enzyme";
 it(`Should prevent SignIn component form default behavior`, () => {
   const onSubmit = jest.fn();
   const signIn = mount(
-      <Router history={history}>
+      <Router history={customHistory}>
         <SignIn
           authorizationStatus={AuthorizationStatus.NO_AUTH}
           emailIsValid={true}

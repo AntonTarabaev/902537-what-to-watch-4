@@ -4,7 +4,7 @@ import {Switch, Route, Router} from "react-router-dom";
 import Loader from "@components/loader/loader";
 import SignIn from "@components/sign-in/sign-in.connect";
 import {AppRoutes} from "@constants/routes";
-import history from "@root/history";
+import customHistory from "@root/customHistory";
 import withValidation from "@root/hocs/with-validation/with-validation";
 import NotFound from "@components/not-found/not-found";
 import AddReview from "@components/add-review/add-review.connect";
@@ -26,7 +26,7 @@ const App: React.FunctionComponent<Props> = (props: Props) => {
   } = props;
 
   return (
-    <Router history={history}>
+    <Router history={customHistory}>
       <Switch>
         {!isLoaded && <Route component={Loader}/>}
 

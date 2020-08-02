@@ -1,5 +1,5 @@
 import FilmsList from "@components/films-list/films-list";
-import history from "@root/history";
+import customHistory from "@root/customHistory";
 import {Router} from "react-router-dom";
 import {Film} from "../../types";
 import * as renderer from "react-test-renderer";
@@ -82,7 +82,7 @@ const films: Film[] = [
 
 it(`Should FilmsList render correctly`, () => {
   const tree = renderer.create(
-      <Router history={history}>
+      <Router history={customHistory}>
         <FilmsList
           films={films}
           activeFilmCardId={films[0].id}

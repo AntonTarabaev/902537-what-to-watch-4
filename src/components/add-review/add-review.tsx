@@ -1,6 +1,6 @@
 import Header from "@components/header/header.connect";
 import {isValidComment} from "@utils/validation";
-import history from "@root/history";
+import customHistory from "@root/customHistory";
 import {AppRoutes} from "@constants/routes";
 import {Film} from "@root/types";
 import {Link} from "react-router-dom";
@@ -64,7 +64,7 @@ class AddReview extends React.PureComponent<Props, {}> {
     };
 
     const onSuccess = () => {
-      history.push(`${AppRoutes.FILMS}/${filmId}`);
+      customHistory.push(`${AppRoutes.FILMS}/${filmId}`);
     };
 
     const onError = () => {

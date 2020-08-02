@@ -1,4 +1,4 @@
-import history from "@root/history";
+import customHistory from "@root/customHistory";
 import {Film} from "@root/types";
 
 interface Props {
@@ -32,7 +32,7 @@ const FullscreenPlayer: React.FunctionComponent<Props> = (props: Props) => {
     <div className="player">
       {children}
 
-      <button type="button" className="player__exit" onClick={history.goBack}>Exit</button>
+      <button type="button" className="player__exit" onClick={customHistory.goBack}>Exit</button>
 
       <div className="player__controls">
         <div className="player__controls-row">

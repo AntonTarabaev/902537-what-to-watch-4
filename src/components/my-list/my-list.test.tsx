@@ -1,7 +1,7 @@
 import {AuthorizationStatus, Film} from "@root/types";
 import {Provider} from "react-redux";
 import {Router} from "react-router-dom";
-import history from "@root/history";
+import customHistory from "@root/customHistory";
 import configureStore from "redux-mock-store";
 import MyList from "@components/my-list/my-list";
 import * as renderer from "react-test-renderer";
@@ -96,7 +96,7 @@ it(`Should MyList render correctly`, () => {
 
   const tree = renderer.create(
       <Provider store={store}>
-        <Router history={history}>
+        <Router history={customHistory}>
           <MyList
             favoriteFilms={films}
             loadFavorite={noop}

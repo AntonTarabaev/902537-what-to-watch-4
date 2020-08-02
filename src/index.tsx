@@ -10,12 +10,12 @@ import {loadData} from "@components/app/operations/load-data";
 import {requireAuthorization} from "@components/sign-in/actions/require-authorization";
 import {AuthorizationStatus} from "@root/types";
 import {checkAuth} from "@components/sign-in/operations/check-auth";
-import history from "@root/history";
+import customHistory from "@root/customHistory";
 import {AppRoutes} from "@constants/routes";
 
 const onUnauthorized = () => {
   store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
-  history.push(AppRoutes.LOGIN);
+  customHistory.push(AppRoutes.LOGIN);
 };
 
 const api = createAPI(onUnauthorized);

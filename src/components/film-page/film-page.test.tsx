@@ -2,7 +2,7 @@ import FilmPage from "@components/film-page/film-page";
 import configureStore from "redux-mock-store";
 import {AuthorizationStatus, Film} from "@root/types";
 import {Provider} from "react-redux";
-import history from "@root/history";
+import customHistory from "@root/customHistory";
 import {Router} from "react-router-dom";
 import * as renderer from "react-test-renderer";
 import {noop} from "@utils/common";
@@ -96,7 +96,7 @@ it(`Should FilmPage render correctly`, () => {
 
   const tree = renderer.create(
       <Provider store={store}>
-        <Router history={history}>
+        <Router history={customHistory}>
           <FilmPage
             authorizationStatus={AuthorizationStatus.AUTH}
             film={films[0]}

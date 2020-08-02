@@ -1,5 +1,5 @@
 import AddReview from "@components/add-review/add-review";
-import history from "@root/history";
+import customHistory from "@root/customHistory";
 import {Router} from "react-router-dom";
 import {Provider} from "react-redux";
 import {AuthorizationStatus} from "@root/types";
@@ -46,7 +46,7 @@ it(`Should AddReview render correctly`, () => {
 
   const tree = renderer.create(
       <Provider store={store}>
-        <Router history={history}>
+        <Router history={customHistory}>
           <AddReview
             film={film}
             isErrored={false}

@@ -1,6 +1,6 @@
 import FilmCard from "@components/film-card/film-card";
 import {Router} from "react-router-dom";
-import history from "@root/history";
+import customHistory from "@root/customHistory";
 import {Film} from "@root/types";
 import * as renderer from "react-test-renderer";
 import {noop} from "@utils/common";
@@ -32,7 +32,7 @@ const film: Film = {
 
 it(`Should FilmCard render correctly`, () => {
   const tree = renderer.create(
-      <Router history={history}>
+      <Router history={customHistory}>
         <FilmCard
           onFilmCardMouseEnter={noop}
           onFilmCardMouseLeave={noop}
