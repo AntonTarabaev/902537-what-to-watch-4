@@ -1,10 +1,11 @@
 import {mainPage} from "@components/main/reducer/main-page";
-import {FilmSettings, FILTER_ALL_GENRES} from "@constants/main";
+import {FILTER_ALL_GENRES} from "@constants/main";
 import {GenresListActionTypes} from "@constants/action-types";
 import {MainPageActionTypes} from "@constants/action-types";
 import {incrementShowingFilms} from "@components/main/actions/increment-showing-films";
 import {changeActiveGenre} from "@components/genres-list/actions/change-active-genre";
 import {resetShowingFilms} from "@components/genres-list/actions/reset-showing-films";
+import {FilmSettings} from "@components/main/types";
 
 describe(`MainPage reducer work correctly`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {

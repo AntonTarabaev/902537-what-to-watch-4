@@ -5,9 +5,15 @@ export interface MainPageState {
   showingFilmsCount: number;
 }
 
+export enum FilmSettings {
+  SHOWING_ON_START_COUNT = 8,
+  SHOWING_BY_BUTTON = 8,
+  EXTRA_COUNT = 4,
+}
+
 interface IncrementShowingFilmsAction {
   type: typeof MainPageActionTypes.INCREMENT_SHOWING_FILMS;
-  payload: number;
+  payload: FilmSettings;
 }
 
 interface ChangeActiveGenreAction {
@@ -17,7 +23,7 @@ interface ChangeActiveGenreAction {
 
 interface ResetShowingFilmsAction {
   type: typeof GenresListActionTypes.RESET_SHOWING_FILMS;
-  payload: number;
+  payload: FilmSettings;
 }
 
 export type MainPageActions = IncrementShowingFilmsAction | ChangeActiveGenreAction | ResetShowingFilmsAction;

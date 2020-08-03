@@ -12,13 +12,7 @@ export const SIMILAR_FILMS_COUNT = 4;
 
 export const PLAYER_POSTER_PATH = `/img/player-poster.jpg`;
 
-export const FilmSettings = {
-  SHOWING_ON_START_COUNT: 8,
-  SHOWING_BY_BUTTON: 8,
-  EXTRA_COUNT: 4,
-};
-
-export const CommentSettings = {
-  MIN_LENGTH: 50,
-  MAX_LENGTH: 400,
-};
+export enum CommentSettings {
+  MIN_LENGTH = 50,
+  MAX_LENGTH = 400,
+}
