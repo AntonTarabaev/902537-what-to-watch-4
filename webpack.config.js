@@ -4,7 +4,7 @@ const webpack = require('webpack');
 module.exports = (env) => {
   return {
     mode: env.type,
-    entry: './src/index.jsx',
+    entry: './src/index.tsx',
     output: {
       filename: 'bundle.js',
       path: path.join(__dirname, 'public')
@@ -25,13 +25,15 @@ module.exports = (env) => {
           use: {
             loader: 'babel-loader',
           },
+        }, {
+          test: /\.(tsx|ts)?$/,
+          loader: 'ts-loader'
         }
       ],
     },
     plugins: [
       new webpack.ProvidePlugin({
         React: 'react',
-        PropTypes: 'prop-types',
       }),
     ],
     devtool: env.devtool,
@@ -42,7 +44,7 @@ module.exports = (env) => {
         '@utils': path.resolve(__dirname, './src/utils'),
         '@constants': path.resolve(__dirname, './src/constants'),
       },
-      extensions: ['*', '.js', '.jsx']
+      extensions: ['*', '.js', '.jsx', '.ts', '.tsx']
     }
   };
 };
